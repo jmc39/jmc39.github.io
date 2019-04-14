@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Figure 3: Cloudiness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <style>
+    .navbar {
+      margin-bottom: 13px;
+      border-radius: 0;
+    }
+     .jumbotron {
+      margin-bottom: 39px;
+    }
+        body {
+        background-color:#0098db
+        }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+            
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="landing.html">HOME</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      PLOTS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="fig1jmc39.html">Temperature</a>
+                      <a class="dropdown-item" href="fig2jmc39.html">Humidity</a>
+                      <a class="dropdown-item" href="fig3jmc39.html">Cloudiness</a>
+                      <a class="dropdown-item" href="fig4jmc39.html">Wind Speed</a>
+                    </div>
+                  </li>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="comparison39.html">COMPARISONS</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="data39.html">DATA</a>
+                      </li>
+                </ul>
+              </div>
+              </div>
+</nav>
+<div class="container-fluid">
+<br><h2><p align=center>Latitude vs. Cloudiness</h2>
+<table>
+    <tr>
+        <td align=center>
+            <img src="figures/Fig3.png" width=639 alt='City Latitude vs. cloudiness' hspace="39">
+        </td>
+        <td>
+            <h4> 
+            <p>In this scatterplot, latitude is along the x-axis and the percentage cloudiness is on the y-axis. For data from January 5, 2017, this plot indicates no clear pattern that establishes a relationship between latitude vs. cloudiness. This plot is literally scattered; however, for latitudes between 0 and +40, cloudiness tends to be either greater than ~80% or otherwise less than 40%. Further, the broadest distribution of percentage humidity appears at -20 latitude and also near +60 latitude. 
+            </p>
+            <p>This scatterplot graph is the third (Fig3.png) out of series of 4 graphs generated from matplotlib in python. The graph is taken from homework assignment #2 in the UCSD Extension School bootcamp "Data Science and Visualization"
+            </p>
+        </h4>
+        </td>
+    </tr>
+</table>
+</div>
+</body>
+</html>
