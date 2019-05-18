@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>Pothole Clusters</title>
+    
+    <!-- Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+    
+    <!-- Leaflet JS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+    
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+    
+    <!-- d3 JS -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    
+    <!-- Marker Cluster JS & CSS -->
+    <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+    
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+        
+    <!-- jmc39 CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12  col-md-9 col-lg-12">
+        <div class="article">
+          <p>
+            <h1>leaflet.js vs. Tableau mapping tool</h1>
+            <!-- <h2>GID Explorer Prototype - Potholes</h2> -->
+            <p>
+            <b><u>External Explorer:</u></b>leaflet.js coded public-facing explorer developed as "automated" alternative to Tableau-generated map, which requires push updates. Given the “live connection” limitations of the selene.datasd.org Tableau Server (and other Tableau limitations), leaflet.js maps are being developed.</p>
+            <p>
+            <b><u>Internal Explorer:</u></b> Using Tableau for the City staff mapping tool to support CAO litigation research is still in pursuit because of the Tableau lasso feature. The lasso feature allows staff to filter <a href="https://onlinehelp.tableau.com/current/pro/desktop/en-us/inspectdata_selectiontools.htm">(via free-form, circle, or box outline)</a> and download this filtered data, which is most relevant to the litigation. CAO litigation research does not require a “live data connection” since the slip-trip-fall incident occurred in the past (i.e. the incident date is the timestamp end point for relevant GID cases to download). In short, CAO staff can be trained to DIY GID case research using Tableau desktop (and with no need for to spin up selene and incur utilization charges).  In the end, a DIY approach can hopefully relieve PandA Tech&Innovation peeps from doing the GID case research for the CAO staff.
+            </p>
+        </p>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- leaflet.js pothole marker cluster map -->
+<div id="map"></div>
+<script type="text/javascript" src="static/js/config.js"></script>
+<script type="text/javascript" src="static/js/pothole_cluster.js"></script>
+
+</body>
+</html>
