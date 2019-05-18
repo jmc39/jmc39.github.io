@@ -18,7 +18,7 @@ var url = "http://seshat.datasd.org/get_it_done_311/get_it_done_pothole_requests
 
 // Grab the data with d3
 d3.csv(url, function(response) {
-//   console.log(response);
+  console.log(response);
 
 // Create a new marker cluster group
 var markers = L.markerClusterGroup();
