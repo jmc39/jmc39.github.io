@@ -13,7 +13,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 // Assemble API query URL
-var url = "http://seshat.datasd.org/get_it_done_311/get_it_done_pothole_requests_datasd.csv"
+var url = "https://seshat.datasd.org/get_it_done_311/get_it_done_pothole_requests_datasd.csv"
 
 // Grab the data with d3
 d3.csv(url, function(response) {
