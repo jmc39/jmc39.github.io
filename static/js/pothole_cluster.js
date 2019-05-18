@@ -1,7 +1,7 @@
 // Creating map object
 var myMap = L.map("map", {
   center: [32.7157, -117.1611],
-  zoom: 5
+  zoom: 11
 });
 
 // Adding tile layer to the map
@@ -13,7 +13,8 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 // Assemble API query URL
-var url = "https://seshat.datasd.org/get_it_done_311/get_it_done_pothole_requests_datasd.csv"
+console.log("CSV dataset url is http instead of https which generates console error")
+var url = "http://seshat.datasd.org/get_it_done_311/get_it_done_pothole_requests_datasd.csv"
 
 // Grab the data with d3
 d3.csv(url, function(response) {
