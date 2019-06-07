@@ -1,8 +1,10 @@
 // Creating map object
+  
 var myMap = L.map("map", {
   center: [32.7157, -117.1611],
-  zoom: 11
+  zoom: 13
 });
+// function createMap(serviceRequests) {
 
 // Adding tile layer to the map
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -14,14 +16,14 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 // Assemble API query URL
 console.log("CSV dataset url is http instead of https which generates console error")
-var url = "https://seshat.datasd.org/get_it_done_311/get_it_done_pothole_requests_datasd.csv"
-
+var url = "https://files.maksimpecherskiy.com/get_it_done_pothole_requests_datasd_1.csv"
 // Grab the data with d3
-d3.csv(url, function(response) {
-  console.log(response);
+d3.csv(url, 
+  function(response) {
+//   console.log(response);
 
 // Create a new marker cluster group
-var markers = L.markerClusterGroup();
+var markers = new L.MarkerClusterGroup();
 
 // Loop through data
 for (var i = 0; i < response.length; i++) {
@@ -30,16 +32,14 @@ for (var i = 0; i < response.length; i++) {
     // Set the data latitude and longtitude
     var lat = response[i].lat;
     var long = response[i].long;
-    // if(i < response.length/50){
-    //     console.log(typeof lat);
-    //     console.log(lat);
-    //     console.log(response[0]);
-    // }
-
-    // Check for lat, long service request property
-    if (lat) {
+    var council = response[i].council_district
+    
+    // Check for service requests located in San Diego Council Districts    
+    if (council) {
+    
+      // Check for lat, long service request property
+      if (lat) {
         if (long) {
-
     // Add a new marker to the cluster group and bind a pop-up
     markers.addLayer(L.marker([lat, long])
     .bindPopup(
@@ -51,6 +51,7 @@ for (var i = 0; i < response.length; i++) {
         `));
         }   
     }
+  }
 }
   // Add our marker cluster layer to the map
   myMap.addLayer(markers);
