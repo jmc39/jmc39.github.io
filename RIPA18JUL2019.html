@@ -13148,6 +13148,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
 <span class="c1"># Option to display numpy arrays without truncating them</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
 </pre></div>
@@ -13222,7 +13223,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Loop through each data.sandiego.gov URLs and import to pandas dataframes</span>
@@ -13259,7 +13260,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[55]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -13272,7 +13273,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[55]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -13285,7 +13286,19 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[55]:</div>
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Users/jamesmcarter/anaconda3/lib/python3.7/site-packages/IPython/core/interactiveshell.py:3049: DtypeWarning: Columns (12) have mixed types. Specify dtype option on import or set low_memory=False.
+  interactivity=interactivity, compiler=compiler, result=result)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -13418,7 +13431,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{df_race.shape}</span><span class="s1"> dF shape race&#39;</span><span class="p">)</span>
@@ -13463,7 +13476,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[56]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -13483,7 +13496,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[56]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -13496,7 +13509,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[56]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -13513,7 +13526,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">UID_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;stop_id&#39;</span><span class="p">,</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span>
@@ -13531,7 +13544,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[57]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -13636,7 +13649,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[57]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -13696,7 +13709,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#merge dataframes: result (97630) + basis (92162)</span>
@@ -13711,7 +13724,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13727,7 +13740,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[59]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13744,7 +13757,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis) + evidence (91227)</span>
@@ -13759,7 +13772,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13775,7 +13788,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[61]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -13792,7 +13805,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis + evidence) + race (90634)</span>
@@ -13807,7 +13820,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13823,7 +13836,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[63]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -13840,7 +13853,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis + evidence + race) + stops (89485)</span>
@@ -13855,7 +13868,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13871,7 +13884,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[65]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -13888,7 +13901,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis + evidence + race + stops) + gender (89476)</span>
@@ -13903,7 +13916,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13919,7 +13932,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[67]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -13936,7 +13949,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">columns</span>
@@ -13952,7 +13965,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[68]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -13978,7 +13991,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;race&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -13995,7 +14008,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[69]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -14010,7 +14023,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[69]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -14065,7 +14078,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Add column for UID, for UID = stop_id + pid</span>
@@ -14079,7 +14092,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;UID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -14098,7 +14111,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[71]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -14131,54 +14144,21 @@ Name: UID, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;stopdate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;stopdate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">latest_date</span><span class="o">=</span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;stopdate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">earliest_date</span><span class="o">=</span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;stopdate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[72]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;2019-06-30&#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[72]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;2018-07-01&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Groupby Race</span>
@@ -14192,7 +14172,7 @@ Name: UID, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">race_grouping</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;stopduration&#39;</span><span class="p">)</span>
@@ -14208,7 +14188,7 @@ Name: UID, dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -14424,7 +14404,7 @@ Name: UID, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">stops_count_black</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[</span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;race&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black/African American&#39;</span><span class="p">][</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
@@ -14459,7 +14439,7 @@ Name: UID, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">stops_count_white</span> <span class="o">=</span> <span class="n">merged_df</span><span class="p">[</span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;race&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;White&#39;</span><span class="p">][</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
@@ -14510,7 +14490,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#What is the overall percentage of x minority group (e.g. black)?</span>
@@ -14524,7 +14504,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Variable for &#39;Race alone or in combination with one or more other races&#39; (ACS DP05)</span>
@@ -14563,7 +14543,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Dictionary containing population demographics</span>
@@ -14591,7 +14571,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[79]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -14604,7 +14584,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[79]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -14682,7 +14662,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;race&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -14698,7 +14678,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[80]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -14717,7 +14697,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Dictionary to parse out race demographics | HISPANIC OR LATINO AND RACE</span>
@@ -14740,7 +14720,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[81]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -14830,11 +14810,11 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">linebreak</span><span class="o">=</span><span class="s1">&#39;-*-*-*-*-*&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{individuals:,}</span><span class="s1"> individuals stopped across </span><span class="si">{stops:,}</span><span class="s1"> stops&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{individuals:,}</span><span class="s1"> individuals stopped across </span><span class="si">{stops:,}</span><span class="s1"> stops from the period </span><span class="si">{earliest_date}</span><span class="s1"> to </span><span class="si">{latest_date}</span><span class="s1">&#39;</span><span class="p">)</span> 
 <span class="n">count_white</span> <span class="o">=</span> <span class="n">DP05_race_dF</span><span class="p">[</span><span class="n">DP05_race_dF</span><span class="p">[</span><span class="s1">&#39;Race&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;White&#39;</span><span class="p">][</span><span class="s1">&#39;Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">percent_white</span> <span class="o">=</span> <span class="n">DP05_race_dF</span><span class="p">[</span><span class="n">DP05_race_dF</span><span class="p">[</span><span class="s1">&#39;Race&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;White&#39;</span><span class="p">][</span><span class="s1">&#39;Percentage&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">count_Hispanic</span> <span class="o">=</span> <span class="n">DP05_race_dF</span><span class="p">[</span><span class="n">DP05_race_dF</span><span class="p">[</span><span class="s1">&#39;Race&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Hispanic/Latino/a&#39;</span><span class="p">][</span><span class="s1">&#39;Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -14866,7 +14846,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>179,709 individuals stopped across 158,757 stops
+<pre>179,709 individuals stopped across 158,757 stops from the period 2018-07-01 to 2019-06-30
 -*-*-*-*-*
 Whites make up 43.1% (599,633) of the gcity of San Diego overall population.
 Amongst SDPD stops, whites account for 42.7% (92,216)
@@ -14886,7 +14866,7 @@ Amongst SDPD stops, Blacks account for 20.0% (43,170)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Number of pid in RIPA data</span>
@@ -14904,7 +14884,7 @@ Amongst SDPD stops, Blacks account for 20.0% (43,170)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## print((White_latino + White_non_latino - White_combo)/1390966)</span>
@@ -14918,11 +14898,29 @@ Amongst SDPD stops, Blacks account for 20.0% (43,170)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DP05_race_dF</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path_prefix</span><span class="o">+</span><span class="s2">&quot;DP05_race_dF&quot;</span><span class="p">)</span>
-<span class="n">merged_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path_prefix</span><span class="o">+</span><span class="s2">&quot;RIPA_merged_df&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DP05_race_dF</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;datasources/DP05_race_dF.csv&quot;</span><span class="p">)</span>
+<span class="n">merged_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;datasources/RIPA_merged_df.csv&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#CREATE Google Sheet from dataframes</span>
+<span class="kn">import</span> <span class="nn">pygsheets</span> <span class="k">as</span> <span class="nn">pyg</span>
+
+<span class="c1">#authorization</span>
+<span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;sdcity9c9209b112fe.json&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gc</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14938,78 +14936,9 @@ Amongst SDPD stops, Blacks account for 20.0% (43,170)
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">HTTPError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-85-65a45a3b126d&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>DP05_race_dF<span class="ansi-blue-fg">.</span>to_csv<span class="ansi-blue-fg">(</span>path_prefix<span class="ansi-blue-fg">+</span><span class="ansi-blue-fg">&#34;DP05_race_dF&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> merged_df<span class="ansi-blue-fg">.</span>to_csv<span class="ansi-blue-fg">(</span>path_prefix<span class="ansi-blue-fg">+</span><span class="ansi-blue-fg">&#34;RIPA_merged_df&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/pandas/core/generic.py</span> in <span class="ansi-cyan-fg">to_csv</span><span class="ansi-blue-fg">(self, path_or_buf, sep, na_rep, float_format, columns, header, index, index_label, mode, encoding, compression, quoting, quotechar, line_terminator, chunksize, tupleize_cols, date_format, doublequote, escapechar, decimal)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3017</span>                                  date_format<span class="ansi-blue-fg">=</span>date_format<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">   3018</span>                                  doublequote<span class="ansi-blue-fg">=</span>doublequote<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">-&gt; 3019</span><span class="ansi-red-fg">                                  escapechar=escapechar, decimal=decimal)
-</span><span class="ansi-green-intense-fg ansi-bold">   3020</span>         formatter<span class="ansi-blue-fg">.</span>save<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3021</span> 
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/pandas/io/formats/csvs.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, obj, path_or_buf, sep, na_rep, float_format, cols, header, index, index_label, mode, nanRep, encoding, compression, quoting, line_terminator, chunksize, tupleize_cols, quotechar, date_format, doublequote, escapechar, decimal)</span>
-<span class="ansi-green-intense-fg ansi-bold">     42</span> 
-<span class="ansi-green-intense-fg ansi-bold">     43</span>         self.path_or_buf, _, _, _ = get_filepath_or_buffer(
-<span class="ansi-green-fg">---&gt; 44</span><span class="ansi-red-fg">             </span>path_or_buf<span class="ansi-blue-fg">,</span> encoding<span class="ansi-blue-fg">=</span>encoding<span class="ansi-blue-fg">,</span> compression<span class="ansi-blue-fg">=</span>compression<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">=</span>mode
-<span class="ansi-green-intense-fg ansi-bold">     45</span>         )
-<span class="ansi-green-intense-fg ansi-bold">     46</span>         self<span class="ansi-blue-fg">.</span>sep <span class="ansi-blue-fg">=</span> sep
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/pandas/io/common.py</span> in <span class="ansi-cyan-fg">get_filepath_or_buffer</span><span class="ansi-blue-fg">(filepath_or_buffer, encoding, compression, mode)</span>
-<span class="ansi-green-intense-fg ansi-bold">    200</span> 
-<span class="ansi-green-intense-fg ansi-bold">    201</span>     <span class="ansi-green-fg">if</span> _is_url<span class="ansi-blue-fg">(</span>filepath_or_buffer<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 202</span><span class="ansi-red-fg">         </span>req <span class="ansi-blue-fg">=</span> _urlopen<span class="ansi-blue-fg">(</span>filepath_or_buffer<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    203</span>         content_encoding <span class="ansi-blue-fg">=</span> req<span class="ansi-blue-fg">.</span>headers<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Content-Encoding&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    204</span>         <span class="ansi-green-fg">if</span> content_encoding <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#39;gzip&#39;</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/urllib/request.py</span> in <span class="ansi-cyan-fg">urlopen</span><span class="ansi-blue-fg">(url, data, timeout, cafile, capath, cadefault, context)</span>
-<span class="ansi-green-intense-fg ansi-bold">    220</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    221</span>         opener <span class="ansi-blue-fg">=</span> _opener
-<span class="ansi-green-fg">--&gt; 222</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> opener<span class="ansi-blue-fg">.</span>open<span class="ansi-blue-fg">(</span>url<span class="ansi-blue-fg">,</span> data<span class="ansi-blue-fg">,</span> timeout<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    223</span> 
-<span class="ansi-green-intense-fg ansi-bold">    224</span> <span class="ansi-green-fg">def</span> install_opener<span class="ansi-blue-fg">(</span>opener<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/urllib/request.py</span> in <span class="ansi-cyan-fg">open</span><span class="ansi-blue-fg">(self, fullurl, data, timeout)</span>
-<span class="ansi-green-intense-fg ansi-bold">    529</span>         <span class="ansi-green-fg">for</span> processor <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>process_response<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>protocol<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    530</span>             meth <span class="ansi-blue-fg">=</span> getattr<span class="ansi-blue-fg">(</span>processor<span class="ansi-blue-fg">,</span> meth_name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 531</span><span class="ansi-red-fg">             </span>response <span class="ansi-blue-fg">=</span> meth<span class="ansi-blue-fg">(</span>req<span class="ansi-blue-fg">,</span> response<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    532</span> 
-<span class="ansi-green-intense-fg ansi-bold">    533</span>         <span class="ansi-green-fg">return</span> response
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/urllib/request.py</span> in <span class="ansi-cyan-fg">http_response</span><span class="ansi-blue-fg">(self, request, response)</span>
-<span class="ansi-green-intense-fg ansi-bold">    639</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> <span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">200</span> <span class="ansi-blue-fg">&lt;=</span> code <span class="ansi-blue-fg">&lt;</span> <span class="ansi-cyan-fg">300</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    640</span>             response = self.parent.error(
-<span class="ansi-green-fg">--&gt; 641</span><span class="ansi-red-fg">                 &#39;http&#39;, request, response, code, msg, hdrs)
-</span><span class="ansi-green-intense-fg ansi-bold">    642</span> 
-<span class="ansi-green-intense-fg ansi-bold">    643</span>         <span class="ansi-green-fg">return</span> response
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/urllib/request.py</span> in <span class="ansi-cyan-fg">error</span><span class="ansi-blue-fg">(self, proto, *args)</span>
-<span class="ansi-green-intense-fg ansi-bold">    567</span>         <span class="ansi-green-fg">if</span> http_err<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    568</span>             args <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">(</span>dict<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;default&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;http_error_default&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">+</span> orig_args
-<span class="ansi-green-fg">--&gt; 569</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_call_chain<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    570</span> 
-<span class="ansi-green-intense-fg ansi-bold">    571</span> <span class="ansi-red-fg"># XXX probably also want an abstract factory that knows when it makes</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/urllib/request.py</span> in <span class="ansi-cyan-fg">_call_chain</span><span class="ansi-blue-fg">(self, chain, kind, meth_name, *args)</span>
-<span class="ansi-green-intense-fg ansi-bold">    501</span>         <span class="ansi-green-fg">for</span> handler <span class="ansi-green-fg">in</span> handlers<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    502</span>             func <span class="ansi-blue-fg">=</span> getattr<span class="ansi-blue-fg">(</span>handler<span class="ansi-blue-fg">,</span> meth_name<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 503</span><span class="ansi-red-fg">             </span>result <span class="ansi-blue-fg">=</span> func<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    504</span>             <span class="ansi-green-fg">if</span> result <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    505</span>                 <span class="ansi-green-fg">return</span> result
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/urllib/request.py</span> in <span class="ansi-cyan-fg">http_error_default</span><span class="ansi-blue-fg">(self, req, fp, code, msg, hdrs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    647</span> <span class="ansi-green-fg">class</span> HTTPDefaultErrorHandler<span class="ansi-blue-fg">(</span>BaseHandler<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    648</span>     <span class="ansi-green-fg">def</span> http_error_default<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> req<span class="ansi-blue-fg">,</span> fp<span class="ansi-blue-fg">,</span> code<span class="ansi-blue-fg">,</span> msg<span class="ansi-blue-fg">,</span> hdrs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 649</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> HTTPError<span class="ansi-blue-fg">(</span>req<span class="ansi-blue-fg">.</span>full_url<span class="ansi-blue-fg">,</span> code<span class="ansi-blue-fg">,</span> msg<span class="ansi-blue-fg">,</span> hdrs<span class="ansi-blue-fg">,</span> fp<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    650</span> 
-<span class="ansi-green-intense-fg ansi-bold">    651</span> <span class="ansi-green-fg">class</span> HTTPRedirectHandler<span class="ansi-blue-fg">(</span>BaseHandler<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-red-fg">HTTPError</span>: HTTP Error 404: Not Found</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;pygsheets.client.Client object at 0x1058019e8&gt;
+</pre>
 </div>
 </div>
 
@@ -15019,25 +14948,7 @@ Amongst SDPD stops, Blacks account for 20.0% (43,170)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#CREATE Google Sheet from dataframes</span>
-<span class="kn">import</span> <span class="nn">pygsheets</span> <span class="k">as</span> <span class="nn">pyg</span>
-
-<span class="c1">#authorization</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;sdcity9c9209b112fe.json&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">gc</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
@@ -15049,10 +14960,28 @@ Amongst SDPD stops, Blacks account for 20.0% (43,170)
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;Spreadsheet &#39;ipynbRIPA&#39; Sheets:2&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wks_race</span> <span class="o">=</span> <span class="n">sh_side</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
