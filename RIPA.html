@@ -13145,7 +13145,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Import dependencies</span>
@@ -13163,7 +13163,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identify datasets to read into dataframes</span>
@@ -13191,7 +13191,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read csv files into dataframes</span>
@@ -13229,7 +13229,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[46]:</div>
 
 
 
@@ -13362,7 +13362,7 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasd_csv_suffix_array</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ripa_race_datasd.csv&#39;</span><span class="p">,</span><span class="s1">&#39;ripa_contraband_evid_datasd.csv&#39;</span><span class="p">,</span>
@@ -13377,55 +13377,9 @@ All stops made by the San Diego Police Department. Data collected from these sto
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p><code>
-print(f'{df_race.shape} dF shape race')</p>
-<h1 id="df_race.columns">df_race.columns<a class="anchor-link" href="#df_race.columns">&#182;</a></h1><p>print(f'{df_evidence.shape} dF shape evidence')</p>
-<h1 id="df_evidence.columns">df_evidence.columns<a class="anchor-link" href="#df_evidence.columns">&#182;</a></h1><p>print(f'{df_basis.shape} dF shape basis')</p>
-<h1 id="df_basis.columns">df_basis.columns<a class="anchor-link" href="#df_basis.columns">&#182;</a></h1><p>print(f'{df_result.shape} dF shape result')</p>
-<h1 id="df_result.columns">df_result.columns<a class="anchor-link" href="#df_result.columns">&#182;</a></h1><p>print(f'{df_gender.shape} dF shape gender')</p>
-<h1 id="df_gender.columns">df_gender.columns<a class="anchor-link" href="#df_gender.columns">&#182;</a></h1><p>print(f'{df_stops.shape} dF shape stops')</p>
-<h1 id="df_stops.columns">df_stops.columns<a class="anchor-link" href="#df_stops.columns">&#182;</a></h1><p>print(f'{df_reason.shape} dF shape reason')
-df_reason.columns
-df_stops.columns
-df_stops['stopdate'].max()
-df_stops['stopdate'].min()
-&lt;/code&gt;</p>
-<hr>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{df_race.shape} dF shape race&#39;</span><span class="p">)</span>
-<span class="c1"># df_race.columns</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{df_evidence.shape} dF shape evidence&#39;</span><span class="p">)</span>
-<span class="c1"># df_evidence.columns</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{df_basis.shape} dF shape basis&#39;</span><span class="p">)</span>
-<span class="c1"># df_basis.columns</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{df_result.shape} dF shape result&#39;</span><span class="p">)</span>
-<span class="c1"># df_result.columns</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{df_gender.shape} dF shape gender&#39;</span><span class="p">)</span>
-<span class="c1"># df_gender.columns</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{df_stops.shape} dF shape stops&#39;</span><span class="p">)</span>
-<span class="c1"># df_stops.columns</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{df_reason.shape} dF shape reason&#39;</span><span class="p">)</span>
-<span class="n">df_reason</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">df_stops</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">df_stops</span><span class="p">[</span><span class="s1">&#39;stopdate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="n">df_stops</span><span class="p">[</span><span class="s1">&#39;stopdate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{df_race.shape}</span><span class="s1"> dF shape race&#39;</span><span class="p">)</span>
@@ -13474,7 +13428,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[48]:</div>
 
 
 
@@ -13490,7 +13444,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[48]:</div>
 
 
 
@@ -13510,7 +13464,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[48]:</div>
 
 
 
@@ -13523,7 +13477,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[48]:</div>
 
 
 
@@ -13540,7 +13494,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">UID_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;stop_id&#39;</span><span class="p">,</span><span class="s1">&#39;pid&#39;</span><span class="p">]</span>
@@ -13558,7 +13512,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[49]:</div>
 
 
 
@@ -13663,7 +13617,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[49]:</div>
 
 
 
@@ -13723,7 +13677,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#merge dataframes: result (97630) + basis (92162)</span>
@@ -13738,7 +13692,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13754,7 +13708,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[51]:</div>
 
 
 
@@ -13771,7 +13725,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis) + evidence (91227)</span>
@@ -13786,7 +13740,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13802,7 +13756,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[53]:</div>
 
 
 
@@ -13819,7 +13773,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis + evidence) + race (90634)</span>
@@ -13834,7 +13788,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13850,7 +13804,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[55]:</div>
 
 
 
@@ -13867,7 +13821,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis + evidence + race) + stops (89485)</span>
@@ -13882,7 +13836,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13898,7 +13852,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[57]:</div>
 
 
 
@@ -13915,7 +13869,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis + evidence + race + stops) + gender (89476)</span>
@@ -13930,7 +13884,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13946,7 +13900,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[59]:</div>
 
 
 
@@ -13963,7 +13917,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#rolling mergering dataframes: (results + basis + evidence + race + stops + gender) + reason</span>
@@ -13978,7 +13932,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -13994,7 +13948,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[61]:</div>
 
 
 
@@ -14011,7 +13965,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -14028,7 +13982,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[62]:</div>
 
 
 
@@ -14045,7 +13999,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">columns</span>
@@ -14061,7 +14015,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[63]:</div>
 
 
 
@@ -14089,7 +14043,7 @@ df_stops['stopdate'].min()
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;race&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -14106,7 +14060,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[64]:</div>
 
 
 
@@ -14121,7 +14075,7 @@ df_stops['stopdate'].min()
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[64]:</div>
 
 
 
@@ -14181,7 +14135,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Add column for UID, for UID = stop_id + pid</span>
@@ -14195,7 +14149,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">merged_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;UID&#39;</span><span class="p">)</span>
@@ -14208,7 +14162,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
@@ -14225,7 +14179,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[67]:</div>
 
 
 
@@ -14238,7 +14192,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[67]:</div>
 
 
 
@@ -14255,7 +14209,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># merged_df[&quot;reason_for_stop_code_text&quot;].nunique</span>
@@ -14277,7 +14231,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[26]:</div>
+    <div class="prompt output_prompt">Out[68]:</div>
 
 
 
@@ -14310,7 +14264,7 @@ Name: UID, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Groupby Race</span>
@@ -14324,7 +14278,7 @@ Name: UID, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">race_grouping</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;stopduration&#39;</span><span class="p">)</span>
@@ -14340,7 +14294,7 @@ Name: UID, dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[70]:</div>
 
 
 
@@ -14556,7 +14510,7 @@ Name: UID, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Black RIPA</span>
@@ -14592,7 +14546,7 @@ Name: UID, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># White RIPA</span>
@@ -14652,7 +14606,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#What is the overall percentage of x minority group (e.g. black)?</span>
@@ -14666,7 +14620,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Variable for &#39;Race alone or in combination with one or more other races&#39; (ACS DP05)</span>
@@ -14705,7 +14659,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Dictionary containing population demographics</span>
@@ -14733,7 +14687,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[75]:</div>
 
 
 
@@ -14746,7 +14700,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[75]:</div>
 
 
 
@@ -14824,7 +14778,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged_df</span><span class="p">[</span><span class="s1">&#39;race&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -14840,7 +14794,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[76]:</div>
 
 
 
@@ -14859,7 +14813,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Dictionary to parse out race demographics | HISPANIC OR LATINO AND RACE</span>
@@ -14882,7 +14836,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[35]:</div>
+    <div class="prompt output_prompt">Out[77]:</div>
 
 
 
@@ -14972,7 +14926,7 @@ ACS DEMOGRAPHIC AND HOUSING ESTIMATES<br>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">linebreak</span><span class="o">=</span><span class="s1">&#39;-*-*-*-*-*&#39;</span>
@@ -15036,7 +14990,7 @@ Amongst SDPD stops, Blacks account for 19.5% (35,038)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Number of pid in RIPA data</span>
@@ -15054,7 +15008,7 @@ Amongst SDPD stops, Blacks account for 19.5% (35,038)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## print((White_latino + White_non_latino - White_combo)/1390966)</span>
@@ -15068,7 +15022,7 @@ Amongst SDPD stops, Blacks account for 19.5% (35,038)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">DP05_race_dF</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;datasources/DP05_race_dF.csv&quot;</span><span class="p">)</span>
@@ -15082,7 +15036,7 @@ Amongst SDPD stops, Blacks account for 19.5% (35,038)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#CREATE Google Sheet from dataframes</span>
@@ -15107,7 +15061,7 @@ Amongst SDPD stops, Blacks account for 19.5% (35,038)
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;pygsheets.client.Client object at 0x11792ff60&gt;
+<pre>&lt;pygsheets.client.Client object at 0x11b7d6710&gt;
 </pre>
 </div>
 </div>
@@ -15118,7 +15072,7 @@ Amongst SDPD stops, Blacks account for 19.5% (35,038)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
@@ -15151,7 +15105,7 @@ Amongst SDPD stops, Blacks account for 19.5% (35,038)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wks_race</span> <span class="o">=</span> <span class="n">sh_side</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
