@@ -13120,14 +13120,16 @@ div#notebook {
 Do-Something-Alert system. Objective is to leverage data portal to schedule
 email alerts highlighting negative performance thresholds. Do-Something-Alert tool serves
 as a mechanism for relentless follow-up and data-based monitoring by a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/view?usp=sharing" target="_blank">PerformanceSTAT</a> program.</p>
-<p><a href="https://docs.google.com/spreadsheets/d/1CPYX-UymX0qsgBoQ-SctevTYlOiBUJIhooN--uPbxvM">End points in Google sheet.</a></p>
+<p><a href="https://docs.google.com/spreadsheets/d/1CPYX-UymX0qsgBoQ-SctevTYlOiBUJIhooN--uPbxvM">End points in Google sheet.</a>
+<br>
+<a href="https://public.tableau.com/profile/performsd#!/vizhome/sidewalk_backlog/backlog_story">Data visualization and map</a></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !pip install https://github.com/nithinmurali/pygsheets/archive/master.zip</span>
@@ -13150,7 +13152,6 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pygsheets</span> <span class="k">as</span> <span class="nn">pyg</span>
 <span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 
     </div>
@@ -13237,6 +13238,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
              <span class="s1">&#39;service_request_parent_id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
              <span class="s1">&#39;sap_notification_number&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+             <span class="s1">&#39;case_origin&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
              <span class="s1">&#39;council_district&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">}</span>
 
 <span class="n">df2020</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">GID_URL2020</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols_to_read</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -13394,7 +13396,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>695003</pre>
+<pre>710808</pre>
 </div>
 
 </div>
@@ -13578,7 +13580,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>4</pre>
+<pre>3</pre>
 </div>
 
 </div>
@@ -13591,7 +13593,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Closed&#39;, &#39;In Process&#39;, &#39;Referred&#39;, &#39;New&#39;], dtype=object)</pre>
+<pre>array([&#39;Closed&#39;, &#39;In Process&#39;, &#39;Referred&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -13968,7 +13970,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>18355</pre>
+<pre>18682</pre>
 </div>
 
 </div>
@@ -14051,7 +14053,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;New: 1 cases (01-16-2020 22:03).\n&#39;</pre>
+<pre>&#39;New: 0 cases (N/A).\n&#39;</pre>
 </div>
 
 </div>
@@ -14339,7 +14341,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;\n --*---*-- \n/  OLDEST cases: Sidewalk Repair Issue /\n --*---*-- \n&#39;, &#39;Oldest backlog case: 1334 days from request date 05-22-2016 19:52\n&#39;, &#39;SAP#: 40300000596| GID ID: 81014\n&#39;, &#39;Oldest backlog case: 1334 days from request date 05-22-2016 19:55\n&#39;, &#39;SAP#: 40300000552| GID ID: 81015\n&#39;, &#39;Oldest backlog case: 1334 days from request date 05-22-2016 20:00\n&#39;, &#39;SAP#: 40300000557| GID ID: 81016\n&#39;, &#39;Oldest backlog case: 1334 days from request date 05-22-2016 20:02\n&#39;, &#39;SAP#: 40300000563| GID ID: 81017\n&#39;]
+<pre>[&#39;\n --*---*-- \n/  OLDEST cases: Sidewalk Repair Issue /\n --*---*-- \n&#39;, &#39;Oldest backlog case: 1353 days from request date 05-22-2016 19:52\n&#39;, &#39;SAP#: 40300000596| GID ID: 81014\n&#39;, &#39;Oldest backlog case: 1353 days from request date 05-22-2016 19:55\n&#39;, &#39;SAP#: 40300000552| GID ID: 81015\n&#39;, &#39;Oldest backlog case: 1353 days from request date 05-22-2016 20:00\n&#39;, &#39;SAP#: 40300000557| GID ID: 81016\n&#39;, &#39;Oldest backlog case: 1353 days from request date 05-22-2016 20:02\n&#39;, &#39;SAP#: 40300000563| GID ID: 81017\n&#39;]
 </pre>
 </div>
 </div>
@@ -14385,14 +14387,14 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>count    5123.000000
-mean      528.565684
-std       328.957962
+<pre>count    5232.000000
+mean      535.232034
+std       334.912779
 min         0.000000
 25%       238.000000
-50%       520.000000
-75%       792.000000
-max      1334.000000
+50%       525.000000
+75%       804.000000
+max      1353.000000
 Name: case_age_days, dtype: float64</pre>
 </div>
 
@@ -14406,7 +14408,7 @@ Name: case_age_days, dtype: float64</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>520.0</pre>
+<pre>525.0</pre>
 </div>
 
 </div>
@@ -14419,7 +14421,7 @@ Name: case_age_days, dtype: float64</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>528.565684169432</pre>
+<pre>535.2320336391438</pre>
 </div>
 
 </div>
@@ -14433,12 +14435,83 @@ Name: case_age_days, dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_NIP_parents_25th</span> <span class="o">=</span> <span class="n">dF_NIP_parents</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">dF_NIP_parents_25thAOC</span> <span class="o">=</span> <span class="n">dF_NIP_parents_25th</span><span class="p">[</span><span class="s1">&#39;case_age_days&#39;</span><span class="p">]</span>
+<span class="n">dF_NIP_parents_25thAOC</span>
+
+<span class="n">dF_NIP_parents_75th</span> <span class="o">=</span> <span class="n">dF_NIP_parents</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">dF_NIP_parents_75thAOC</span> <span class="o">=</span> <span class="n">dF_NIP_parents_75th</span><span class="p">[</span><span class="s1">&#39;case_age_days&#39;</span><span class="p">]</span>
+<span class="n">dF_NIP_parents_75thAOC</span>
+
+<span class="n">dF_NIP_parents_90th</span> <span class="o">=</span> <span class="n">dF_NIP_parents</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">dF_NIP_parents_90thAOC</span> <span class="o">=</span> <span class="n">dF_NIP_parents_90th</span><span class="p">[</span><span class="s1">&#39;case_age_days&#39;</span><span class="p">]</span>
+<span class="n">dF_NIP_parents_90thAOC</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[50]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>238.0</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[50]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>804.0</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[50]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1012.9000000000005</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#ALERT C: service levels</span>
 <span class="c1"># For age of case (AOC) &gt; service level agreement (SLA) (&quot;new&quot; or &quot;in proces&quot;) build array; </span>
 <span class="c1"># if len(array) &gt; MAX/UL then reassign MAX/UL</span>
 <span class="n">SLA_AOC</span> <span class="o">=</span> <span class="mi">180</span>
 <span class="n">dF_exceed_SLA_SAP</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">dF_exceed_SLA_dates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">dF_exceed_SLA</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:[],</span> <span class="s1">&#39;sap&#39;</span><span class="p">:[],</span><span class="s1">&#39;requested&#39;</span><span class="p">:[],</span><span class="s1">&#39;age&#39;</span><span class="p">:[],</span>
+                              <span class="s1">&#39;lat&#39;</span><span class="p">:[],</span><span class="s1">&#39;lng&#39;</span><span class="p">:[],</span><span class="s1">&#39;council&#39;</span><span class="p">:[],</span> <span class="s1">&#39;origin&#39;</span><span class="p">:[]})</span>
 <span class="c1"># Count of cases exceeding SLA</span>
 <span class="c1"># for rows in dF_NIP_parents.itertuples():</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">dF_NIP_parents</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -14446,6 +14519,14 @@ Name: case_age_days, dtype: float64</pre>
     <span class="k">if</span> <span class="n">comparison</span> <span class="o">&gt;=</span> <span class="n">SLA_AOC</span><span class="p">:</span>
         <span class="n">dF_exceed_SLA_SAP</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;sap_notification_number&#39;</span><span class="p">])</span>
         <span class="n">dF_exceed_SLA_dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;date_requested&#39;</span><span class="p">])</span>
+        <span class="n">dF_exceed_SLA</span><span class="o">=</span><span class="n">dF_exceed_SLA</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;sap&#39;</span><span class="p">:</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;sap_notification_number&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;requested&#39;</span><span class="p">:</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;date_requested&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;case_age_days&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;lat&#39;</span><span class="p">:</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;lng&#39;</span><span class="p">:</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;lng&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;council&#39;</span><span class="p">:</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;council_district&#39;</span><span class="p">],</span>
+                                    <span class="s1">&#39;origin&#39;</span><span class="p">:</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;case_origin&#39;</span><span class="p">]},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">pass</span>
 <span class="n">cnt_exceed_SLA</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dF_exceed_SLA_SAP</span><span class="p">)</span>
@@ -14462,7 +14543,123 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_exceed_SLA</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[52]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;id&#39;, &#39;sap&#39;, &#39;requested&#39;, &#39;age&#39;, &#39;lat&#39;, &#39;lng&#39;, &#39;council&#39;, &#39;origin&#39;], dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_exceed_SLA</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;sap&#39;</span><span class="p">:</span><span class="s1">&#39;sap_notification_number&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;requested&#39;</span><span class="p">:</span><span class="s1">&#39;date_requested&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="s1">&#39;case_age_days&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;lat&#39;</span><span class="p">:</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;lng&#39;</span><span class="p">:</span><span class="s1">&#39;lng&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;council&#39;</span><span class="p">:</span><span class="s1">&#39;council_district&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;origin&#39;</span><span class="p">:</span><span class="s1">&#39;case_origin&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dF_exceed_SLA</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[53]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;service_request_id&#39;, &#39;sap_notification_number&#39;, &#39;date_requested&#39;,
+       &#39;case_age_days&#39;, &#39;lat&#39;, &#39;lng&#39;, &#39;council_district&#39;, &#39;case_origin&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">type(dF_exceed_SLA)</span>
+<span class="sd">len(dF_exceed_SLA)</span>
+<span class="sd">dF_exceed_SLA[&#39;age&#39;].mean()</span>
+<span class="sd">dF_exceed_SLA[&#39;age&#39;].min()</span>
+<span class="sd">dF_exceed_SLA[&#39;age&#39;].max()</span>
+<span class="sd">dF_exceed_SLA[&#39;age&#39;].median()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[54]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;\ntype(dF_exceed_SLA)\nlen(dF_exceed_SLA)\ndF_exceed_SLA[&#39;age&#39;].mean()\ndF_exceed_SLA[&#39;age&#39;].min()\ndF_exceed_SLA[&#39;age&#39;].max()\ndF_exceed_SLA[&#39;age&#39;].median()\n&#34;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">0</span>
@@ -14496,7 +14693,7 @@ Name: case_age_days, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[51]:</div>
+    <div class="prompt output_prompt">Out[55]:</div>
 
 
 
@@ -14513,28 +14710,7 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># SNS publish</span>
-<span class="c1">#     AlertA = sns.publish(</span>
-<span class="c1">#         TopicArn=topic_arn, </span>
-<span class="c1">#         Message=snapshot_message, </span>
-<span class="c1">#         Subject=&quot;SONAR &quot; + service +  &quot; Service&quot;)</span>
-
-<span class="c1">#     print(&quot;Sent message {}&quot;.format(snapshot_message))</span>
-<span class="c1">#     # print(AlertA)</span>
-<span class="c1">#     return AlertA</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sent message </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">))</span>
@@ -14558,23 +14734,23 @@ Name: case_age_days, dtype: float64</pre>
  --*---*-- 
 /  OLDEST cases: Sidewalk Repair Issue /
  --*---*-- 
-Oldest backlog case: 1334 days from request date 05-22-2016 19:52
+Oldest backlog case: 1353 days from request date 05-22-2016 19:52
 SAP#: 40300000596| GID ID: 81014
-Oldest backlog case: 1334 days from request date 05-22-2016 19:55
+Oldest backlog case: 1353 days from request date 05-22-2016 19:55
 SAP#: 40300000552| GID ID: 81015
-Oldest backlog case: 1334 days from request date 05-22-2016 20:00
+Oldest backlog case: 1353 days from request date 05-22-2016 20:00
 SAP#: 40300000557| GID ID: 81016
-Oldest backlog case: 1334 days from request date 05-22-2016 20:02
+Oldest backlog case: 1353 days from request date 05-22-2016 20:02
 SAP#: 40300000563| GID ID: 81017
 
  --*---*-- 
 / Backlog STATS: Sidewalk Repair Issue /
  --*---*-- 
-Median: 520 days.
-Mean: 528 days.
-Exceed SLA (180 days): 4127 cases.
-Backlog: 5123 cases (12-31-2019 12:13).
-New: 1 cases (01-16-2020 22:03).
+Median: 525 days.
+Mean: 535 days.
+Exceed SLA (180 days): 4223 cases.
+Backlog: 5232 cases (12-31-2019 12:13).
+New: 0 cases (N/A).
 
 </pre>
 </div>
@@ -14586,7 +14762,7 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#MISCELANEOUS - metric of backlog growth rate</span>
@@ -14607,7 +14783,7 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">entry_date</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
@@ -14621,19 +14797,24 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hippokampi_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Entry Date&#39;</span><span class="p">:[</span><span class="n">entry_date</span><span class="p">],</span>
+    <span class="s1">&#39;Run Date&#39;</span><span class="p">:[</span><span class="n">entry_date</span><span class="p">],</span>
     <span class="s1">&#39;Max Age of Case&#39;</span><span class="p">:[</span><span class="n">oldest_case</span><span class="p">],</span>
     <span class="s1">&#39;Max Age of Case - Date&#39;</span><span class="p">:[</span><span class="n">alertDATE</span><span class="p">],</span>
-    <span class="c1">#                    &#39;Max Age of Case - Service Requrst ID&#39;:alertSRID,</span>
+    <span class="s1">&#39;25th Percentile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">dF_NIP_parents_25thAOC</span><span class="p">],</span>
+    <span class="s1">&#39;Mean Age of Case&#39;</span><span class="p">:[</span><span class="n">mean_AOC</span><span class="p">],</span>
+    <span class="s1">&#39;Median Age of Case&#39;</span><span class="p">:[</span><span class="n">median_AOC</span><span class="p">],</span>
+    <span class="s1">&#39;75th Percentile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">dF_NIP_parents_75thAOC</span><span class="p">],</span>
+    <span class="s1">&#39;90th Percentile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">dF_NIP_parents_90thAOC</span><span class="p">],</span>
+    <span class="c1">#                    &#39;Max Age of Case - Service Request ID&#39;:alertSRID,</span>
     <span class="c1">#                    &#39;Max Age of Case - SAP Notification&#39;:alertSAP,</span>
     <span class="s1">&#39;New Cases&#39;</span><span class="p">:[</span><span class="n">new_parents</span><span class="p">],</span>
     <span class="c1">#                    &#39;Backlog - Parents&#39;:,</span>
     <span class="c1">#                    &#39;Children&#39;:        </span>
-    <span class="s1">&#39;Backlog (parent + children)&#39;</span><span class="p">:[</span><span class="n">NIP_parents</span><span class="p">],</span>
+    <span class="s1">&#39;Backlog&#39;</span><span class="p">:[</span><span class="n">NIP_parents</span><span class="p">],</span>
     <span class="s1">&#39;Geolocation error&#39;</span><span class="p">:[</span><span class="n">df_trunc_count</span><span class="p">],</span>
     <span class="s1">&#39;SLA&#39;</span><span class="p">:[</span><span class="n">cnt_exceed_SLA</span><span class="p">],</span>
     <span class="s1">&#39;Oldest SLA Date&#39;</span><span class="p">:[</span><span class="n">oldest_SLA_date</span><span class="p">]</span>
@@ -14648,7 +14829,7 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hippokampi_dict</span>
@@ -14664,19 +14845,24 @@ New: 1 cases (01-16-2020 22:03).
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[57]:</div>
+    <div class="prompt output_prompt">Out[60]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;Entry Date&#39;: [datetime.datetime(2020, 1, 17, 0, 6, 22, 564300)],
- &#39;Max Age of Case&#39;: [1334],
+<pre>{&#39;Run Date&#39;: [datetime.datetime(2020, 2, 4, 11, 57, 3, 165822)],
+ &#39;Max Age of Case&#39;: [1353],
  &#39;Max Age of Case - Date&#39;: [&#39;05-22-2016 20:02&#39;],
- &#39;New Cases&#39;: [1],
- &#39;Backlog (parent + children)&#39;: [5123],
+ &#39;25th Percentile&#39;: [238.0],
+ &#39;Mean Age of Case&#39;: [535],
+ &#39;Median Age of Case&#39;: [525],
+ &#39;75th Percentile&#39;: [804.0],
+ &#39;90th Percentile&#39;: [1012.9000000000005],
+ &#39;New Cases&#39;: [0],
+ &#39;Backlog&#39;: [5232],
  &#39;Geolocation error&#39;: [73],
- &#39;SLA&#39;: [4127],
+ &#39;SLA&#39;: [4223],
  &#39;Oldest SLA Date&#39;: [&#39;12-31-2018 13:45&#39;]}</pre>
 </div>
 
@@ -14688,7 +14874,7 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_hippokampi</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">hippokampi_dict</span><span class="p">)</span>
@@ -14720,11 +14906,11 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#authorization to access Google sheet</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;Hippokampi-xxxxx.json&quot;</span><span class="p">)</span>
+<span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;Hippokampi-9#e.json&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gc</span><span class="p">)</span>
 </pre></div>
 
@@ -14742,7 +14928,7 @@ New: 1 cases (01-16-2020 22:03).
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;pygsheets.client.Client object at 0x120cd1a90&gt;
+<pre>&lt;pygsheets.client.Client object at 0x12dff6630&gt;
 </pre>
 </div>
 </div>
@@ -14753,11 +14939,11 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
-<span class="n">pyg_hipp</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="s1">&#39;####{key}####&#39;</span><span class="p">)</span>
+<span class="n">pyg_hipp</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="s1">&#39;1CPYX-###M&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14767,7 +14953,112 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set Google Sheet containing SLA attributes</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">geo_wks_side =  pyg_hipp[1]</span>
+<span class="sd">geo_wks_side.set_dataframe(dF_exceed_SLA,(1,1))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[64]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;\ngeo_wks_side =  pyg_hipp[1]\ngeo_wks_side.set_dataframe(dF_exceed_SLA,(1,1))\n&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">,</span><span class="s1">&#39;sap_notification_number&#39;</span><span class="p">,</span><span class="s1">&#39;date_requested&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;case_age_days&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lng&#39;</span><span class="p">,</span><span class="s1">&#39;council_district&#39;</span><span class="p">,</span><span class="s1">&#39;case_origin&#39;</span><span class="p">]</span>
+<span class="n">dF_backlog</span> <span class="o">=</span> <span class="n">dF_NIP_parents</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">len(dF_backlog)</span>
+<span class="sd">len(dF_NIP_parents)</span>
+<span class="sd">dF_backlog.columns</span>
+<span class="sd">dF_NIP_parents.columns</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[66]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;\nlen(dF_backlog)\nlen(dF_NIP_parents)\ndF_backlog.columns\ndF_NIP_parents.columns\n&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set Google Sheet containing backlog cases</span>
+<span class="n">geo_wks_backlog</span> <span class="o">=</span>  <span class="n">pyg_hipp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">geo_wks_backlog</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">dF_backlog</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Retrieve Google Sheet containing historicals</span>
@@ -14789,7 +15080,7 @@ New: 1 cases (01-16-2020 22:03).
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;Worksheet &#39;Sheet1&#39; index:0&gt;
+<pre>&lt;Worksheet &#39;overview&#39; index:0&gt;
 </pre>
 </div>
 </div>
@@ -14800,54 +15091,10 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#READ - also get the values of sheet as dataframe</span>
-<span class="n">dF_historicals</span> <span class="o">=</span> <span class="n">wks</span><span class="o">.</span><span class="n">get_as_df</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_to_retrieve</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Entry Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Age of Case&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Age of Case - Date&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;New Cases&#39;</span><span class="p">,</span> <span class="s1">&#39;Backlog (parent + children)&#39;</span><span class="p">,</span> <span class="s1">&#39;Geolocation error&#39;</span><span class="p">,</span><span class="s1">&#39;SLA&#39;</span><span class="p">,</span> <span class="s1">&#39;Oldest SLA Date&#39;</span><span class="p">]</span>
-<span class="n">dF_historicals</span> <span class="o">=</span> <span class="n">dF_historicals</span><span class="p">[</span><span class="n">cols_to_retrieve</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_today = dF_hippokampi.append(dF_historicals,ignore_index=True)</span>
-<span class="n">dF_historicals</span> <span class="o">=</span> <span class="n">dF_historicals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dF_hippokampi</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_historicals.drop([index],inplace=True)</span>
-<span class="n">dF_historicals</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_exceed_SLA</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14860,7 +15107,7 @@ New: 1 cases (01-16-2020 22:03).
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[65]:</div>
+    <div class="prompt output_prompt">Out[69]:</div>
 
 
 
@@ -14883,691 +15130,52 @@ New: 1 cases (01-16-2020 22:03).
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Entry Date</th>
-      <th>Max Age of Case</th>
-      <th>Max Age of Case - Date</th>
-      <th>New Cases</th>
-      <th>Backlog (parent + children)</th>
-      <th>Geolocation error</th>
-      <th>SLA</th>
-      <th>Oldest SLA Date</th>
+      <th>service_request_id</th>
+      <th>sap_notification_number</th>
+      <th>date_requested</th>
+      <th>case_age_days</th>
+      <th>lat</th>
+      <th>lng</th>
+      <th>council_district</th>
+      <th>case_origin</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2019-08-26</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4443</td>
-      <td></td>
-      <td>3941</td>
-      <td>12-31-2018 13:45</td>
+      <td>81014</td>
+      <td>40300000596</td>
+      <td>05-22-2016 19:52</td>
+      <td>1353.0</td>
+      <td>32.815559</td>
+      <td>-117.210784</td>
+      <td>2</td>
+      <td>Web</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2019-08-26</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4443</td>
-      <td></td>
-      <td>3941</td>
-      <td>12-31-2018 13:45</td>
+      <td>81015</td>
+      <td>40300000552</td>
+      <td>05-22-2016 19:55</td>
+      <td>1353.0</td>
+      <td>32.815960</td>
+      <td>-117.210679</td>
+      <td>2</td>
+      <td>Web</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2019-08-26</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4443</td>
-      <td></td>
-      <td>3941</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2019-08-26</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4443</td>
-      <td></td>
-      <td>3941</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2019-08-26</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4443</td>
-      <td></td>
-      <td>3941</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2019-08-26</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4443</td>
-      <td></td>
-      <td>3942</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2019-08-27</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4443</td>
-      <td></td>
-      <td>3437</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2019-08-27</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4443</td>
-      <td></td>
-      <td>3437</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2019-08-27</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>12</td>
-      <td>4446</td>
-      <td></td>
-      <td>3438</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2019-08-27</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>12</td>
-      <td>4446</td>
-      <td></td>
-      <td>3438</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>2019-08-27</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>12</td>
-      <td>4446</td>
-      <td></td>
-      <td>3437</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>2019-08-28</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>14</td>
-      <td>4467</td>
-      <td></td>
-      <td>3445</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>2019-08-30 15:57:50</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>10</td>
-      <td>4479</td>
-      <td></td>
-      <td>3449</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>2019-09-02 4:00:45</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>16</td>
-      <td>4498</td>
-      <td></td>
-      <td>3455</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>2019-09-04 4:00:44</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>12</td>
-      <td>4511</td>
-      <td></td>
-      <td>3464</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>2019-09-06 4:00:44</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>12</td>
-      <td>4518</td>
-      <td></td>
-      <td>3474</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>2019-09-09 4:00:44</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>11</td>
-      <td>4533</td>
-      <td></td>
-      <td>3487</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>2019-09-11 4:00:43</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>13</td>
-      <td>4526</td>
-      <td></td>
-      <td>3498</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>2019-09-13 4:00:44</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>17</td>
-      <td>4548</td>
-      <td></td>
-      <td>3508</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>2019-09-16 4:00:44</td>
-      <td>1114</td>
-      <td>05-22-2016 20:02</td>
-      <td>22</td>
-      <td>4568</td>
-      <td></td>
-      <td>3530</td>
-      <td>12-31-2017 15:18</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>2019-09-18 21:55:10</td>
-      <td>1214</td>
-      <td>05-22-2016 20:02</td>
-      <td>15</td>
-      <td>4545</td>
-      <td></td>
-      <td>3582</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>2019-09-19 7:15:00</td>
-      <td>1214</td>
-      <td>05-22-2016 20:02</td>
-      <td>14</td>
-      <td>4544</td>
-      <td></td>
-      <td>3582</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>2019-09-19 9:40:23</td>
-      <td>1215</td>
-      <td>05-22-2016 20:02</td>
-      <td>16</td>
-      <td>4546</td>
-      <td></td>
-      <td>3582</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>2019-09-20 4:00:43</td>
-      <td>1215</td>
-      <td>05-22-2016 20:02</td>
-      <td>16</td>
-      <td>4552</td>
-      <td></td>
-      <td>3582</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>2019-09-23 4:00:43</td>
-      <td>1218</td>
-      <td>05-22-2016 20:02</td>
-      <td>17</td>
-      <td>4568</td>
-      <td></td>
-      <td>3605</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>2019-09-25 4:00:44</td>
-      <td>1220</td>
-      <td>05-22-2016 20:02</td>
-      <td>3</td>
-      <td>4578</td>
-      <td></td>
-      <td>3620</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>2019-09-27 4:00:44</td>
-      <td>1222</td>
-      <td>05-22-2016 20:02</td>
-      <td>9</td>
-      <td>4594</td>
-      <td></td>
-      <td>3629</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>2019-09-30 4:00:42</td>
-      <td>1225</td>
-      <td>05-22-2016 20:02</td>
-      <td>17</td>
-      <td>4605</td>
-      <td></td>
-      <td>3638</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>2019-10-02 4:00:44</td>
-      <td>1227</td>
-      <td>05-22-2016 20:02</td>
-      <td>5</td>
-      <td>4601</td>
-      <td></td>
-      <td>3647</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>2019-10-04 4:00:43</td>
-      <td>1229</td>
-      <td>05-22-2016 20:02</td>
-      <td>7</td>
-      <td>4619</td>
-      <td></td>
-      <td>3651</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>2019-10-28 4:00:44</td>
-      <td>1253</td>
-      <td>05-22-2016 20:02</td>
-      <td>14</td>
-      <td>4764</td>
-      <td></td>
-      <td>3774</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>2019-10-30 4:00:44</td>
-      <td>1255</td>
-      <td>05-22-2016 20:02</td>
-      <td>12</td>
-      <td>4778</td>
-      <td></td>
-      <td>3784</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>2019-11-01 4:00:45</td>
-      <td>1257</td>
-      <td>05-22-2016 20:02</td>
-      <td>6</td>
-      <td>4782</td>
-      <td></td>
-      <td>3790</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>2019-11-04 4:00:45</td>
-      <td>1260</td>
-      <td>05-22-2016 20:02</td>
-      <td>6</td>
-      <td>4793</td>
-      <td></td>
-      <td>3797</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>2019-11-06 4:00:45</td>
-      <td>1262</td>
-      <td>05-22-2016 20:02</td>
-      <td>8</td>
-      <td>4790</td>
-      <td></td>
-      <td>3803</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>2019-11-08 4:00:44</td>
-      <td>1264</td>
-      <td>05-22-2016 20:02</td>
-      <td>1</td>
-      <td>4795</td>
-      <td></td>
-      <td>3808</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>2019-11-11 4:00:44</td>
-      <td>1267</td>
-      <td>05-22-2016 20:02</td>
-      <td>9</td>
-      <td>4819</td>
-      <td></td>
-      <td>3827</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>2019-11-13 4:00:45</td>
-      <td>1269</td>
-      <td>05-22-2016 20:02</td>
-      <td>9</td>
-      <td>4841</td>
-      <td></td>
-      <td>3837</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>2019-11-15 4:00:44</td>
-      <td>1271</td>
-      <td>05-22-2016 20:02</td>
-      <td>9</td>
-      <td>4857</td>
-      <td></td>
-      <td>3845</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>2019-11-18 4:00:45</td>
-      <td>1274</td>
-      <td>05-22-2016 20:02</td>
-      <td>14</td>
-      <td>4902</td>
-      <td></td>
-      <td>3858</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>2019-11-20 4:00:45</td>
-      <td>1276</td>
-      <td>05-22-2016 20:02</td>
-      <td>5</td>
-      <td>4935</td>
-      <td></td>
-      <td>3868</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td>2019-11-22 4:00:45</td>
-      <td>1278</td>
-      <td>05-22-2016 20:02</td>
-      <td>3</td>
-      <td>4947</td>
-      <td></td>
-      <td>3880</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>51</th>
-      <td>2019-11-25 4:00:45</td>
-      <td>1281</td>
-      <td>05-22-2016 20:02</td>
-      <td>12</td>
-      <td>4969</td>
-      <td></td>
-      <td>3892</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>52</th>
-      <td>2019-11-27 4:00:46</td>
-      <td>1283</td>
-      <td>05-22-2016 20:02</td>
-      <td>7</td>
-      <td>4968</td>
-      <td></td>
-      <td>3900</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>53</th>
-      <td>2019-11-29 4:00:45</td>
-      <td>1285</td>
-      <td>05-22-2016 20:02</td>
-      <td>6</td>
-      <td>4969</td>
-      <td></td>
-      <td>3906</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>2019-12-02 4:00:46</td>
-      <td>1288</td>
-      <td>05-22-2016 20:02</td>
-      <td>15</td>
-      <td>4990</td>
-      <td></td>
-      <td>3912</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>55</th>
-      <td>2019-12-04 4:00:46</td>
-      <td>1290</td>
-      <td>05-22-2016 20:02</td>
+      <td>81016</td>
+      <td>40300000557</td>
+      <td>05-22-2016 20:00</td>
+      <td>1353.0</td>
+      <td>32.816656</td>
+      <td>-117.210812</td>
       <td>2</td>
-      <td>4990</td>
-      <td></td>
-      <td>3918</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>56</th>
-      <td>2019-12-06 4:00:46</td>
-      <td>1292</td>
-      <td>05-22-2016 20:02</td>
-      <td>6</td>
-      <td>4996</td>
-      <td></td>
-      <td>3927</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>57</th>
-      <td>2019-12-09 4:01:45</td>
-      <td>1295</td>
-      <td>05-22-2016 20:02</td>
-      <td>12</td>
-      <td>5016</td>
-      <td></td>
-      <td>3948</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>58</th>
-      <td>2019-12-11 4:00:46</td>
-      <td>1297</td>
-      <td>05-22-2016 20:02</td>
-      <td>3</td>
-      <td>5001</td>
-      <td></td>
-      <td>3959</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>59</th>
-      <td>2019-12-13 4:00:47</td>
-      <td>1299</td>
-      <td>05-22-2016 20:02</td>
-      <td>4</td>
-      <td>4994</td>
-      <td></td>
-      <td>3967</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>60</th>
-      <td>2019-12-16 4:00:46</td>
-      <td>1302</td>
-      <td>05-22-2016 20:02</td>
-      <td>5</td>
-      <td>5012</td>
-      <td></td>
-      <td>3979</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>61</th>
-      <td>2019-12-18 4:00:46</td>
-      <td>1304</td>
-      <td>05-22-2016 20:02</td>
-      <td>4</td>
-      <td>5001</td>
-      <td></td>
-      <td>3989</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>62</th>
-      <td>2019-12-20 4:00:47</td>
-      <td>1306</td>
-      <td>05-22-2016 20:02</td>
-      <td>2</td>
-      <td>5001</td>
-      <td></td>
-      <td>3997</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td>2019-12-23 4:00:47</td>
-      <td>1309</td>
-      <td>05-22-2016 20:02</td>
-      <td>2</td>
-      <td>5022</td>
-      <td></td>
-      <td>4017</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>64</th>
-      <td>2019-12-25 4:00:45</td>
-      <td>1311</td>
-      <td>05-22-2016 20:02</td>
-      <td>1</td>
-      <td>5026</td>
-      <td></td>
-      <td>4031</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>65</th>
-      <td>2019-12-27 4:00:45</td>
-      <td>1313</td>
-      <td>05-22-2016 20:02</td>
-      <td>2</td>
-      <td>5031</td>
-      <td></td>
-      <td>4044</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>2019-12-30 4:00:47</td>
-      <td>1316</td>
-      <td>05-22-2016 20:02</td>
-      <td>4</td>
-      <td>5045</td>
-      <td></td>
-      <td>4059</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>67</th>
-      <td>2020-01-01 4:00:45</td>
-      <td>1318</td>
-      <td>05-22-2016 20:02</td>
-      <td>3</td>
-      <td>5049</td>
-      <td></td>
-      <td>4062</td>
-      <td>12-31-2018 13:45</td>
-    </tr>
-    <tr>
-      <th>68</th>
-      <td>2020-01-17 00:06:22.564300</td>
-      <td>1334</td>
-      <td>05-22-2016 20:02</td>
-      <td>1</td>
-      <td>5123</td>
-      <td>73</td>
-      <td>4127</td>
-      <td>12-31-2018 13:45</td>
+      <td>Web</td>
     </tr>
   </tbody>
 </table>
-<p>69 rows × 8 columns</p>
 </div>
 </div>
 
@@ -15579,7 +15187,1096 @@ New: 1 cases (01-16-2020 22:03).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#READ - also get the values of sheet as dataframe</span>
+<span class="n">dF_historicals</span> <span class="o">=</span> <span class="n">wks</span><span class="o">.</span><span class="n">get_as_df</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_to_retrieve</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Run Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Age of Case&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Age of Case - Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean Age of Case&#39;</span><span class="p">,</span> <span class="s1">&#39;Median Age of Case&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;New Cases&#39;</span><span class="p">,</span> <span class="s1">&#39;Backlog&#39;</span><span class="p">,</span> <span class="s1">&#39;Geolocation error&#39;</span><span class="p">,</span><span class="s1">&#39;SLA&#39;</span><span class="p">,</span> <span class="s1">&#39;Oldest SLA Date&#39;</span><span class="p">]</span>
+<span class="n">dF_historicals</span> <span class="o">=</span> <span class="n">dF_historicals</span><span class="p">[</span><span class="n">cols_to_retrieve</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_today = dF_hippokampi.append(dF_historicals,ignore_index=True)</span>
+<span class="n">dF_historicals</span> <span class="o">=</span> <span class="n">dF_historicals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dF_hippokampi</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_historicals.drop([index],inplace=True)</span>
+<span class="n">dF_historicals</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[73]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Run Date</th>
+      <th>Max Age of Case</th>
+      <th>Max Age of Case - Date</th>
+      <th>Mean Age of Case</th>
+      <th>Median Age of Case</th>
+      <th>New Cases</th>
+      <th>Backlog</th>
+      <th>Geolocation error</th>
+      <th>SLA</th>
+      <th>Oldest SLA Date</th>
+      <th>25th Percentile</th>
+      <th>75th Percentile</th>
+      <th>90th Percentile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019-08-26</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>11</td>
+      <td>4443</td>
+      <td></td>
+      <td>3942</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019-08-27</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>12</td>
+      <td>4446</td>
+      <td></td>
+      <td>3437</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019-08-28</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>14</td>
+      <td>4467</td>
+      <td></td>
+      <td>3445</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019-08-30 15:57:50</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>10</td>
+      <td>4479</td>
+      <td></td>
+      <td>3449</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019-09-02 4:00:45</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>16</td>
+      <td>4498</td>
+      <td></td>
+      <td>3455</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2019-09-04 4:00:44</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>12</td>
+      <td>4511</td>
+      <td></td>
+      <td>3464</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2019-09-06 4:00:44</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>12</td>
+      <td>4518</td>
+      <td></td>
+      <td>3474</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2019-09-09 4:00:44</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>11</td>
+      <td>4533</td>
+      <td></td>
+      <td>3487</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2019-09-11 4:00:43</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>13</td>
+      <td>4526</td>
+      <td></td>
+      <td>3498</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2019-09-13 4:00:44</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>17</td>
+      <td>4548</td>
+      <td></td>
+      <td>3508</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2019-09-16 4:00:44</td>
+      <td>1114</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>22</td>
+      <td>4568</td>
+      <td></td>
+      <td>3530</td>
+      <td>12-31-2017 15:18</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2019-09-18 21:55:10</td>
+      <td>1214</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>15</td>
+      <td>4545</td>
+      <td></td>
+      <td>3582</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2019-09-19 9:40:23</td>
+      <td>1215</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>16</td>
+      <td>4546</td>
+      <td></td>
+      <td>3582</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2019-09-20 4:00:43</td>
+      <td>1215</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>16</td>
+      <td>4552</td>
+      <td></td>
+      <td>3582</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2019-09-23 4:00:43</td>
+      <td>1218</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>17</td>
+      <td>4568</td>
+      <td></td>
+      <td>3605</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2019-09-25 4:00:44</td>
+      <td>1220</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td>4578</td>
+      <td></td>
+      <td>3620</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2019-09-27 4:00:44</td>
+      <td>1222</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>9</td>
+      <td>4594</td>
+      <td></td>
+      <td>3629</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2019-09-30 4:00:42</td>
+      <td>1225</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>17</td>
+      <td>4605</td>
+      <td></td>
+      <td>3638</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2019-10-02 4:00:44</td>
+      <td>1227</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>5</td>
+      <td>4601</td>
+      <td></td>
+      <td>3647</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2019-10-04 4:00:43</td>
+      <td>1229</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>7</td>
+      <td>4619</td>
+      <td></td>
+      <td>3651</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2019-10-07 4:00:43</td>
+      <td>1232</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>12</td>
+      <td>4647</td>
+      <td></td>
+      <td>3666</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2019-10-09 4:00:44</td>
+      <td>1234</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>8</td>
+      <td>4665</td>
+      <td></td>
+      <td>3672</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2019-10-11 4:00:45</td>
+      <td>1236</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>13</td>
+      <td>4679</td>
+      <td></td>
+      <td>3678</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2019-10-14 4:00:46</td>
+      <td>1239</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>12</td>
+      <td>4699</td>
+      <td></td>
+      <td>3697</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2019-10-16 4:00:44</td>
+      <td>1241</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>9</td>
+      <td>4694</td>
+      <td></td>
+      <td>3709</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2019-10-18 4:00:44</td>
+      <td>1243</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>14</td>
+      <td>4713</td>
+      <td></td>
+      <td>3714</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2019-10-21 4:00:44</td>
+      <td>1246</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>9</td>
+      <td>4719</td>
+      <td></td>
+      <td>3735</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2019-10-23 4:00:45</td>
+      <td>1248</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>8</td>
+      <td>4731</td>
+      <td></td>
+      <td>3754</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2019-10-25 4:00:46</td>
+      <td>1250</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>7</td>
+      <td>4738</td>
+      <td></td>
+      <td>3759</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2019-10-28 4:00:44</td>
+      <td>1253</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>14</td>
+      <td>4764</td>
+      <td></td>
+      <td>3774</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>2019-11-15 4:00:44</td>
+      <td>1271</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>9</td>
+      <td>4857</td>
+      <td></td>
+      <td>3845</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>2019-11-18 4:00:45</td>
+      <td>1274</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>14</td>
+      <td>4902</td>
+      <td></td>
+      <td>3858</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>2019-11-20 4:00:45</td>
+      <td>1276</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>5</td>
+      <td>4935</td>
+      <td></td>
+      <td>3868</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>2019-11-22 4:00:45</td>
+      <td>1278</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td>4947</td>
+      <td></td>
+      <td>3880</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2019-11-25 4:00:45</td>
+      <td>1281</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>12</td>
+      <td>4969</td>
+      <td></td>
+      <td>3892</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2019-11-27 4:00:46</td>
+      <td>1283</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>7</td>
+      <td>4968</td>
+      <td></td>
+      <td>3900</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>2019-11-29 4:00:45</td>
+      <td>1285</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>6</td>
+      <td>4969</td>
+      <td></td>
+      <td>3906</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>2019-12-02 4:00:46</td>
+      <td>1288</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>15</td>
+      <td>4990</td>
+      <td></td>
+      <td>3912</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>2019-12-04 4:00:46</td>
+      <td>1290</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td>4990</td>
+      <td></td>
+      <td>3918</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>2019-12-06 4:00:46</td>
+      <td>1292</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>6</td>
+      <td>4996</td>
+      <td></td>
+      <td>3927</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>2019-12-09 4:01:45</td>
+      <td>1295</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>12</td>
+      <td>5016</td>
+      <td></td>
+      <td>3948</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>2019-12-11 4:00:46</td>
+      <td>1297</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td>5001</td>
+      <td></td>
+      <td>3959</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>2019-12-13 4:00:47</td>
+      <td>1299</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>4</td>
+      <td>4994</td>
+      <td></td>
+      <td>3967</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>2019-12-16 4:00:46</td>
+      <td>1302</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>5</td>
+      <td>5012</td>
+      <td></td>
+      <td>3979</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>2019-12-18 4:00:46</td>
+      <td>1304</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>4</td>
+      <td>5001</td>
+      <td></td>
+      <td>3989</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>2019-12-20 4:00:47</td>
+      <td>1306</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td>5001</td>
+      <td></td>
+      <td>3997</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>2019-12-23 4:00:47</td>
+      <td>1309</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td>5022</td>
+      <td></td>
+      <td>4017</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>2019-12-25 4:00:45</td>
+      <td>1311</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>5026</td>
+      <td></td>
+      <td>4031</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>2019-12-27 4:00:45</td>
+      <td>1313</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td>5031</td>
+      <td></td>
+      <td>4044</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>2019-12-30 4:00:47</td>
+      <td>1316</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>4</td>
+      <td>5045</td>
+      <td></td>
+      <td>4059</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>2020-01-01 4:00:45</td>
+      <td>1318</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td>5049</td>
+      <td></td>
+      <td>4062</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>2020-01-17 0:06:23</td>
+      <td>1334</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>5123</td>
+      <td>73</td>
+      <td>4127</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>2020-01-31 12:01:17</td>
+      <td>1349</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td>5206</td>
+      <td>73</td>
+      <td>4191</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>2020-02-01 4:01:08</td>
+      <td>1349</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>3</td>
+      <td>5210</td>
+      <td>73</td>
+      <td>4190</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>2020-02-02 4:01:08</td>
+      <td>1350</td>
+      <td>05-22-2016 20:02</td>
+      <td></td>
+      <td></td>
+      <td>8</td>
+      <td>5225</td>
+      <td>73</td>
+      <td>4196</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>2020-02-03 12:19:32</td>
+      <td>1352</td>
+      <td>05-22-2016 20:02</td>
+      <td>534</td>
+      <td>524</td>
+      <td>2</td>
+      <td>5229</td>
+      <td>73</td>
+      <td>4217</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>2020-02-03 12:40:50</td>
+      <td>1352</td>
+      <td>05-22-2016 20:02</td>
+      <td>534</td>
+      <td>524</td>
+      <td>2</td>
+      <td>5228</td>
+      <td>73</td>
+      <td>4217</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>2020-02-03 12:19:32</td>
+      <td>1352</td>
+      <td>05-22-2016 20:02</td>
+      <td>534</td>
+      <td>524</td>
+      <td>2</td>
+      <td>5229</td>
+      <td>73</td>
+      <td>4217</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>2020-02-04 11:55:41</td>
+      <td>1353</td>
+      <td>05-22-2016 20:02</td>
+      <td>535</td>
+      <td>525</td>
+      <td>0</td>
+      <td>5232</td>
+      <td>73</td>
+      <td>4223</td>
+      <td>12-31-2018 13:45</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>2020-02-04 11:57:03.165822</td>
+      <td>1353</td>
+      <td>05-22-2016 20:02</td>
+      <td>535</td>
+      <td>525</td>
+      <td>0</td>
+      <td>5232</td>
+      <td>73</td>
+      <td>4223</td>
+      <td>12-31-2018 13:45</td>
+      <td>238.0</td>
+      <td>804.0</td>
+      <td>1012.9</td>
+    </tr>
+  </tbody>
+</table>
+<p>67 rows × 13 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#CREATE - set the values of a pandas dataframe to sheet</span>
@@ -15588,6 +16285,64 @@ New: 1 cases (01-16-2020 22:03).
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># SNS publish</span>
+<span class="c1">#     AlertA = sns.publish(</span>
+<span class="c1">#         TopicArn=topic_arn, </span>
+<span class="c1">#         Message=snapshot_message, </span>
+<span class="c1">#         Subject=&quot;SONAR &quot; + service +  &quot; Service&quot;)</span>
+
+<span class="c1">#     print(&quot;Sent message {}&quot;.format(snapshot_message))</span>
+<span class="c1">#     # print(AlertA)</span>
+<span class="c1">#     return AlertA</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#serveless invoke local and \deploy terminal command</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;sls invoke local -f sonar&#39;</span>
+<span class="sd">&#39;sls deploy&#39;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[76]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;\n&#39;sls invoke local -f sonar&#39;\n&#39;sls deploy&#39;\n&#34;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
