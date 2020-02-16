@@ -13116,7 +13116,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<H3>Craiglists Scraper and SDHC Choice Communities Voucher Initiative</H3><p>The purpose of this notebook is to:<ol>
+<p><H3>Craiglists Scraper and SDHC Choice Communities Voucher Initiative</H3>
+<a href="https://public.tableau.com/profile/performsd#!/vizhome/scraper/listings?">ipynb Map and data visualization</a>
+<br>
+<a href="https://docs.google.com/spreadsheets/d/1bFk_kgHKn8rzrFoP00ROfdHZERzQWWcimhpeJE5POaA/">Google sheet end points</a>
+<br>
+<br>
+The purpose of this notebook is to:<ol>
     <li>scrape Craiglists apartment listings (BeautifulSoup parsing)</li>
     <li>set parameters based on SDHC Choice Community payment standard</li>
     <li>(if possible assuming not too large) pushes to Google sheets (pygsheets) to create a data source for Tableau dashboarding, and</li>
@@ -13132,17 +13138,18 @@ div#notebook {
     </ol></p>
 <p><HR></p>
 <p><H3>San Diego Housing Community (SDHC) Choice Community</H3>
-excerpt from: <a href="https://www.sdhc.org/wp-content/uploads/2018/04/Choice-Communities-Initiative_042319.pdf">https://www.sdhc.org/wp-content/uploads/2018/04/Choice-Communities-Initiative_042319.pdf</a>
-<br>
-</p>
-<i>
+excerpt from: <a href="https://www.sdhc.org/housing-opportunities/choice-communities-initiative/">https://www.sdhc.org/housing-opportunities/choice-communities-initiative/</a>
+<br><br>
+<i></p>
+<p><p>
 The San Diego Housing Commission’s (SDHC) Choice Communities “Moving to Work” Initiative provides families that receive rental assistance with more flexibility to choose to live in neighborhoods that offer more opportunities for transportation, schools, and employment. To increase housing opportunities through this initiative and to continue to assist as many low-income families as possible, SDHC updated the payment standards that are used to
 determine the amount of rental assistance each family receives.SDHC divided City of San Diego (City) ZIP Codes into three groups, each with its own payment standards:
     <li>Choice Communities</li>
     <li>Enterprise Communities</li>
     <li>Signature Communities</li>
 </p>
-<img src="img/PaymentStandards_2020.png" alt="payment standards table"></p>
+<img src="PaymentStandards_2020.png"></p>
+
 </div>
 </div>
 </div>
@@ -13200,7 +13207,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># URL</span>
@@ -13214,7 +13221,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create list of URLs to bs4 scrape</span>
@@ -13230,7 +13237,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">suffix</span>
@@ -13268,7 +13275,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>905
+<pre>682
 </pre>
 </div>
 </div>
@@ -13279,7 +13286,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Apartment listing attributes of interest</span>
@@ -13293,6 +13300,11 @@ determine the amount of rental assistance each family receives.SDHC divided City
 <span class="n">date_post</span><span class="o">=</span><span class="p">[]</span>
 <span class="n">postid</span><span class="o">=</span><span class="p">[]</span>
 <span class="n">hoods</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="c1"># Apartment dataframe from dictionary of attributes of interest</span>
+<span class="n">df_craigslist_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;titles&#39;</span><span class="p">:[],</span><span class="s1">&#39;prices&#39;</span><span class="p">:[],</span><span class="s1">&#39;rooms&#39;</span><span class="p">:[],</span><span class="s1">&#39;ft2&#39;</span><span class="p">:[],</span>
+                                  <span class="s1">&#39;links&#39;</span><span class="p">:[],</span><span class="s1">&#39;lats&#39;</span><span class="p">:[],</span><span class="s1">&#39;lons&#39;</span><span class="p">:[],</span><span class="s1">&#39;date_post&#39;</span><span class="p">:[],</span>
+                                  <span class="s1">&#39;hoods&#39;</span><span class="p">:[],</span><span class="s1">&#39;postid&#39;</span><span class="p">:[]})</span>
 </pre></div>
 
     </div>
@@ -13302,7 +13314,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">i</span><span class="o">=</span><span class="mi">0</span>
@@ -13385,6 +13397,11 @@ determine the amount of rental assistance each family receives.SDHC divided City
             <span class="n">lons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span>            
     <span class="c1">###</span>
             <span class="n">links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+            
+            <span class="n">df_craigslist_raw</span> <span class="o">=</span> <span class="n">df_craigslist_raw</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;titles&#39;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span><span class="s1">&#39;prices&#39;</span><span class="p">:</span><span class="n">price</span><span class="p">,</span><span class="s1">&#39;rooms&#39;</span><span class="p">:</span><span class="n">beds</span><span class="p">,</span>
+                                                          <span class="s1">&#39;ft2&#39;</span><span class="p">:</span><span class="n">sqft</span><span class="p">,</span><span class="s1">&#39;links&#39;</span><span class="p">:</span><span class="n">link</span><span class="p">,</span><span class="s1">&#39;lats&#39;</span><span class="p">:</span><span class="n">lat</span><span class="p">,</span><span class="s1">&#39;lons&#39;</span><span class="p">:</span><span class="n">lon</span><span class="p">,</span>
+                                                          <span class="s1">&#39;date_post&#39;</span><span class="p">:</span><span class="n">posted</span><span class="p">,</span><span class="s1">&#39;hoods&#39;</span><span class="p">:</span><span class="n">hood</span><span class="p">,</span><span class="s1">&#39;postid&#39;</span><span class="p">:</span><span class="n">data_id</span><span class="p">},</span>
+                                                         <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">data_id</span><span class="p">))</span>
@@ -13405,137 +13422,145 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0&#39;NoneType&#39; object has no attribute &#39;text&#39;7060061916
-1&#39;NoneType&#39; object has no attribute &#39;text&#39;7060060498
-2&#39;NoneType&#39; object has no attribute &#39;text&#39;7060060741
-3&#39;NoneType&#39; object has no attribute &#39;text&#39;7060061804
-4&#39;NoneType&#39; object has no attribute &#39;text&#39;7060060860
-5&#39;NoneType&#39; object has no attribute &#39;text&#39;7060060616
-6&#39;NoneType&#39; object has no attribute &#39;text&#39;7060060416
-7&#39;NoneType&#39; object has no attribute &#39;text&#39;7060060240
-8&#39;NoneType&#39; object has no attribute &#39;text&#39;7060036347
-9&#39;NoneType&#39; object has no attribute &#39;text&#39;7059940237
-10&#39;NoneType&#39; object has no attribute &#39;text&#39;7059980572
-11&#39;NoneType&#39; object has no attribute &#39;text&#39;7059977739
-12&#39;NoneType&#39; object has no attribute &#39;text&#39;7059971157
-13&#39;NoneType&#39; object has no attribute &#39;text&#39;7059974996
-14&#39;NoneType&#39; object has no attribute &#39;text&#39;7059973863
-15&#39;NoneType&#39; object has no attribute &#39;text&#39;7059973531
-16&#39;NoneType&#39; object has no attribute &#39;text&#39;7059973492
-17&#39;NoneType&#39; object has no attribute &#39;text&#39;7059972707
-18&#39;NoneType&#39; object has no attribute &#39;text&#39;7059971399
-19&#39;NoneType&#39; object has no attribute &#39;text&#39;7059971206
-20&#39;NoneType&#39; object has no attribute &#39;text&#39;7059969207
-21&#39;NoneType&#39; object has no attribute &#39;text&#39;7059969037
-22&#39;NoneType&#39; object has no attribute &#39;text&#39;7059962593
-23&#39;NoneType&#39; object has no attribute &#39;text&#39;7059967563
-24&#39;NoneType&#39; object has no attribute &#39;text&#39;7059965674
-25&#39;NoneType&#39; object has no attribute &#39;text&#39;7059965051
-26&#39;NoneType&#39; object has no attribute &#39;text&#39;7059964490
-27&#39;NoneType&#39; object has no attribute &#39;text&#39;7059964342
-28&#39;NoneType&#39; object has no attribute &#39;text&#39;7059959784
-29&#39;NoneType&#39; object has no attribute &#39;text&#39;7059955399
-30&#39;NoneType&#39; object has no attribute &#39;text&#39;7059958844
-31&#39;NoneType&#39; object has no attribute &#39;text&#39;7059956120
-32&#39;NoneType&#39; object has no attribute &#39;text&#39;7059956097
-33&#39;NoneType&#39; object has no attribute &#39;text&#39;7059956067
-34&#39;NoneType&#39; object has no attribute &#39;text&#39;7059954029
-35&#39;NoneType&#39; object has no attribute &#39;text&#39;7059953170
-36&#39;NoneType&#39; object has no attribute &#39;text&#39;7059942334
-37&#39;NoneType&#39; object has no attribute &#39;text&#39;7059935797
-38&#39;NoneType&#39; object has no attribute &#39;text&#39;7059932029
-39&#39;NoneType&#39; object has no attribute &#39;text&#39;7059931355
-40&#39;NoneType&#39; object has no attribute &#39;text&#39;7059928857
-41&#39;NoneType&#39; object has no attribute &#39;text&#39;7059927327
-42&#39;NoneType&#39; object has no attribute &#39;text&#39;7059925482
-43&#39;NoneType&#39; object has no attribute &#39;text&#39;7059923643
-44&#39;NoneType&#39; object has no attribute &#39;text&#39;7059906578
-45&#39;NoneType&#39; object has no attribute &#39;text&#39;7059922365
-46&#39;NoneType&#39; object has no attribute &#39;text&#39;7059919593
-47&#39;NoneType&#39; object has no attribute &#39;text&#39;7059916900
-48&#39;NoneType&#39; object has no attribute &#39;text&#39;7059906123
-49&#39;NoneType&#39; object has no attribute &#39;text&#39;7059909340
-50&#39;NoneType&#39; object has no attribute &#39;text&#39;7059876880
-51&#39;NoneType&#39; object has no attribute &#39;text&#39;7059817252
-52&#39;NoneType&#39; object has no attribute &#39;text&#39;7059882653
-53&#39;NoneType&#39; object has no attribute &#39;text&#39;7059891486
-54&#39;NoneType&#39; object has no attribute &#39;text&#39;7059884044
-55&#39;NoneType&#39; object has no attribute &#39;text&#39;7059880895
-56&#39;NoneType&#39; object has no attribute &#39;text&#39;7059878446
-57&#39;NoneType&#39; object has no attribute &#39;text&#39;7059860493
-58&#39;NoneType&#39; object has no attribute &#39;text&#39;7059863300
-59&#39;NoneType&#39; object has no attribute &#39;text&#39;7059836998
-60&#39;NoneType&#39; object has no attribute &#39;text&#39;7059832255
-61&#39;NoneType&#39; object has no attribute &#39;text&#39;7059831053
-62&#39;NoneType&#39; object has no attribute &#39;text&#39;7059827114
-63&#39;NoneType&#39; object has no attribute &#39;text&#39;7059818479
-64&#39;NoneType&#39; object has no attribute &#39;text&#39;7059816390
-65&#39;NoneType&#39; object has no attribute &#39;text&#39;7059818302
-66&#39;NoneType&#39; object has no attribute &#39;text&#39;7059794591
-67&#39;NoneType&#39; object has no attribute &#39;text&#39;7059810735
-68&#39;NoneType&#39; object has no attribute &#39;text&#39;7059809868
-69&#39;NoneType&#39; object has no attribute &#39;text&#39;7059791585
-70&#39;NoneType&#39; object has no attribute &#39;text&#39;7059807557
-71&#39;NoneType&#39; object has no attribute &#39;text&#39;7059804795
-72&#39;NoneType&#39; object has no attribute &#39;text&#39;7059801189
-73&#39;NoneType&#39; object has no attribute &#39;text&#39;7059796024
-74&#39;NoneType&#39; object has no attribute &#39;text&#39;7059793991
-75&#39;NoneType&#39; object has no attribute &#39;text&#39;7059790809
-76&#39;NoneType&#39; object has no attribute &#39;text&#39;7059787106
-77&#39;NoneType&#39; object has no attribute &#39;text&#39;7059784001
-78&#39;NoneType&#39; object has no attribute &#39;text&#39;7059773569
-79&#39;NoneType&#39; object has no attribute &#39;text&#39;7059740157
-80&#39;NoneType&#39; object has no attribute &#39;text&#39;7059760794
-81&#39;NoneType&#39; object has no attribute &#39;text&#39;7059753896
-82&#39;NoneType&#39; object has no attribute &#39;text&#39;7059752308
-83&#39;NoneType&#39; object has no attribute &#39;text&#39;7059678779
-84&#39;NoneType&#39; object has no attribute &#39;text&#39;7059730763
-85&#39;NoneType&#39; object has no attribute &#39;text&#39;7059724241
-86&#39;NoneType&#39; object has no attribute &#39;text&#39;7059718895
-87&#39;NoneType&#39; object has no attribute &#39;text&#39;7059702995
-88&#39;NoneType&#39; object has no attribute &#39;text&#39;7059700728
-89&#39;NoneType&#39; object has no attribute &#39;text&#39;7059699740
-90&#39;NoneType&#39; object has no attribute &#39;text&#39;7059698437
-91&#39;NoneType&#39; object has no attribute &#39;text&#39;7059697267
-92&#39;NoneType&#39; object has no attribute &#39;text&#39;7059694929
-93&#39;NoneType&#39; object has no attribute &#39;text&#39;7059693640
-94&#39;NoneType&#39; object has no attribute &#39;text&#39;7059693239
-95&#39;NoneType&#39; object has no attribute &#39;text&#39;7059691963
-96&#39;NoneType&#39; object has no attribute &#39;text&#39;7059690944
-97&#39;NoneType&#39; object has no attribute &#39;text&#39;7059690927
-98&#39;NoneType&#39; object has no attribute &#39;text&#39;7059687578
-99&#39;NoneType&#39; object has no attribute &#39;text&#39;7059683276
-100&#39;NoneType&#39; object has no attribute &#39;text&#39;7059679861
-101&#39;NoneType&#39; object has no attribute &#39;text&#39;7059677380
-102&#39;NoneType&#39; object has no attribute &#39;text&#39;7059675655
-103&#39;NoneType&#39; object has no attribute &#39;text&#39;7059675612
-104&#39;NoneType&#39; object has no attribute &#39;text&#39;7059675159
-105&#39;NoneType&#39; object has no attribute &#39;text&#39;7059674118
-106&#39;NoneType&#39; object has no attribute &#39;text&#39;7059669096
-107&#39;NoneType&#39; object has no attribute &#39;text&#39;7059663765
-108&#39;NoneType&#39; object has no attribute &#39;text&#39;7059662599
-109&#39;NoneType&#39; object has no attribute &#39;text&#39;7059610331
-110&#39;NoneType&#39; object has no attribute &#39;text&#39;7059660291
-111&#39;NoneType&#39; object has no attribute &#39;text&#39;7059652044
-112&#39;NoneType&#39; object has no attribute &#39;text&#39;7059654274
-113&#39;NoneType&#39; object has no attribute &#39;text&#39;7059628826
-114&#39;NoneType&#39; object has no attribute &#39;text&#39;7059624926
-115&#39;NoneType&#39; object has no attribute &#39;text&#39;7059612969
-116&#39;NoneType&#39; object has no attribute &#39;text&#39;7059609861
-117&#39;NoneType&#39; object has no attribute &#39;text&#39;7059519518
-118&#39;NoneType&#39; object has no attribute &#39;text&#39;7059590036
-119&#39;NoneType&#39; object has no attribute &#39;text&#39;7059593848
-120&#39;NoneType&#39; object has no attribute &#39;text&#39;7059592270
-121&#39;NoneType&#39; object has no attribute &#39;text&#39;7059591430
-122&#39;NoneType&#39; object has no attribute &#39;text&#39;7059585404
-123&#39;NoneType&#39; object has no attribute &#39;text&#39;7059586068
-124&#39;NoneType&#39; object has no attribute &#39;text&#39;7059589615
-125&#39;NoneType&#39; object has no attribute &#39;text&#39;7059585569
-126&#39;NoneType&#39; object has no attribute &#39;text&#39;7059582625
-127&#39;NoneType&#39; object has no attribute &#39;text&#39;7059580335
-128&#39;NoneType&#39; object has no attribute &#39;text&#39;7059569880
-129&#39;NoneType&#39; object has no attribute &#39;text&#39;7059553090
-130&#39;NoneType&#39; object has no attribute &#39;text&#39;7059540741
+<pre>0&#39;NoneType&#39; object has no attribute &#39;text&#39;7076608706
+1&#39;NoneType&#39; object has no attribute &#39;text&#39;7076603183
+2&#39;NoneType&#39; object has no attribute &#39;text&#39;7076596064
+3&#39;NoneType&#39; object has no attribute &#39;text&#39;7076594452
+4&#39;NoneType&#39; object has no attribute &#39;text&#39;7076588868
+5&#39;NoneType&#39; object has no attribute &#39;text&#39;7076577936
+6&#39;NoneType&#39; object has no attribute &#39;text&#39;7076587482
+7&#39;NoneType&#39; object has no attribute &#39;text&#39;7076579400
+8&#39;NoneType&#39; object has no attribute &#39;text&#39;7076584769
+9&#39;NoneType&#39; object has no attribute &#39;text&#39;7076572207
+10&#39;NoneType&#39; object has no attribute &#39;text&#39;7076581625
+11&#39;NoneType&#39; object has no attribute &#39;text&#39;7076581265
+12&#39;NoneType&#39; object has no attribute &#39;text&#39;7076580674
+13&#39;NoneType&#39; object has no attribute &#39;text&#39;7076577090
+14&#39;NoneType&#39; object has no attribute &#39;text&#39;7076576450
+15&#39;NoneType&#39; object has no attribute &#39;text&#39;7076575445
+16&#39;NoneType&#39; object has no attribute &#39;text&#39;7076575186
+17&#39;NoneType&#39; object has no attribute &#39;text&#39;7076574520
+18&#39;NoneType&#39; object has no attribute &#39;text&#39;7076569918
+19&#39;NoneType&#39; object has no attribute &#39;text&#39;7076569811
+20&#39;NoneType&#39; object has no attribute &#39;text&#39;7076568403
+21&#39;NoneType&#39; object has no attribute &#39;text&#39;7076568152
+22&#39;NoneType&#39; object has no attribute &#39;text&#39;7076559724
+23&#39;NoneType&#39; object has no attribute &#39;text&#39;7076555012
+24&#39;NoneType&#39; object has no attribute &#39;text&#39;7076550084
+25&#39;NoneType&#39; object has no attribute &#39;text&#39;7076549414
+26&#39;NoneType&#39; object has no attribute &#39;text&#39;7076546793
+27&#39;NoneType&#39; object has no attribute &#39;text&#39;7076545035
+28&#39;NoneType&#39; object has no attribute &#39;text&#39;7076539072
+29&#39;NoneType&#39; object has no attribute &#39;text&#39;7076537641
+30&#39;NoneType&#39; object has no attribute &#39;text&#39;7076525604
+31&#39;NoneType&#39; object has no attribute &#39;text&#39;7076523336
+32&#39;NoneType&#39; object has no attribute &#39;text&#39;7076529421
+33&#39;NoneType&#39; object has no attribute &#39;text&#39;7076525271
+34&#39;NoneType&#39; object has no attribute &#39;text&#39;7076524292
+35&#39;NoneType&#39; object has no attribute &#39;text&#39;7076517648
+36&#39;NoneType&#39; object has no attribute &#39;text&#39;7076510776
+37&#39;NoneType&#39; object has no attribute &#39;text&#39;7076506714
+38&#39;NoneType&#39; object has no attribute &#39;text&#39;7076502997
+39&#39;NoneType&#39; object has no attribute &#39;text&#39;7076501208
+40&#39;NoneType&#39; object has no attribute &#39;text&#39;7076423456
+41&#39;NoneType&#39; object has no attribute &#39;text&#39;7076479121
+42&#39;NoneType&#39; object has no attribute &#39;text&#39;7076482737
+43&#39;NoneType&#39; object has no attribute &#39;text&#39;7076478387
+44&#39;NoneType&#39; object has no attribute &#39;text&#39;7076452776
+45&#39;NoneType&#39; object has no attribute &#39;text&#39;7076467889
+46&#39;NoneType&#39; object has no attribute &#39;text&#39;7076464886
+47&#39;NoneType&#39; object has no attribute &#39;text&#39;7076463898
+48&#39;NoneType&#39; object has no attribute &#39;text&#39;7076460975
+49&#39;NoneType&#39; object has no attribute &#39;text&#39;7076445317
+50&#39;NoneType&#39; object has no attribute &#39;text&#39;7076456633
+51&#39;NoneType&#39; object has no attribute &#39;text&#39;7076455855
+52&#39;NoneType&#39; object has no attribute &#39;text&#39;7076452823
+53&#39;NoneType&#39; object has no attribute &#39;text&#39;7076452803
+54&#39;NoneType&#39; object has no attribute &#39;text&#39;7076452807
+55&#39;NoneType&#39; object has no attribute &#39;text&#39;7076452778
+56&#39;NoneType&#39; object has no attribute &#39;text&#39;7076451837
+57&#39;NoneType&#39; object has no attribute &#39;text&#39;7076450978
+58&#39;NoneType&#39; object has no attribute &#39;text&#39;7076445375
+59&#39;NoneType&#39; object has no attribute &#39;text&#39;7076445354
+60&#39;NoneType&#39; object has no attribute &#39;text&#39;7076448124
+61&#39;NoneType&#39; object has no attribute &#39;text&#39;7076446946
+62&#39;NoneType&#39; object has no attribute &#39;text&#39;7076445380
+63&#39;NoneType&#39; object has no attribute &#39;text&#39;7076445340
+64&#39;NoneType&#39; object has no attribute &#39;text&#39;7076437546
+65&#39;NoneType&#39; object has no attribute &#39;text&#39;7076434165
+66&#39;NoneType&#39; object has no attribute &#39;text&#39;7076435233
+67&#39;NoneType&#39; object has no attribute &#39;text&#39;7076433081
+68&#39;NoneType&#39; object has no attribute &#39;text&#39;7076407273
+69&#39;NoneType&#39; object has no attribute &#39;text&#39;7076242388
+70&#39;NoneType&#39; object has no attribute &#39;text&#39;7076218935
+71&#39;NoneType&#39; object has no attribute &#39;text&#39;7076200998
+72&#39;NoneType&#39; object has no attribute &#39;text&#39;7076187905
+73&#39;NoneType&#39; object has no attribute &#39;text&#39;7076199156
+74&#39;NoneType&#39; object has no attribute &#39;text&#39;7076197357
+75&#39;NoneType&#39; object has no attribute &#39;text&#39;7076196770
+76&#39;NoneType&#39; object has no attribute &#39;text&#39;7076194784
+77&#39;NoneType&#39; object has no attribute &#39;text&#39;7076193698
+78&#39;NoneType&#39; object has no attribute &#39;text&#39;7076192714
+79&#39;NoneType&#39; object has no attribute &#39;text&#39;7076192208
+80&#39;NoneType&#39; object has no attribute &#39;text&#39;7076191199
+81&#39;NoneType&#39; object has no attribute &#39;text&#39;7076189916
+82&#39;NoneType&#39; object has no attribute &#39;text&#39;7076189831
+83&#39;NoneType&#39; object has no attribute &#39;text&#39;7076189580
+84&#39;NoneType&#39; object has no attribute &#39;text&#39;7076187975
+85&#39;NoneType&#39; object has no attribute &#39;text&#39;7076187960
+86&#39;NoneType&#39; object has no attribute &#39;text&#39;7076186600
+87&#39;NoneType&#39; object has no attribute &#39;text&#39;7076185406
+88&#39;NoneType&#39; object has no attribute &#39;text&#39;7076185139
+89&#39;NoneType&#39; object has no attribute &#39;text&#39;7076184590
+90&#39;NoneType&#39; object has no attribute &#39;text&#39;7076170943
+91&#39;NoneType&#39; object has no attribute &#39;text&#39;7076170595
+92&#39;NoneType&#39; object has no attribute &#39;text&#39;7076169999
+93&#39;NoneType&#39; object has no attribute &#39;text&#39;7076169821
+94&#39;NoneType&#39; object has no attribute &#39;text&#39;7076169252
+95&#39;NoneType&#39; object has no attribute &#39;text&#39;7076165907
+96&#39;NoneType&#39; object has no attribute &#39;text&#39;7076164828
+97&#39;NoneType&#39; object has no attribute &#39;text&#39;7076163797
+98&#39;NoneType&#39; object has no attribute &#39;text&#39;7076160415
+99&#39;NoneType&#39; object has no attribute &#39;text&#39;7076159862
+100&#39;NoneType&#39; object has no attribute &#39;text&#39;7076156859
+101&#39;NoneType&#39; object has no attribute &#39;text&#39;7076150756
+102&#39;NoneType&#39; object has no attribute &#39;text&#39;7076154201
+103&#39;NoneType&#39; object has no attribute &#39;text&#39;7076154050
+104&#39;NoneType&#39; object has no attribute &#39;text&#39;7076153952
+105&#39;NoneType&#39; object has no attribute &#39;text&#39;7076153638
+106&#39;NoneType&#39; object has no attribute &#39;text&#39;7076152891
+107&#39;NoneType&#39; object has no attribute &#39;text&#39;7076151972
+108&#39;NoneType&#39; object has no attribute &#39;text&#39;7076123083
+109&#39;NoneType&#39; object has no attribute &#39;text&#39;7076148417
+110&#39;NoneType&#39; object has no attribute &#39;text&#39;7076140896
+111&#39;NoneType&#39; object has no attribute &#39;text&#39;7076143660
+112&#39;NoneType&#39; object has no attribute &#39;text&#39;7076141709
+113&#39;NoneType&#39; object has no attribute &#39;text&#39;7076140899
+114&#39;NoneType&#39; object has no attribute &#39;text&#39;7076140320
+115&#39;NoneType&#39; object has no attribute &#39;text&#39;7076112966
+116&#39;NoneType&#39; object has no attribute &#39;text&#39;7076131933
+117&#39;NoneType&#39; object has no attribute &#39;text&#39;7076131796
+118&#39;NoneType&#39; object has no attribute &#39;text&#39;7076127857
+119&#39;NoneType&#39; object has no attribute &#39;text&#39;7076126462
+120&#39;NoneType&#39; object has no attribute &#39;text&#39;7076125952
+121&#39;NoneType&#39; object has no attribute &#39;text&#39;7076125737
+122&#39;NoneType&#39; object has no attribute &#39;text&#39;7076119765
+123&#39;NoneType&#39; object has no attribute &#39;text&#39;7076116054
+124&#39;NoneType&#39; object has no attribute &#39;text&#39;7076079152
+125&#39;NoneType&#39; object has no attribute &#39;text&#39;7076111431
+126&#39;NoneType&#39; object has no attribute &#39;text&#39;7076107964
+127&#39;NoneType&#39; object has no attribute &#39;text&#39;7076044077
+128&#39;NoneType&#39; object has no attribute &#39;text&#39;7076095379
+129&#39;NoneType&#39; object has no attribute &#39;text&#39;7076082091
+130&#39;NoneType&#39; object has no attribute &#39;text&#39;7076100449
+131&#39;NoneType&#39; object has no attribute &#39;text&#39;7076097504
+132&#39;NoneType&#39; object has no attribute &#39;text&#39;7076097151
+133&#39;NoneType&#39; object has no attribute &#39;text&#39;7076095666
+134&#39;NoneType&#39; object has no attribute &#39;text&#39;7076095076
+135&#39;NoneType&#39; object has no attribute &#39;text&#39;7076094523
+136&#39;NoneType&#39; object has no attribute &#39;text&#39;7076079404
+137&#39;NoneType&#39; object has no attribute &#39;text&#39;7076091506
+138&#39;NoneType&#39; object has no attribute &#39;text&#39;7076090660
 </pre>
 </div>
 </div>
@@ -13546,14 +13571,17 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_tuples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">titles</span><span class="p">,</span><span class="n">prices</span><span class="p">,</span><span class="n">rooms</span><span class="p">,</span><span class="n">ft2</span><span class="p">,</span><span class="n">links</span><span class="p">,</span><span class="n">lats</span><span class="p">,</span><span class="n">lons</span><span class="p">,</span><span class="n">date_post</span><span class="p">,</span><span class="n">hoods</span><span class="p">,</span><span class="n">postid</span><span class="p">))</span>
-<span class="n">df_LEAP_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_tuples</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">,</span><span class="s1">&#39;Price&#39;</span><span class="p">,</span><span class="s1">&#39;Rooms&#39;</span><span class="p">,</span><span class="s1">&#39;SquareFt&#39;</span><span class="p">,</span><span class="s1">&#39;URL&#39;</span><span class="p">,</span><span class="s1">&#39;Lat&#39;</span><span class="p">,</span><span class="s1">&#39;Lon&#39;</span><span class="p">,</span>
-                                                   <span class="s1">&#39;Date posted&#39;</span><span class="p">,</span><span class="s1">&#39;Neighborhood&#39;</span><span class="p">,</span><span class="s1">&#39;Post ID&#39;</span><span class="p">])</span>
-<span class="n">df_LEAP_raw</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Rooms&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">df_LEAP_raw</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># data_tuples list method misaligns</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">data_tuples = list(zip(titles,prices,rooms,ft2,links,lats,lons,date_post,hoods,postid))</span>
+<span class="sd">df_LEAP_raw = pd.DataFrame(data_tuples, columns = [&#39;Title&#39;,&#39;Price&#39;,&#39;Rooms&#39;,&#39;SquareFt&#39;,&#39;URL&#39;,&#39;Lat&#39;,&#39;Lon&#39;,</span>
+<span class="sd">                                                   &#39;Date posted&#39;,&#39;Neighborhood&#39;,&#39;Post ID&#39;])</span>
+<span class="sd">df_LEAP_raw.sort_values(by=&quot;Rooms&quot;, ascending=False).head(5)</span>
+<span class="sd">len(df_LEAP_raw)</span>
+<span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 
     </div>
@@ -13566,7 +13594,78 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;\ndata_tuples = list(zip(titles,prices,rooms,ft2,links,lats,lons,date_post,hoods,postid))\ndf_LEAP_raw = pd.DataFrame(data_tuples, columns = [\&#39;Title\&#39;,\&#39;Price\&#39;,\&#39;Rooms\&#39;,\&#39;SquareFt\&#39;,\&#39;URL\&#39;,\&#39;Lat\&#39;,\&#39;Lon\&#39;,\n                                                   \&#39;Date posted\&#39;,\&#39;Neighborhood\&#39;,\&#39;Post ID\&#39;])\ndf_LEAP_raw.sort_values(by=&#34;Rooms&#34;, ascending=False).head(5)\nlen(df_LEAP_raw)\n&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_craigslist_raw</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;titles&#39;, &#39;prices&#39;, &#39;rooms&#39;, &#39;ft2&#39;, &#39;links&#39;, &#39;lats&#39;, &#39;lons&#39;,
+       &#39;date_post&#39;, &#39;hoods&#39;, &#39;postid&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_craigslist_raw</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df_craigslist_raw</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;titles&#39;</span><span class="p">:</span><span class="s1">&#39;Title&#39;</span><span class="p">,</span><span class="s1">&#39;prices&#39;</span><span class="p">:</span><span class="s1">&#39;Price&#39;</span><span class="p">,</span><span class="s1">&#39;rooms&#39;</span><span class="p">:</span><span class="s1">&#39;Rooms&#39;</span><span class="p">,</span><span class="s1">&#39;ft2&#39;</span><span class="p">:</span><span class="s1">&#39;SquareFt&#39;</span><span class="p">,</span>
+                              <span class="s1">&#39;links&#39;</span><span class="p">:</span><span class="s1">&#39;URL&#39;</span><span class="p">,</span><span class="s1">&#39;lats&#39;</span><span class="p">:</span><span class="s1">&#39;Lat&#39;</span><span class="p">,</span><span class="s1">&#39;lons&#39;</span><span class="p">:</span><span class="s1">&#39;Lon&#39;</span><span class="p">,</span><span class="s1">&#39;date_post&#39;</span><span class="p">:</span><span class="s1">&#39;Date posted&#39;</span><span class="p">,</span>
+                              <span class="s1">&#39;hoods&#39;</span><span class="p">:</span><span class="s1">&#39;Neighborhood&#39;</span><span class="p">,</span><span class="s1">&#39;postid&#39;</span><span class="p">:</span><span class="s1">&#39;Post ID&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -13589,100 +13688,48 @@ determine the amount of rental assistance each family receives.SDHC divided City
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Title</th>
-      <th>Price</th>
-      <th>Rooms</th>
-      <th>SquareFt</th>
-      <th>URL</th>
-      <th>Lat</th>
-      <th>Lon</th>
-      <th>Date posted</th>
-      <th>Neighborhood</th>
-      <th>Post ID</th>
+      <th>titles</th>
+      <th>prices</th>
+      <th>rooms</th>
+      <th>ft2</th>
+      <th>links</th>
+      <th>lats</th>
+      <th>lons</th>
+      <th>date_post</th>
+      <th>hoods</th>
+      <th>postid</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>22</th>
-      <td>Stunning 5 bed 3 bath house on 1/2 acre</td>
-      <td>1300</td>
-      <td>5</td>
-      <td>3000</td>
-      <td>https://sandiego.craigslist.org/nsd/apa/d/vist...</td>
-      <td>33.164400</td>
-      <td>-117.240300</td>
-      <td>2020-01-20 21:46</td>
-      <td>Vista</td>
-      <td>7060036311</td>
-    </tr>
-    <tr>
-      <th>427</th>
-      <td>Welcoming 5 bed and 3 bath home great to enter...</td>
-      <td>1890</td>
-      <td>5</td>
-      <td>2300</td>
-      <td>https://sandiego.craigslist.org/csd/apa/d/san-...</td>
-      <td>32.575300</td>
-      <td>-117.070700</td>
-      <td>2020-01-20 13:17</td>
-      <td>1151 Crystal Cove, San Diego</td>
-      <td>7059796024</td>
-    </tr>
-    <tr>
-      <th>421</th>
-      <td>4 Bedroom Home With A Den/1 Month Free Apply T...</td>
-      <td>2243</td>
-      <td>4</td>
-      <td>2297</td>
-      <td>https://sandiego.craigslist.org/csd/apa/d/chul...</td>
-      <td>32.619829</td>
-      <td>-116.986198</td>
-      <td>2020-01-20 13:24</td>
-      <td>Otay Ranch</td>
-      <td>7059801189</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>Single Family Home w/Sun Room, Attached Garage...</td>
-      <td>3195</td>
-      <td>4</td>
-      <td>1152</td>
-      <td>https://sandiego.craigslist.org/csd/apa/d/san-...</td>
-      <td>32.800484</td>
-      <td>-117.126457</td>
-      <td>2020-01-20 18:10</td>
-      <td>Serra Mesa</td>
-      <td>7059974996</td>
+      <th>0</th>
+      <td>One Bedroom with Patio! Ready Now!</td>
+      <td>1591</td>
+      <td>1</td>
+      <td>656</td>
+      <td>https://sandiego.craigslist.org/esd/apa/d/el-c...</td>
+      <td>32.805809</td>
+      <td>-116.978963</td>
+      <td>2020-02-16 14:12</td>
+      <td>El Cajon</td>
+      <td>7076609366</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2 STORY HOUSE 4BED/3BATH</td>
-      <td>3250</td>
-      <td>4</td>
-      <td>2231</td>
-      <td>https://sandiego.craigslist.org/nsd/apa/d/san-...</td>
-      <td>32.916100</td>
-      <td>-117.140200</td>
-      <td>2020-01-21 05:03</td>
-      <td>Mira Mesa/Qualcomm/Scripps Ranch</td>
-      <td>7060098633</td>
+      <td>Under Bldg.,Gated Parking,Intercom Lobby Entrance</td>
+      <td>1350</td>
+      <td>1</td>
+      <td>546</td>
+      <td>https://sandiego.craigslist.org/csd/apa/d/san-...</td>
+      <td>32.752459</td>
+      <td>-117.164967</td>
+      <td>2020-02-16 14:12</td>
+      <td>Hillcrest/Mission Hills</td>
+      <td>7076608883</td>
     </tr>
   </tbody>
 </table>
 </div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[9]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>774</pre>
 </div>
 
 </div>
@@ -13693,12 +13740,23 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_LEAP_raw</span>
-<span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_craigslist_raw</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 
     </div>
@@ -13711,13 +13769,25 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>774
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Title           object
+Price           object
+Rooms           object
+SquareFt        object
+URL             object
+Lat             object
+Lon             object
+Date posted     object
+Neighborhood    object
+Post ID         object
+dtype: object</pre>
 </div>
+
 </div>
 
 </div>
@@ -13726,7 +13796,55 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df.astype({&#39;Rooms&#39;:&#39;int32&#39;}).dtypes</span>
+<span class="c1"># df.astype({&#39;SquareFt&#39;:&#39;int32&#39;}).dtypes</span>
+<span class="c1"># df.astype({&#39;Price&#39;:&#39;int64&#39;}).dtypes</span>
+<span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">&#39;Rooms&#39;</span><span class="p">:</span><span class="s1">&#39;int32&#39;</span><span class="p">,</span><span class="s1">&#39;SquareFt&#39;</span><span class="p">:</span><span class="s1">&#39;int32&#39;</span><span class="p">,</span><span class="s1">&#39;Price&#39;</span><span class="p">:</span><span class="s1">&#39;int32&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;Lat&#39;</span><span class="p">:</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span><span class="s1">&#39;Lon&#39;</span><span class="p">:</span><span class="s1">&#39;float64&#39;</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Title            object
+Price             int32
+Rooms             int32
+SquareFt          int32
+URL              object
+Lat             float64
+Lon             float64
+Date posted      object
+Neighborhood     object
+Post ID          object
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -13772,7 +13890,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Debugging checks</span>
@@ -13790,7 +13908,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_rooms_median</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Rooms&#39;</span><span class="p">)[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Price&#39;</span><span class="p">:</span><span class="s1">&#39;Median Price&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -13809,7 +13927,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -13842,23 +13960,27 @@ determine the amount of rental assistance each family receives.SDHC divided City
   <tbody>
     <tr>
       <th>1</th>
-      <td>1956</td>
+      <td>1837</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2020</td>
+      <td>2313</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1940</td>
+      <td>2895</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2144</td>
+      <td>2700</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>1595</td>
+      <td>850</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>4300</td>
     </tr>
   </tbody>
 </table>
@@ -13869,7 +13991,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -13902,23 +14024,27 @@ determine the amount of rental assistance each family receives.SDHC divided City
   <tbody>
     <tr>
       <th>1</th>
-      <td>2087</td>
+      <td>1877</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2126</td>
+      <td>2345</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2030</td>
+      <td>2805</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2342</td>
+      <td>2681</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>1595</td>
+      <td>850</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>4300</td>
     </tr>
   </tbody>
 </table>
@@ -13933,7 +14059,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df.describe()</span>
@@ -13949,7 +14075,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;LEAP.csv&quot;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -13969,7 +14095,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#CREATE Google Sheet from dataframes to create endpoints for visualization</span>
@@ -13993,7 +14119,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;pygsheets.client.Client object at 0x12ca9eef0&gt;
+<pre>&lt;pygsheets.client.Client object at 0x120529b70&gt;
 </pre>
 </div>
 </div>
@@ -14004,11 +14130,11 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
-<span class="n">sh_side</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="s2">&quot;1bFk_kgHKn8rzrFoP00ROfdHZERzQWWcimhpeJE5POaA&quot;</span><span class="p">)</span>
+<span class="n">sh_side</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="n">googsheet</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sh_side</span><span class="p">)</span>
 </pre></div>
 
@@ -14037,255 +14163,14 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wks_LEAP</span> <span class="o">=</span> <span class="n">sh_side</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">wks_LEAP</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Reverse-Geocoder">Reverse Geocoder<a class="anchor-link" href="#Reverse-Geocoder">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arcgis.gis</span> <span class="k">import</span> <span class="n">GIS</span>
-<span class="kn">from</span> <span class="nn">arcgis.geocoding</span> <span class="k">import</span> <span class="n">geocode</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gis</span><span class="o">=</span><span class="n">GIS</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lon</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Lon&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">lat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Lat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>-116.882515
-32.927383
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># geocode_fs = geocode(address=None,</span>
-<span class="c1">#                     location=[-118.71511, 34.09042],</span>
-<span class="c1">#                     category=&quot;Coffee shop&quot;,</span>
-<span class="c1">#                     out_fields=&quot;Place_addr, PlaceName&quot;,</span>
-<span class="c1">#                     max_locations=25,</span>
-<span class="c1">#                     as_featureset=True)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># g_df = geocode_fs.sdf</span>
-<span class="c1"># g_df.head(2)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wks_craigslist</span> <span class="o">=</span> <span class="n">sh_side</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">wks_craigslist</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df_craigslist_raw</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import googlemaps</span>
-<span class="c1"># from datetime import datetime</span>
-
-<span class="c1"># gmaps = googlemaps.Client(key=&#39;AIzaSyAHMxSgsqscrOgoRyG9vi0m7VAqKYuofi4&#39;)</span>
-
-<span class="c1"># # Geocoding an address</span>
-<span class="c1"># geocode_result = gmaps.geocode(&#39;1600 Amphitheatre Parkway, Mountain View, CA&#39;)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import api_key from config file</span>
-<span class="c1"># from config import gkey</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># converting dtypes using astype </span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lat&quot;</span><span class="p">]</span><span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># converting dtypes using astype </span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lon&quot;</span><span class="p">]</span><span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lon&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Lon&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[28]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>numpy.float64</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Lon&#39;</span><span class="p">,</span> <span class="s1">&#39;Lat&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Lon&#39;</span><span class="p">,</span> <span class="s1">&#39;Lat&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Lon&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[30]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>numpy.float64</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -14299,7 +14184,46 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Geopandas spacial join</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import chartify</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># GPD spatial joins</span>
@@ -14331,7 +14255,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 

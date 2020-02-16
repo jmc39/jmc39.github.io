@@ -13129,7 +13129,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !pip install https://github.com/nithinmurali/pygsheets/archive/master.zip</span>
@@ -13145,7 +13145,8 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python pacakge dependencies</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">boto3</span>
 <span class="kn">import</span> <span class="nn">requests</span>
@@ -13164,6 +13165,20 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># API credentials &amp; variables</span>
+<span class="n">googsheet</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">GID_URL2020</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2020_requests_datasd_v1.csv&quot;</span>
 <span class="n">GID_URL2019</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2019_requests_datasd_v1.csv&quot;</span>
 <span class="n">GID_URL2018</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2018_requests_datasd_v1.csv&quot;</span>
@@ -13178,7 +13193,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># AWS_KEY_ID = </span>
@@ -13192,7 +13207,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># def sonar(event, context):</span>
@@ -13211,7 +13226,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cols_to_read</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -13225,17 +13240,10 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Rename columns to correspond across years</span>
-<span class="c1"># cols_to_rename = {&#39;requested_datetime&#39;:&#39;date_requested&#39;,&#39;long&#39;:&#39;lng&#39;,&#39;updated_datetime&#39;:&#39;date_updated&#39;}</span>
-
-<span class="c1"># df2018 = pd.read_csv(GID_URL2018, usecols=cols_to_read).rename(columns=cols_to_rename)</span>
-<span class="c1"># df2017 = pd.read_csv(GID_URL2017, usecols=cols_to_read).rename(columns=cols_to_rename)</span>
-<span class="c1"># df2016 = pd.read_csv(GID_URL2016, usecols=cols_to_read).rename(columns=cols_to_rename)</span>
-
-<span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
              <span class="s1">&#39;service_request_parent_id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
              <span class="s1">&#39;sap_notification_number&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
              <span class="s1">&#39;case_origin&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
@@ -13255,20 +13263,16 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2020</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">df2019</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">df2018</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">df2017</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">df2016</span><span class="o">.</span><span class="n">columns</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">df2020.shape</span>
 <span class="sd">df2019.shape</span>
 <span class="sd">df2018.shape</span>
 <span class="sd">df2017.shape</span>
 <span class="sd">df2016.shape</span>
+<span class="sd">df2020.columns</span>
 <span class="sd">df2019.columns</span>
 <span class="sd">df2018.columns</span>
 <span class="sd">df2017.columns</span>
@@ -13292,137 +13296,30 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;service_request_id&#39;, &#39;service_request_parent_id&#39;,
-       &#39;sap_notification_number&#39;, &#39;date_requested&#39;, &#39;case_age_days&#39;,
-       &#39;service_name&#39;, &#39;case_record_type&#39;, &#39;date_updated&#39;, &#39;status&#39;, &#39;lat&#39;,
-       &#39;lng&#39;, &#39;council_district&#39;, &#39;case_origin&#39;, &#39;referred&#39;],
-      dtype=&#39;object&#39;)</pre>
+<pre>&#39;\ndf2020.shape\ndf2019.shape\ndf2018.shape\ndf2017.shape\ndf2016.shape\ndf2020.columns\ndf2019.columns\ndf2018.columns\ndf2017.columns\ndf2016.columns\nlen(df2020)\nlen(df2019)\nlen(df2018)\nlen(df2017)\nlen(df2016)\n&#39;</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;service_request_id&#39;, &#39;service_request_parent_id&#39;,
-       &#39;sap_notification_number&#39;, &#39;date_requested&#39;, &#39;case_age_days&#39;,
-       &#39;service_name&#39;, &#39;case_record_type&#39;, &#39;date_updated&#39;, &#39;status&#39;, &#39;lat&#39;,
-       &#39;lng&#39;, &#39;council_district&#39;, &#39;case_origin&#39;, &#39;referred&#39;],
-      dtype=&#39;object&#39;)</pre>
+<pre>721470</pre>
 </div>
 
 </div>
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;service_request_id&#39;, &#39;service_request_parent_id&#39;,
-       &#39;sap_notification_number&#39;, &#39;date_requested&#39;, &#39;case_age_days&#39;,
-       &#39;service_name&#39;, &#39;case_record_type&#39;, &#39;date_updated&#39;, &#39;status&#39;, &#39;lat&#39;,
-       &#39;lng&#39;, &#39;council_district&#39;, &#39;case_origin&#39;, &#39;referred&#39;],
-      dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;service_request_id&#39;, &#39;service_request_parent_id&#39;,
-       &#39;sap_notification_number&#39;, &#39;date_requested&#39;, &#39;case_age_days&#39;,
-       &#39;service_name&#39;, &#39;case_record_type&#39;, &#39;date_updated&#39;, &#39;status&#39;, &#39;lat&#39;,
-       &#39;lng&#39;, &#39;council_district&#39;, &#39;case_origin&#39;, &#39;referred&#39;],
-      dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;service_request_id&#39;, &#39;service_request_parent_id&#39;,
-       &#39;sap_notification_number&#39;, &#39;date_requested&#39;, &#39;case_age_days&#39;,
-       &#39;service_name&#39;, &#39;case_record_type&#39;, &#39;date_updated&#39;, &#39;status&#39;, &#39;lat&#39;,
-       &#39;lng&#39;, &#39;council_district&#39;, &#39;case_origin&#39;, &#39;referred&#39;],
-      dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\ndf2020.shape\ndf2019.shape\ndf2018.shape\ndf2017.shape\ndf2016.shape\ndf2019.columns\ndf2018.columns\ndf2017.columns\ndf2016.columns\nlen(df2020)\nlen(df2019)\nlen(df2018)\nlen(df2017)\nlen(df2016)\n&#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>710808</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Concatenate all reporting years via &#39;concat&#39;</span>
-<span class="n">df2016todate</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df2020</span><span class="p">,</span><span class="n">df2019</span><span class="p">,</span><span class="n">df2018</span><span class="p">,</span><span class="n">df2017</span><span class="p">,</span><span class="n">df2016</span><span class="p">],</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df2016todate</span> <span class="o">=</span> <span class="n">df2016todate</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;date_requested&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1">#Concatenate all reporting years via &#39;append&#39;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df2016</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2017</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2018</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2019</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2020</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;date_requested&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -13432,15 +13329,18 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;requests_cnt = len(df2016todate)</span>
-<span class="sd">df2016todate.columns</span>
-<span class="sd">requests_cnt</span>
-<span class="sd">requests_cnt_df = len(df)</span>
-<span class="sd">df.columns</span>
-<span class="sd">requests_cnt_df</span>
-<span class="sd">df.service_request_id.nunique() == df2016todate.service_request_id.nunique()</span>
-<span class="sd">df.case_age_days.mean() == df2016todate.case_age_days.mean()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Concatenate all reporting years via &#39;concat&#39;</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">df2016todate = pd.concat([df2020,df2019,df2018,df2017,df2016],ignore_index=True, sort=True)</span>
+<span class="sd">df2016todate = df2016todate.sort_values(by=&#39;date_requested&#39;, ascending=True)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#Concatenate all reporting years via &#39;append&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df2016</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2017</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2018</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2019</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2020</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;date_requested&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13459,7 +13359,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;requests_cnt = len(df2016todate)\ndf2016todate.columns\nrequests_cnt\nrequests_cnt_df = len(df)\ndf.columns\nrequests_cnt_df\ndf.service_request_id.nunique() == df2016todate.service_request_id.nunique()\ndf.case_age_days.mean() == df2016todate.case_age_days.mean()\n&#39;</pre>
+<pre>&#34;\ndf2016todate = pd.concat([df2020,df2019,df2018,df2017,df2016],ignore_index=True, sort=True)\ndf2016todate = df2016todate.sort_values(by=&#39;date_requested&#39;, ascending=True)\n&#34;</pre>
 </div>
 
 </div>
@@ -13473,10 +13373,38 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df2016todate.council_district.nunique()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">requests_cnt_df = len(df)</span>
+<span class="sd">df.columns</span>
+<span class="sd">requests_cnt_df</span>
+<span class="sd">df.service_request_id.nunique() == df2016todate.service_request_id.nunique()</span>
+<span class="sd">df.case_age_days.mean() == df2016todate.case_age_days.mean()</span>
+<span class="sd">df.council_district.nunique()</span>
+<span class="sd">df.groupby(&#39;council_district&#39;)[&#39;service_request_id&#39;].count()</span>
+<span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;\nrequests_cnt_df = len(df)\ndf.columns\nrequests_cnt_df\ndf.service_request_id.nunique() == df2016todate.service_request_id.nunique()\ndf.case_age_days.mean() == df2016todate.case_age_days.mean()\ndf.council_district.nunique()\ndf.groupby(&#39;council_district&#39;)[&#39;service_request_id&#39;].count()\n&#34;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13486,7 +13414,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df2016todate.groupby(&#39;council_district&#39;)[&#39;service_request_id&#39;].count()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;gid_servicesrequests.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13499,44 +13427,12 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2016todate</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-<span class="n">df2016todate</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_sidewalks = df2016todate.loc[(df2016todate[&#39;service_name&#39;]==&quot;Sidewalk Repair Issue&quot;)]</span>
+<span class="c1"># dF_sidewalks[&#39;status&#39;].nunique()</span>
+<span class="c1"># dF_sidewalks[&#39;status&#39;].unique()</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>4</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Closed&#39;, &#39;Referred&#39;, &#39;In Process&#39;, &#39;New&#39;], dtype=object)</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -13544,67 +13440,6 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2016todate</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;sidewalksLSSBB.csv&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_sidewalks</span> <span class="o">=</span> <span class="n">df2016todate</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df2016todate</span><span class="p">[</span><span class="s1">&#39;service_name&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Sidewalk Repair Issue&quot;</span><span class="p">)]</span>
-<span class="n">dF_sidewalks</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-<span class="n">dF_sidewalks</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[15]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[15]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Closed&#39;, &#39;In Process&#39;, &#39;Referred&#39;], dtype=object)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -13624,7 +13459,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -13641,10 +13476,10 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_sidewalks.groupby(&#39;council_district&#39;)[&#39;service_request_id&#39;].count()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df=df2016todate.sort_values(by=&#39;date_requested&#39;, ascending=True)</span>
 </pre></div>
 
     </div>
@@ -13654,90 +13489,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_sidewalks.council_district.count()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_NIP6 = dF_sidewalks.loc[(dF_sidewalks.status!=&#39;Closed&#39;) &amp; (dF_sidewalks.status!=&#39;Referred&#39;)]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_NIP6.groupby(&#39;council_district&#39;).service_request_id.count()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># len(dF_NIP6)</span>
-<span class="c1"># dF_NIP6.council_district.count()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df2016todate.count()</span>
-<span class="c1"># df2016.count()</span>
-<span class="c1"># df2016todate.shape</span>
-<span class="c1"># df2016todate.tail(1)</span>
-<span class="c1"># len(df2016todate)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">df2016todate</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;date_requested&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Set variable for GID service request type</span>
@@ -13754,7 +13506,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Delete irrelevant columns from dataframe (prospective function)</span>
@@ -13772,6 +13524,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <span class="c1">#Setup DataFrame for service</span>
 <span class="n">dF_service</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;service_name&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">service</span><span class="p">)]</span>
+<span class="n">dF_service</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;sidewalks_repair_requests.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13781,20 +13534,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_service.columns</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_service.service_request_parent_id.nunique()</span>
@@ -13808,7 +13548,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># https://stackoverflow.com/questions/50375985/pandas-add-column-with-value-based-on-condition-based-on-other-columns</span>
@@ -13829,7 +13569,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_service = dF_service.assign(is_child=&#39;no&#39;)</span>
@@ -13848,16 +13588,16 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;case_age_days&#39;, &#39;case_origin&#39;, &#39;case_record_type&#39;, &#39;council_district&#39;,
-       &#39;date_requested&#39;, &#39;date_updated&#39;, &#39;lat&#39;, &#39;lng&#39;, &#39;referred&#39;,
-       &#39;sap_notification_number&#39;, &#39;service_name&#39;, &#39;service_request_id&#39;,
-       &#39;service_request_parent_id&#39;, &#39;status&#39;, &#39;is_child&#39;],
+<pre>Index([&#39;service_request_id&#39;, &#39;service_request_parent_id&#39;,
+       &#39;sap_notification_number&#39;, &#39;date_requested&#39;, &#39;case_age_days&#39;,
+       &#39;service_name&#39;, &#39;case_record_type&#39;, &#39;date_updated&#39;, &#39;status&#39;, &#39;lat&#39;,
+       &#39;lng&#39;, &#39;council_district&#39;, &#39;case_origin&#39;, &#39;referred&#39;, &#39;is_child&#39;],
       dtype=&#39;object&#39;)</pre>
 </div>
 
@@ -13869,23 +13609,11 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_service.is_child.nunique()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_service.sort_values(by=[&#39;service_request_parent_id&#39;,&#39;service_request_id&#39;,&#39;is_child&#39;,]).head(3)</span>
+<span class="c1"># dF_service.sort_values(by=[&#39;service_request_parent_id&#39;,&#39;service_request_id&#39;,&#39;is_child&#39;,]).head(3)</span>
 <span class="c1"># dF_service.service_request_id.nunique()</span>
 </pre></div>
 
@@ -13896,7 +13624,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">duplicates</span> <span class="o">=</span> <span class="n">dF_service</span>
@@ -13909,7 +13637,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">duplicates</span> <span class="o">=</span> <span class="n">dF_service</span><span class="p">[</span><span class="n">dF_service</span><span class="o">.</span><span class="n">is_child</span><span class="o">==</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span>
@@ -13922,7 +13650,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># len(duplicates)</span>
@@ -13935,7 +13663,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_service_parents</span> <span class="o">=</span> <span class="n">dF_service</span><span class="p">[</span><span class="n">dF_service</span><span class="o">.</span><span class="n">is_child</span><span class="o">==</span><span class="s1">&#39;no&#39;</span><span class="p">]</span>
@@ -13948,7 +13676,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">dF_service_parents</span><span class="p">)</span>
@@ -13964,13 +13692,13 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>18682</pre>
+<pre>18887</pre>
 </div>
 
 </div>
@@ -13981,7 +13709,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;#Narrow to sidealk repair cases with status as &quot;new&quot;</span>
@@ -14004,7 +13732,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[37]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -14021,7 +13749,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Narrow to sidealk repair cases with status as &quot;new&quot;</span>
@@ -14047,13 +13775,13 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[38]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;New: 0 cases (N/A).\n&#39;</pre>
+<pre>&#39;New: 5 cases (02-16-2020 08:56).\n&#39;</pre>
 </div>
 
 </div>
@@ -14064,7 +13792,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -14086,7 +13814,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[39]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -14103,21 +13831,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># print(new_backlog)</span>
-<span class="c1"># print(new_backlog_parents)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -14142,7 +13856,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[41]:</div>
+    <div class="prompt output_prompt">Out[30]:</div>
 
 
 
@@ -14159,7 +13873,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Narrow to sidealk repair cases with status as &quot;new&quot; or &quot;in process&quot;</span>
@@ -14179,7 +13893,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -14201,7 +13915,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[43]:</div>
+    <div class="prompt output_prompt">Out[32]:</div>
 
 
 
@@ -14218,21 +13932,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># print(backlog)</span>
-<span class="c1"># print(backlog_parents)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">snapshot</span><span class="o">=</span><span class="p">[]</span>
@@ -14245,7 +13945,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_NIP_parents</span><span class="o">.</span><span class="n">columns</span>
@@ -14262,16 +13962,16 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[46]:</div>
+    <div class="prompt output_prompt">Out[34]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;case_age_days&#39;, &#39;case_origin&#39;, &#39;case_record_type&#39;, &#39;council_district&#39;,
-       &#39;date_requested&#39;, &#39;date_updated&#39;, &#39;lat&#39;, &#39;lng&#39;, &#39;referred&#39;,
-       &#39;sap_notification_number&#39;, &#39;service_name&#39;, &#39;service_request_id&#39;,
-       &#39;service_request_parent_id&#39;, &#39;status&#39;, &#39;is_child&#39;],
+<pre>Index([&#39;service_request_id&#39;, &#39;service_request_parent_id&#39;,
+       &#39;sap_notification_number&#39;, &#39;date_requested&#39;, &#39;case_age_days&#39;,
+       &#39;service_name&#39;, &#39;case_record_type&#39;, &#39;date_updated&#39;, &#39;status&#39;, &#39;lat&#39;,
+       &#39;lng&#39;, &#39;council_district&#39;, &#39;case_origin&#39;, &#39;referred&#39;, &#39;is_child&#39;],
       dtype=&#39;object&#39;)</pre>
 </div>
 
@@ -14283,7 +13983,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#ALERT A: update maximum age of case</span>
@@ -14321,7 +14021,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">snapshot</span><span class="p">)</span>
@@ -14341,7 +14041,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;\n --*---*-- \n/  OLDEST cases: Sidewalk Repair Issue /\n --*---*-- \n&#39;, &#39;Oldest backlog case: 1353 days from request date 05-22-2016 19:52\n&#39;, &#39;SAP#: 40300000596| GID ID: 81014\n&#39;, &#39;Oldest backlog case: 1353 days from request date 05-22-2016 19:55\n&#39;, &#39;SAP#: 40300000552| GID ID: 81015\n&#39;, &#39;Oldest backlog case: 1353 days from request date 05-22-2016 20:00\n&#39;, &#39;SAP#: 40300000557| GID ID: 81016\n&#39;, &#39;Oldest backlog case: 1353 days from request date 05-22-2016 20:02\n&#39;, &#39;SAP#: 40300000563| GID ID: 81017\n&#39;]
+<pre>[&#39;\n --*---*-- \n/  OLDEST cases: Sidewalk Repair Issue /\n --*---*-- \n&#39;, &#39;Oldest backlog case: 1365 days from request date 05-22-2016 19:52\n&#39;, &#39;SAP#: 40300000596| GID ID: 81014\n&#39;, &#39;Oldest backlog case: 1365 days from request date 05-22-2016 19:55\n&#39;, &#39;SAP#: 40300000552| GID ID: 81015\n&#39;, &#39;Oldest backlog case: 1365 days from request date 05-22-2016 20:00\n&#39;, &#39;SAP#: 40300000557| GID ID: 81016\n&#39;, &#39;Oldest backlog case: 1365 days from request date 05-22-2016 20:02\n&#39;, &#39;SAP#: 40300000563| GID ID: 81017\n&#39;]
 </pre>
 </div>
 </div>
@@ -14352,7 +14052,7 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#ALERT E: Median age of case (AOC) for cases with status &quot;new&quot; or &quot;in process&quot; exceeds existing maximum median AOC</span>
@@ -14381,20 +14081,20 @@ as a mechanism for relentless follow-up and data-based monitoring by a <a href="
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[49]:</div>
+    <div class="prompt output_prompt">Out[37]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>count    5232.000000
-mean      535.232034
-std       334.912779
+<pre>count    5298.000000
+mean      539.037373
+std       339.442412
 min         0.000000
-25%       238.000000
-50%       525.000000
-75%       804.000000
-max      1353.000000
+25%       237.000000
+50%       527.000000
+75%       810.000000
+max      1365.000000
 Name: case_age_days, dtype: float64</pre>
 </div>
 
@@ -14402,26 +14102,26 @@ Name: case_age_days, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[49]:</div>
+    <div class="prompt output_prompt">Out[37]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>525.0</pre>
+<pre>527.0</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[49]:</div>
+    <div class="prompt output_prompt">Out[37]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>535.2320336391438</pre>
+<pre>539.0373725934314</pre>
 </div>
 
 </div>
@@ -14432,7 +14132,7 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_NIP_parents_25th</span> <span class="o">=</span> <span class="n">dF_NIP_parents</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -14458,39 +14158,39 @@ Name: case_age_days, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[50]:</div>
+    <div class="prompt output_prompt">Out[38]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>238.0</pre>
+<pre>237.0</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[50]:</div>
+    <div class="prompt output_prompt">Out[38]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>804.0</pre>
+<pre>810.0</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[50]:</div>
+    <div class="prompt output_prompt">Out[38]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>1012.9000000000005</pre>
+<pre>1022.3000000000002</pre>
 </div>
 
 </div>
@@ -14501,7 +14201,7 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#ALERT C: service levels</span>
@@ -14543,7 +14243,7 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_exceed_SLA</span><span class="o">.</span><span class="n">columns</span>
@@ -14559,7 +14259,7 @@ Name: case_age_days, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[52]:</div>
+    <div class="prompt output_prompt">Out[40]:</div>
 
 
 
@@ -14576,7 +14276,7 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_exceed_SLA</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">,</span>
@@ -14600,7 +14300,7 @@ Name: case_age_days, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[53]:</div>
+    <div class="prompt output_prompt">Out[41]:</div>
 
 
 
@@ -14619,7 +14319,7 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -14642,7 +14342,7 @@ Name: case_age_days, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[54]:</div>
+    <div class="prompt output_prompt">Out[42]:</div>
 
 
 
@@ -14659,7 +14359,7 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">0</span>
@@ -14693,7 +14393,7 @@ Name: case_age_days, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[55]:</div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
 
@@ -14710,7 +14410,7 @@ Name: case_age_days, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sent message </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">))</span>
@@ -14734,23 +14434,23 @@ Name: case_age_days, dtype: float64</pre>
  --*---*-- 
 /  OLDEST cases: Sidewalk Repair Issue /
  --*---*-- 
-Oldest backlog case: 1353 days from request date 05-22-2016 19:52
+Oldest backlog case: 1365 days from request date 05-22-2016 19:52
 SAP#: 40300000596| GID ID: 81014
-Oldest backlog case: 1353 days from request date 05-22-2016 19:55
+Oldest backlog case: 1365 days from request date 05-22-2016 19:55
 SAP#: 40300000552| GID ID: 81015
-Oldest backlog case: 1353 days from request date 05-22-2016 20:00
+Oldest backlog case: 1365 days from request date 05-22-2016 20:00
 SAP#: 40300000557| GID ID: 81016
-Oldest backlog case: 1353 days from request date 05-22-2016 20:02
+Oldest backlog case: 1365 days from request date 05-22-2016 20:02
 SAP#: 40300000563| GID ID: 81017
 
  --*---*-- 
 / Backlog STATS: Sidewalk Repair Issue /
  --*---*-- 
-Median: 525 days.
-Mean: 535 days.
-Exceed SLA (180 days): 4223 cases.
-Backlog: 5232 cases (12-31-2019 12:13).
-New: 0 cases (N/A).
+Median: 527 days.
+Mean: 539 days.
+Exceed SLA (180 days): 4255 cases.
+Backlog: 5298 cases (12-31-2019 12:13).
+New: 5 cases (02-16-2020 08:56).
 
 </pre>
 </div>
@@ -14762,7 +14462,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#MISCELANEOUS - metric of backlog growth rate</span>
@@ -14783,7 +14483,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">entry_date</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
@@ -14797,7 +14497,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hippokampi_dict</span> <span class="o">=</span> <span class="p">{</span>
@@ -14829,7 +14529,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hippokampi_dict</span>
@@ -14845,24 +14545,24 @@ New: 0 cases (N/A).
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[60]:</div>
+    <div class="prompt output_prompt">Out[48]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;Run Date&#39;: [datetime.datetime(2020, 2, 4, 11, 57, 3, 165822)],
- &#39;Max Age of Case&#39;: [1353],
+<pre>{&#39;Run Date&#39;: [datetime.datetime(2020, 2, 16, 14, 11, 33, 95525)],
+ &#39;Max Age of Case&#39;: [1365],
  &#39;Max Age of Case - Date&#39;: [&#39;05-22-2016 20:02&#39;],
- &#39;25th Percentile&#39;: [238.0],
- &#39;Mean Age of Case&#39;: [535],
- &#39;Median Age of Case&#39;: [525],
- &#39;75th Percentile&#39;: [804.0],
- &#39;90th Percentile&#39;: [1012.9000000000005],
- &#39;New Cases&#39;: [0],
- &#39;Backlog&#39;: [5232],
+ &#39;25th Percentile&#39;: [237.0],
+ &#39;Mean Age of Case&#39;: [539],
+ &#39;Median Age of Case&#39;: [527],
+ &#39;75th Percentile&#39;: [810.0],
+ &#39;90th Percentile&#39;: [1022.3000000000002],
+ &#39;New Cases&#39;: [5],
+ &#39;Backlog&#39;: [5298],
  &#39;Geolocation error&#39;: [73],
- &#39;SLA&#39;: [4223],
+ &#39;SLA&#39;: [4255],
  &#39;Oldest SLA Date&#39;: [&#39;12-31-2018 13:45&#39;]}</pre>
 </div>
 
@@ -14874,7 +14574,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_hippokampi</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">hippokampi_dict</span><span class="p">)</span>
@@ -14906,11 +14606,11 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#authorization to access Google sheet</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;Hippokampi-9#e.json&quot;</span><span class="p">)</span>
+<span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;Hippokampi-9c9209b112fe.json&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gc</span><span class="p">)</span>
 </pre></div>
 
@@ -14928,7 +14628,7 @@ New: 0 cases (N/A).
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;pygsheets.client.Client object at 0x12dff6630&gt;
+<pre>&lt;pygsheets.client.Client object at 0x128148da0&gt;
 </pre>
 </div>
 </div>
@@ -14939,11 +14639,11 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
-<span class="n">pyg_hipp</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="s1">&#39;1CPYX-###M&#39;</span><span class="p">)</span>
+<span class="n">pyg_hipp</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="n">googsheet</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14953,12 +14653,12 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set Google Sheet containing SLA attributes</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">geo_wks_side =  pyg_hipp[1]</span>
+<span class="sd">geo_wks_side =  pyg_hipp[2]</span>
 <span class="sd">geo_wks_side.set_dataframe(dF_exceed_SLA,(1,1))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
@@ -14973,13 +14673,13 @@ New: 0 cases (N/A).
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[64]:</div>
+    <div class="prompt output_prompt">Out[52]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;\ngeo_wks_side =  pyg_hipp[1]\ngeo_wks_side.set_dataframe(dF_exceed_SLA,(1,1))\n&#39;</pre>
+<pre>&#39;\ngeo_wks_side =  pyg_hipp[2]\ngeo_wks_side.set_dataframe(dF_exceed_SLA,(1,1))\n&#39;</pre>
 </div>
 
 </div>
@@ -14990,7 +14690,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">,</span><span class="s1">&#39;sap_notification_number&#39;</span><span class="p">,</span><span class="s1">&#39;date_requested&#39;</span><span class="p">,</span>
@@ -15005,7 +14705,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -15026,7 +14726,7 @@ New: 0 cases (N/A).
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[66]:</div>
+    <div class="prompt output_prompt">Out[54]:</div>
 
 
 
@@ -15043,11 +14743,11 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Set Google Sheet containing backlog cases</span>
-<span class="n">geo_wks_backlog</span> <span class="o">=</span>  <span class="n">pyg_hipp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">geo_wks_backlog</span> <span class="o">=</span>  <span class="n">pyg_hipp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">geo_wks_backlog</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">dF_backlog</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 
@@ -15058,7 +14758,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Retrieve Google Sheet containing historicals</span>
@@ -15091,7 +14791,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_exceed_SLA</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -15107,7 +14807,7 @@ New: 0 cases (N/A).
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[69]:</div>
+    <div class="prompt output_prompt">Out[57]:</div>
 
 
 
@@ -15146,7 +14846,7 @@ New: 0 cases (N/A).
       <td>81014</td>
       <td>40300000596</td>
       <td>05-22-2016 19:52</td>
-      <td>1353.0</td>
+      <td>1365.0</td>
       <td>32.815559</td>
       <td>-117.210784</td>
       <td>2</td>
@@ -15157,7 +14857,7 @@ New: 0 cases (N/A).
       <td>81015</td>
       <td>40300000552</td>
       <td>05-22-2016 19:55</td>
-      <td>1353.0</td>
+      <td>1365.0</td>
       <td>32.815960</td>
       <td>-117.210679</td>
       <td>2</td>
@@ -15168,7 +14868,7 @@ New: 0 cases (N/A).
       <td>81016</td>
       <td>40300000557</td>
       <td>05-22-2016 20:00</td>
-      <td>1353.0</td>
+      <td>1365.0</td>
       <td>32.816656</td>
       <td>-117.210812</td>
       <td>2</td>
@@ -15187,7 +14887,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#READ - also get the values of sheet as dataframe</span>
@@ -15201,11 +14901,12 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_to_retrieve</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Run Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Age of Case&#39;</span><span class="p">,</span> <span class="s1">&#39;Max Age of Case - Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean Age of Case&#39;</span><span class="p">,</span> <span class="s1">&#39;Median Age of Case&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;New Cases&#39;</span><span class="p">,</span> <span class="s1">&#39;Backlog&#39;</span><span class="p">,</span> <span class="s1">&#39;Geolocation error&#39;</span><span class="p">,</span><span class="s1">&#39;SLA&#39;</span><span class="p">,</span> <span class="s1">&#39;Oldest SLA Date&#39;</span><span class="p">]</span>
+                    <span class="s1">&#39;New Cases&#39;</span><span class="p">,</span> <span class="s1">&#39;Backlog&#39;</span><span class="p">,</span> <span class="s1">&#39;Geolocation error&#39;</span><span class="p">,</span><span class="s1">&#39;SLA&#39;</span><span class="p">,</span> <span class="s1">&#39;Oldest SLA Date&#39;</span><span class="p">,</span><span class="s1">&#39;25th Percentile&#39;</span><span class="p">,</span><span class="s1">&#39;75th Percentile&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;90th Percentile&#39;</span><span class="p">]</span>
 <span class="n">dF_historicals</span> <span class="o">=</span> <span class="n">dF_historicals</span><span class="p">[</span><span class="n">cols_to_retrieve</span><span class="p">]</span>
 </pre></div>
 
@@ -15216,7 +14917,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_today = dF_hippokampi.append(dF_historicals,ignore_index=True)</span>
@@ -15230,7 +14931,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># dF_historicals.drop([index],inplace=True)</span>
@@ -15247,7 +14948,7 @@ New: 0 cases (N/A).
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[73]:</div>
+    <div class="prompt output_prompt">Out[61]:</div>
 
 
 
@@ -15783,166 +15484,6 @@ New: 0 cases (N/A).
       <td>...</td>
     </tr>
     <tr>
-      <th>37</th>
-      <td>2019-11-15 4:00:44</td>
-      <td>1271</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>9</td>
-      <td>4857</td>
-      <td></td>
-      <td>3845</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>2019-11-18 4:00:45</td>
-      <td>1274</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>14</td>
-      <td>4902</td>
-      <td></td>
-      <td>3858</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>2019-11-20 4:00:45</td>
-      <td>1276</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>5</td>
-      <td>4935</td>
-      <td></td>
-      <td>3868</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>2019-11-22 4:00:45</td>
-      <td>1278</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>3</td>
-      <td>4947</td>
-      <td></td>
-      <td>3880</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>2019-11-25 4:00:45</td>
-      <td>1281</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>12</td>
-      <td>4969</td>
-      <td></td>
-      <td>3892</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>2019-11-27 4:00:46</td>
-      <td>1283</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>7</td>
-      <td>4968</td>
-      <td></td>
-      <td>3900</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>2019-11-29 4:00:45</td>
-      <td>1285</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>6</td>
-      <td>4969</td>
-      <td></td>
-      <td>3906</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>2019-12-02 4:00:46</td>
-      <td>1288</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>15</td>
-      <td>4990</td>
-      <td></td>
-      <td>3912</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>2019-12-04 4:00:46</td>
-      <td>1290</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>2</td>
-      <td>4990</td>
-      <td></td>
-      <td>3918</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>2019-12-06 4:00:46</td>
-      <td>1292</td>
-      <td>05-22-2016 20:02</td>
-      <td></td>
-      <td></td>
-      <td>6</td>
-      <td>4996</td>
-      <td></td>
-      <td>3927</td>
-      <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
       <th>47</th>
       <td>2019-12-09 4:01:45</td>
       <td>1295</td>
@@ -16200,15 +15741,15 @@ New: 0 cases (N/A).
     </tr>
     <tr>
       <th>63</th>
-      <td>2020-02-03 12:40:50</td>
-      <td>1352</td>
+      <td>2020-02-04 11:57:03</td>
+      <td>1353</td>
       <td>05-22-2016 20:02</td>
-      <td>534</td>
-      <td>524</td>
-      <td>2</td>
-      <td>5228</td>
+      <td>535</td>
+      <td>525</td>
+      <td>0</td>
+      <td>5232</td>
       <td>73</td>
-      <td>4217</td>
+      <td>4223</td>
       <td>12-31-2018 13:45</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -16216,55 +15757,215 @@ New: 0 cases (N/A).
     </tr>
     <tr>
       <th>64</th>
-      <td>2020-02-03 12:19:32</td>
-      <td>1352</td>
+      <td>2020-02-05 8:00:34</td>
+      <td>1353</td>
       <td>05-22-2016 20:02</td>
-      <td>534</td>
-      <td>524</td>
-      <td>2</td>
-      <td>5229</td>
+      <td>535</td>
+      <td>525</td>
+      <td>0</td>
+      <td>5233</td>
       <td>73</td>
-      <td>4217</td>
+      <td>4223</td>
       <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>239.0</td>
+      <td>805.0</td>
+      <td>1013.0</td>
     </tr>
     <tr>
       <th>65</th>
-      <td>2020-02-04 11:55:41</td>
-      <td>1353</td>
+      <td>2020-02-06 8:00:35</td>
+      <td>1354</td>
       <td>05-22-2016 20:02</td>
-      <td>535</td>
-      <td>525</td>
-      <td>0</td>
-      <td>5232</td>
+      <td>532</td>
+      <td>519</td>
+      <td>14</td>
+      <td>5269</td>
       <td>73</td>
-      <td>4223</td>
+      <td>4227</td>
       <td>12-31-2018 13:45</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>233.0</td>
+      <td>801.0</td>
+      <td>1013.0</td>
     </tr>
     <tr>
       <th>66</th>
-      <td>2020-02-04 11:57:03.165822</td>
-      <td>1353</td>
+      <td>2020-02-07 8:00:36</td>
+      <td>1355</td>
       <td>05-22-2016 20:02</td>
-      <td>535</td>
-      <td>525</td>
-      <td>0</td>
-      <td>5232</td>
+      <td>533</td>
+      <td>520</td>
+      <td>1</td>
+      <td>5272</td>
       <td>73</td>
-      <td>4223</td>
+      <td>4227</td>
+      <td>12-31-2018 13:45</td>
+      <td>234.0</td>
+      <td>802.0</td>
+      <td>1014.0</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>2020-02-08 8:00:35</td>
+      <td>1355</td>
+      <td>05-22-2016 20:02</td>
+      <td>533</td>
+      <td>520</td>
+      <td>1</td>
+      <td>5272</td>
+      <td>73</td>
+      <td>4227</td>
+      <td>12-31-2018 13:45</td>
+      <td>234.0</td>
+      <td>802.0</td>
+      <td>1014.0</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>2020-02-09 8:00:36</td>
+      <td>1355</td>
+      <td>05-22-2016 20:02</td>
+      <td>533</td>
+      <td>520</td>
+      <td>1</td>
+      <td>5272</td>
+      <td>73</td>
+      <td>4227</td>
+      <td>12-31-2018 13:45</td>
+      <td>234.0</td>
+      <td>802.0</td>
+      <td>1014.0</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>2020-02-10 8:00:36</td>
+      <td>1355</td>
+      <td>05-22-2016 20:02</td>
+      <td>533</td>
+      <td>520</td>
+      <td>1</td>
+      <td>5272</td>
+      <td>73</td>
+      <td>4227</td>
+      <td>12-31-2018 13:45</td>
+      <td>234.0</td>
+      <td>802.0</td>
+      <td>1014.0</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>2020-02-11 8:00:36</td>
+      <td>1355</td>
+      <td>05-22-2016 20:02</td>
+      <td>533</td>
+      <td>520</td>
+      <td>1</td>
+      <td>5272</td>
+      <td>73</td>
+      <td>4227</td>
+      <td>12-31-2018 13:45</td>
+      <td>234.0</td>
+      <td>802.0</td>
+      <td>1014.0</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>2020-02-12 7:59:51</td>
+      <td>1258</td>
+      <td>09-01-2016 15:13</td>
+      <td>634</td>
+      <td>608</td>
+      <td>0</td>
+      <td>61</td>
+      <td>2</td>
+      <td>57</td>
+      <td>12-31-2018 13:45</td>
+      <td>427.0</td>
+      <td>782.0</td>
+      <td>1167.0</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>2020-02-13 7:59:51</td>
+      <td>1259</td>
+      <td>09-01-2016 15:13</td>
+      <td>635</td>
+      <td>609</td>
+      <td>0</td>
+      <td>61</td>
+      <td>2</td>
+      <td>57</td>
+      <td>12-31-2018 13:45</td>
+      <td>428.0</td>
+      <td>783.0</td>
+      <td>1168.0</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>2020-02-14 8:00:35</td>
+      <td>1362</td>
+      <td>05-22-2016 20:02</td>
+      <td>537</td>
+      <td>525</td>
+      <td>3</td>
+      <td>5289</td>
+      <td>73</td>
+      <td>4247</td>
       <td>12-31-2018 13:45</td>
       <td>238.0</td>
-      <td>804.0</td>
-      <td>1012.9</td>
+      <td>808.0</td>
+      <td>1020.2</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>2020-02-15 8:00:34</td>
+      <td>1363</td>
+      <td>05-22-2016 20:02</td>
+      <td>538</td>
+      <td>526</td>
+      <td>2</td>
+      <td>5291</td>
+      <td>73</td>
+      <td>4247</td>
+      <td>12-31-2018 13:45</td>
+      <td>237.5</td>
+      <td>809.0</td>
+      <td>1021.0</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>2020-02-16 8:00:35</td>
+      <td>1364</td>
+      <td>05-22-2016 20:02</td>
+      <td>538</td>
+      <td>527</td>
+      <td>2</td>
+      <td>5293</td>
+      <td>73</td>
+      <td>4247</td>
+      <td>12-31-2018 13:45</td>
+      <td>237.0</td>
+      <td>810.0</td>
+      <td>1021.8</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>2020-02-16 14:11:33.095525</td>
+      <td>1365</td>
+      <td>05-22-2016 20:02</td>
+      <td>539</td>
+      <td>527</td>
+      <td>5</td>
+      <td>5298</td>
+      <td>73</td>
+      <td>4255</td>
+      <td>12-31-2018 13:45</td>
+      <td>237.0</td>
+      <td>810.0</td>
+      <td>1022.3</td>
     </tr>
   </tbody>
 </table>
-<p>67 rows × 13 columns</p>
+<p>77 rows × 13 columns</p>
 </div>
 </div>
 
@@ -16276,7 +15977,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#CREATE - set the values of a pandas dataframe to sheet</span>
@@ -16291,7 +15992,7 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># SNS publish</span>
@@ -16312,7 +16013,59 @@ New: 0 cases (N/A).
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sent message </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Sent message 
+ --*---*-- 
+/  OLDEST cases: Sidewalk Repair Issue /
+ --*---*-- 
+Oldest backlog case: 1365 days from request date 05-22-2016 19:52
+SAP#: 40300000596| GID ID: 81014
+Oldest backlog case: 1365 days from request date 05-22-2016 19:55
+SAP#: 40300000552| GID ID: 81015
+Oldest backlog case: 1365 days from request date 05-22-2016 20:00
+SAP#: 40300000557| GID ID: 81016
+Oldest backlog case: 1365 days from request date 05-22-2016 20:02
+SAP#: 40300000563| GID ID: 81017
+
+ --*---*-- 
+/ Backlog STATS: Sidewalk Repair Issue /
+ --*---*-- 
+Median: 527 days.
+Mean: 539 days.
+Exceed SLA (180 days): 4255 cases.
+Backlog: 5298 cases (12-31-2019 12:13).
+New: 5 cases (02-16-2020 08:56).
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#serveless invoke local and \deploy terminal command</span>
@@ -16332,7 +16085,7 @@ New: 0 cases (N/A).
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[76]:</div>
+    <div class="prompt output_prompt">Out[65]:</div>
 
 
 
