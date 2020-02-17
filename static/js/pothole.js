@@ -16,7 +16,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 // Assemble API query URL
 console.log("CSV dataset url is http instead of https which generates console error for Seshat URL")
-var url ="s3://mydataviztest-39/get_it_done_pothole_requests_datasd_v1.csv"
+var url ="https://mydataviztest-39.s3.amazonaws.com/get_it_done_pothole_requests_datasd_v1.csv"
 // Grab the data with d3
 d3.csv(url, 
   function(response) {
