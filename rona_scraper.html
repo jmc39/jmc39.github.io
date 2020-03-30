@@ -1,0 +1,170 @@
+# Purpose of script:
+# These scrape functions are subparts of AWS Lambda daily cron job (8AM GMT) to ...
+# ... create "time-series" data through daily scrape of (1) HTML table and (2) PDF of city-level snapshot 
+
+# Dependencies for scrapping
+from bs4 import BeautifulSoup
+import requests
+import re
+
+#Dependencies for analysis & visualization
+import pandas as pd
+import numpy as np
+import pygsheets as pyg #Google Py package for GSheets endpoints
+import datetime as dt
+from datetime import datetime
+from twilio.rest import Client #!pip install twilio
+
+def scrape_COSD_COVID():
+    # Variable for Google sheet
+    googsheet = "XXXXXXXX"
+
+    # Create list of URLs to bs4 scrape
+    rona = "https://www.sandiegocounty.gov/content/sdc/hhsa/programs/phs/community_epidemiology/dc/2019-nCoV/status.html"
+
+    # Retrieve page with the requests module
+    response = requests.get(rona)
+    rona_soup = BeautifulSoup(response.text,'html.parser')
+
+    # find the table containing the data
+    results = rona_soup.find('div', class_= 'table parbase section')
+
+    table = results
+    table_updated = table.find("i").text.strip('Updated ')
+
+    # Function to covert string to datetime 
+    """
+    def convert(table_updated): 
+        format = '%B %d, %Y' # The format 
+        datetime_str = datetime.datetime.strptime(table_updated, format)
+        ds = datetime_str
+        datetime_str = datetime.date(ds.year, ds.month, ds.day)
+        return datetime_str
+    updated = convert(table_updated)
+    """
+
+    rows = [] 
+    # SCRAPE: Extract Table Contents
+    for row in table.tbody.findAll('tr'):
+        try:
+            rows.append([col.text for col in row.findAll('td')])
+        except AttributeError as e:
+            print(str(e)+str(row))
+
+    df= pd.DataFrame(rows)
+    rona_df = df.T
+    new_header = rona_df.iloc[0] #grab the first row for the header
+    rona_df = rona_df[1:] #take the data less the header row
+    rona_df.columns = new_header #set the header row as the df header
+    rona_df=rona_df.drop(rona_df.columns[[0,1]],axis=1)
+    # rona_df.convert_dtypes()
+    # rona_df.columns
+
+    # Add Table Updated to dataframe
+    rona_df['Timestamp'] = dt.datetime.now()
+    rona_df['Updated']=table_updated
+    rona_df=rona_df[['Timestamp','Updated','Hospitalizations', 'Intensive Care',
+           'Deaths','Total Positives', 'Age Groups', '0-9 years', '10-19 years',
+           '20-29 years', '30-39 years', '40-49 years', '50-59 years',
+           '60-69 years', '70-79 years', '80+ years', 'Age Unknown', 'Gender',
+           'Female', 'Male', 'Unknown']]
+
+    ### Store df to Google sheet for visualization
+
+    #CREATE Google Sheet from dataframes to create endpoints for visualization
+    def write_to_gsheets(rona_df):
+        #Service_file authorization to access Google sheet
+        gc = pyg.authorize(service_file="XXXXXXXX.json")
+
+        #Open the blank Google spreadsheet using Google doc ID key
+        pyg_rona = gc.open_by_key(googsheet)
+
+        # Retrieve Google Sheet containing historicals
+        wks = pyg_rona[0]
+
+        #READ - also get the values of sheet as dataframe
+        df_historicals = wks.get_as_df(start=(1,1))
+
+        cols_to_retrieve = ['Timestamp','Updated','Hospitalizations', 'Intensive Care','Deaths',
+                            'Total Positives',
+                            '0-9 years', '10-19 years','20-29 years', '30-39 years',
+                            '40-49 years', '50-59 years','60-69 years', '70-79 years',
+                            '80+ years', 'Age Unknown',
+                            'Female', 'Male', 'Unknown']
+        df_historicals = df_historicals[cols_to_retrieve]
+
+        sheet_df = rona_df[cols_to_retrieve]
+
+        # Append most recently updated to historicals
+        df_historicals = df_historicals.append(sheet_df, ignore_index=True, sort=False)
+
+        # dF_historicals.drop([index],inplace=True)
+        df_historicals
+
+        #CREATE - set the values of a pandas dataframe to sheet
+        wks_rona =  pyg_rona[0]
+        wks_rona.set_dataframe(df_historicals,(1,1))
+
+        return "Successfully wrote to sheets"
+    write_to_gsheets(rona_df)
+#     sms_txt(text,to_phone,from_ph)
+    return "Successfully scraped COSD site"
+
+scrape_COSD_COVID()
+
+## Scrape PDF via tabula for city-level data
+import tabula
+def scrape_city_COSD():
+    pdf_path = "https://www.sandiegocounty.gov/content/dam/sdc/hhsa/programs/phs/Epidemiology/COVID-19%20Daily%20Update_City%20of%20Residence.pdf"
+    City_COVID = tabula.read_pdf(pdf_path)
+    df=City_COVID
+    df.rename(columns={"Summary of COVID-19 Cases by City of Residence, San Diego County"
+                        :"Summary"}, inplace=True)
+    df=df[1:] #remove subtotal row, retain all except row 1
+    
+    # Adding three new columns to the existing dataframe. 
+    # bydefault splitting is done on the basis of 2 spaces from the right. 
+    df[['City', 'Count','Percentage']] = df.Summary.str.rsplit(n=2, expand=True)
+    df=df.drop(columns="Summary")
+
+    #Remove subtotal rows
+    df = df[(df.City != 'Unincorporated') & (df.City != "Incorporated City") &
+      (df.City != 'Total San Diego County Residents')]
+    
+    df['Timestamp'] = dt.datetime.now()
+    df = df[["Timestamp","City","Count","Percentage"]]
+
+    city_df = df
+    print("Created tabula dataframe")
+    def build_history(df):
+        #Service_file authorization to access Google sheet
+        gc = pyg.authorize(service_file="XXXXXXXX.json")
+
+        #Open the blank Google spreadsheet using Google doc ID key
+        pyg_rona = gc.open_by_key(googsheet)
+
+        # Retrieve Google Sheet containing historicals
+        wks_city = pyg_rona[1]
+
+        #READ - also get the values of sheet as dataframe
+        df_history = wks_city.get_as_df(start=(1,1))
+
+        cols_to_retrieve = ['Timestamp','City','Count','Percentage']
+        df_history = df_history[cols_to_retrieve]
+
+        city_df = df[cols_to_retrieve]
+
+        # Append most recently updated to historicals
+        df_history = df_history.append(city_df, ignore_index=True, sort=False)
+
+        # dF_historicals.drop([index],inplace=True)
+        df_history
+
+        #CREATE - set the values of a pandas dataframe to sheet
+        wks_rona_city =  pyg_rona[1]
+        wks_rona_city.set_dataframe(df_history,(1,1))
+        print("Successful build tabula gsheet history")
+        return "Successful build tabula gsheet history"
+    build_history(city_df)
+    return "Successful scraped PDF url to Google sheet endpoints"
+scrape_city_COSD()
