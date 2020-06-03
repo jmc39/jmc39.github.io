@@ -13133,9 +13133,8 @@ div#notebook {
 <br>
 <u><b>Approach:</b></u></p>
 <ul><li>Web scraper using <code>BeautifulSoup</code> to parse HTML table and <code>Tabula</code> package to scrape PDFs: city stats, zip codes, hospitalizations;</li>
-<li><a href="https://docs.google.com/spreadsheets/d/{ } } }edit#gid=0" target="_blank">Dataframe endpoints push to a Google sheet</a> using the <code>pygsheets</code> python package;</li>
-<li>Scrape functions are subparts of AWS Lambda cron job to create "time-series" data through daily web scrape;</li>
-<li>Unfortunately, the data source web page changes formatting so the scraping is a moving target</li></ul><p><i>Date source: <a href="https://www.sandiegocounty.gov/content/sdc/hhsa/programs/phs/community_epidemiology/dc/2019-nCoV/status.html" target="_blank">San Diego County HHSA Public Health Services</a></i></p>
+<li><a href="https://docs.google.com/spreadsheets/d/1BFe5q0WwVkEdbQm3pd0jMrPPC-FH4hICz4QJrfhnOkM/edit#gid=0" target="_blank">Dataframe endpoints push to a Google sheet</a> using the <code>pygsheets</code> python package;</li>
+<li>Unfortunately, the data source web page changes formatting so the scraping is a moving target</li></ul><p><i>Date sources: <a href="https://www.sandiegocounty.gov/content/sdc/hhsa/programs/phs/community_epidemiology/dc/2019-nCoV/status.html" target="_blank">San Diego County HHSA Public Health Services</a><a href="https://www.sandiego.gov/coronavirus/sheltertohome" target="_blank">; Operation Shelter to Home (City of San Diego)</a></i></p>
 
 </div>
 </div>
@@ -13162,10 +13161,306 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
-<span class="n">googsheet</span> <span class="o">=</span> <span class="s2">&quot;1BFe5q0WwVkEdbQm{ } } X X}FH4hICz4QJrfhnOkM&quot;</span>
+<span class="n">googsheet</span> <span class="o">=</span> <span class="s2">&quot;1BFOkM&quot;</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Table:-sandiego.gov-Operation-Shelter-to-Home">Table: sandiego.gov Operation Shelter to Home<a class="anchor-link" href="#Table:-sandiego.gov-Operation-Shelter-to-Home">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create list of URLs to bs4 scrape</span>
+<span class="n">OS2H</span> <span class="o">=</span> <span class="s2">&quot;https://www.sandiego.gov/coronavirus/sheltertohome&quot;</span>
+
+<span class="c1"># Retrieve page with the requests module</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">OS2H</span><span class="p">)</span>
+<span class="n">OS2H_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># find the table containing the data</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">OS2H_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span> <span class="s1">&#39;field-item even&#39;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">results</span>
+
+<span class="c1"># pull date for time table updated</span>
+<span class="n">table_updated</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;h4&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;By The Numbers (Updated &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">table_updated</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;June 1, 2020&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">right</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">left</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">right</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">col</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">tbody</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>
+<span class="n">left</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">col</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">tbody</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>
+<span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Client count&quot;</span><span class="p">:</span><span class="n">right</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span><span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;client&quot;</span><span class="p">:</span><span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span>
+        <span class="s2">&quot;staff&quot;</span><span class="p">:</span><span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span>
+        <span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]:</span><span class="n">right</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span>
+        <span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">]:</span><span class="n">right</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span>
+        <span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">]:</span><span class="n">right</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span>
+        <span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">7</span><span class="p">]:</span><span class="n">right</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">],</span>
+        <span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">8</span><span class="p">]:</span><span class="n">right</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">]}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_OS2H</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+<span class="n">df_OS2H</span><span class="p">[</span><span class="s1">&#39;Updated&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">table_updated</span>
+<span class="n">df_OS2H</span><span class="p">[</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">df_OS2H</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_OS2H</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">df_OS2H</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="s2">&quot;Measure&quot;</span><span class="p">,</span>
+                        <span class="n">df_OS2H</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="s1">&#39;Count&#39;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_OS2H</span><span class="p">[</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+<span class="n">df_OS2H</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df_OS2H</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Measure</th>
+      <th>Count</th>
+      <th>Updated</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Client count</td>
+      <td>1,306</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Total Administered</td>
+      <td>1,604</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>client</td>
+      <td>1,210</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>staff</td>
+      <td>394</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Negative Test Results</td>
+      <td>1,571</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Positive Test Results</td>
+      <td>4</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Indeterminant</td>
+      <td>27</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Inconclusive</td>
+      <td>2</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Pending</td>
+      <td>0</td>
+      <td>June 1, 2020</td>
+      <td>2020-06-01 19:45:27.191076</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_history</span><span class="p">(</span><span class="n">df_OS2H</span><span class="p">):</span>
+    <span class="c1">#Service_file authorization to access Google sheet</span>
+    <span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;../sdcity9c9209b112fe.json&quot;</span><span class="p">)</span>
+
+    <span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
+    <span class="n">pyg_rona</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="n">googsheet</span><span class="p">)</span>
+
+    <span class="c1"># Retrieve Google Sheet containing historicals</span>
+    <span class="n">wks_city</span> <span class="o">=</span> <span class="n">pyg_rona</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+
+    <span class="c1">#READ - also get the values of sheet as dataframe</span>
+    <span class="n">df_history</span> <span class="o">=</span> <span class="n">wks_city</span><span class="o">.</span><span class="n">get_as_df</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="n">cols_to_retrieve</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">,</span><span class="s1">&#39;Measure&#39;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">,</span><span class="s2">&quot;Updated&quot;</span><span class="p">]</span>
+    <span class="n">df_history</span> <span class="o">=</span> <span class="n">df_history</span><span class="p">[</span><span class="n">cols_to_retrieve</span><span class="p">]</span>
+
+    <span class="n">df_OS2H</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols_to_retrieve</span><span class="p">]</span>
+
+    <span class="c1"># Append most recently updated to historicals</span>
+    <span class="n">df_history</span> <span class="o">=</span> <span class="n">df_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_OS2H</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># dF_historicals.drop([index],inplace=True)</span>
+    <span class="n">df_history</span>
+
+    <span class="c1">#CREATE - set the values of a pandas dataframe to sheet</span>
+    <span class="n">wks_rona_OS2H</span> <span class="o">=</span>  <span class="n">pyg_rona</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+    <span class="n">wks_rona_OS2H</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df_history</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;success! built tabula gsheet history of OS2H&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;success! built tabula gsheet history of OS2H&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">build_history</span><span class="p">(</span><span class="n">df_OS2H</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unsuccessfully built tabula gsheet history of OS2H&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>success! built tabula gsheet history of OS2H
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;success! built tabula gsheet history of OS2H&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13179,14 +13474,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO: Transfer from SanGis stat tab May 5 update, with May 4 data</span>
 <span class="c1">## TODO: re-order columns Sangis stat tab</span>
 <span class="k">def</span> <span class="nf">scrape_COSD_COVID</span><span class="p">():</span>
     <span class="c1"># Variable for Google sheet</span>
-    <span class="n">googsheet</span> <span class="o">=</span> <span class="s2">&quot;1BFe5q0WwVkEdbQ{{XXXX}}}Cz4QJrfhnOkM&quot;</span>
+    <span class="n">googsheet</span> <span class="o">=</span> <span class="s2">&quot;1BFe5q0WwVkEdbQm3pd0jMrPPC-FH4hICz4QJrfhnOkM&quot;</span>
 
     <span class="c1"># Create list of URLs to bs4 scrape</span>
     <span class="n">rona</span> <span class="o">=</span> <span class="s2">&quot;https://www.sandiegocounty.gov/content/sdc/hhsa/programs/phs/community_epidemiology/dc/2019-nCoV/status.html&quot;</span>
@@ -13235,7 +13530,7 @@ div#notebook {
     <span class="c1">#CREATE Google Sheet from dataframes to create endpoints for visualization</span>
     <span class="k">def</span> <span class="nf">write_to_gsheets</span><span class="p">(</span><span class="n">rona_df</span><span class="p">):</span>
         <span class="c1">#Service_file authorization to access Google sheet</span>
-        <span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;../sdcity000000XXX.json&quot;</span><span class="p">)</span>
+        <span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;../sdcity9c9209b112fe.json&quot;</span><span class="p">)</span>
 
         <span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
         <span class="n">pyg_rona</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="n">googsheet</span><span class="p">)</span>
@@ -13302,7 +13597,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13326,7 +13621,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO 3/24 - 4/16 GoogSheet data misaligned</span>
@@ -13359,11 +13654,11 @@ div#notebook {
 
     <span class="c1">#Remove subtotal rows</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">City</span> <span class="o">!=</span> <span class="s1">&#39;Unincorporated&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">City</span> <span class="o">!=</span> <span class="s2">&quot;Incorporated City&quot;</span><span class="p">)</span> <span class="o">&amp;</span>
-      <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">City</span> <span class="o">!=</span> <span class="s1">&#39;Total San Diego County&#39;</span><span class="p">)]</span>
+      <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">City</span> <span class="o">!=</span> <span class="s1">&#39;Total San Diego County&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">City</span> <span class="o">!=</span> <span class="s1">&#39;Total San Diego County Residents&#39;</span><span class="p">)]</span>
 
     <span class="c1"># Adding timestamp column to the dataframe. </span>
-    <span class="c1">#     df[&#39;Timestamp&#39;] = dt.datetime(2020,5,6)</span>
-    <span class="c1">#     df[&#39;Data through&#39;] = dt.datetime(2020,5,6) - timedelta(hours=24)</span>
+    <span class="c1"># df[&#39;Timestamp&#39;] = dt.datetime(2020,5,16)</span>
+    <span class="c1"># df[&#39;Data through&#39;] = dt.datetime(2020,5,16) - timedelta(hours=24)</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data through&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span><span class="s2">&quot;Data through&quot;</span><span class="p">,</span><span class="s2">&quot;City&quot;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">,</span><span class="s2">&quot;Percentage&quot;</span><span class="p">,</span><span class="s1">&#39;Rate per 100K&#39;</span><span class="p">]]</span>
@@ -13371,12 +13666,11 @@ div#notebook {
     <span class="n">city_df</span> <span class="o">=</span> <span class="n">df</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Created tabula dataframe&quot;</span><span class="p">)</span>
     <span class="n">city_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="c1">#     city_df.sort_values(&quot;Timestamp&quot;, axis = 0, ascending = True,</span>
-<span class="c1">#                         inplace = True)</span>
+    <span class="c1"># city_df.sort_values(&quot;Timestamp&quot;, axis = 0, ascending = True, inplace = True)</span>
 
     <span class="k">def</span> <span class="nf">build_history</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
         <span class="c1">#Service_file authorization to access Google sheet</span>
-        <span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;../sdcity0000000XXXXX.json&quot;</span><span class="p">)</span>
+        <span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;../sdcity9c9209b112fe.json&quot;</span><span class="p">)</span>
 
         <span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
         <span class="n">pyg_rona</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="n">googsheet</span><span class="p">)</span>
@@ -13391,8 +13685,7 @@ div#notebook {
         <span class="n">df_history</span> <span class="o">=</span> <span class="n">df_history</span><span class="p">[</span><span class="n">cols_to_retrieve</span><span class="p">]</span>
 
         <span class="n">city_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols_to_retrieve</span><span class="p">]</span>
-<span class="c1">#         ciy_df.sort_values(&quot;Timestamp&quot;, axis = 0, ascending = True,</span>
-<span class="c1">#                         inplace = True)</span>
+        <span class="c1"># city_df.sort_values(&quot;Timestamp&quot;, axis = 0, ascending = True, inplace = True)</span>
 
         <span class="c1"># Append most recently updated to historicals</span>
         <span class="n">df_history</span> <span class="o">=</span> <span class="n">df_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">city_df</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -13438,7 +13731,7 @@ success! built tabula gsheet history
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -13462,7 +13755,7 @@ success! built tabula gsheet history
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO</span>
@@ -13476,7 +13769,7 @@ success! built tabula gsheet history
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Scrape PDF via tabula for zip code-level data</span>
@@ -13492,20 +13785,19 @@ success! built tabula gsheet history
     <span class="n">zip_COVID</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">zip_COVID</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
                                      <span class="n">zip_COVID</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
                                      <span class="n">zip_COVID</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
-                                     <span class="n">zip_COVID</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
-                                     <span class="n">zip_COVID</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span><span class="s2">&quot;4&quot;</span><span class="p">},</span>
+                                     <span class="n">zip_COVID</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="s2">&quot;3&quot;</span><span class="p">},</span>
                                      <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
     <span class="n">zip_COVID</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="nb">len</span><span class="p">(</span><span class="n">zip_COVID</span><span class="p">)</span>
 
     <span class="c1"># Transforming 4 column scraped PDF table into 2 columns</span>
-    <span class="n">df_z</span> <span class="o">=</span> <span class="n">zip_COVID</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+    <span class="n">df_z</span> <span class="o">=</span> <span class="n">zip_COVID</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
        
-    <span class="n">df_y</span> <span class="o">=</span> <span class="n">zip_COVID</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
+    <span class="n">df_y</span> <span class="o">=</span> <span class="n">zip_COVID</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">]]</span>
    
-    <span class="n">df_y</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">df_y</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
-                                     <span class="n">df_y</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
-                                     <span class="n">df_y</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="s2">&quot;4&quot;</span><span class="p">},</span>
+    <span class="n">df_y</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">df_y</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+                                     <span class="n">df_y</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+                                     <span class="n">df_y</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="s2">&quot;3&quot;</span><span class="p">},</span>
                                      <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
     <span class="n">df1</span> <span class="o">=</span> <span class="n">df_z</span>
@@ -13513,34 +13805,34 @@ success! built tabula gsheet history
     <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">]</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
  
-    <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;1&quot;</span><span class="p">:</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span><span class="s2">&quot;Case Count&quot;</span><span class="p">,</span><span class="s2">&quot;4&quot;</span><span class="p">:</span><span class="s2">&quot;Rate per 100,000&quot;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
+    <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span><span class="s2">&quot;Case Count&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">:</span><span class="s2">&quot;Rate per 100,000&quot;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
     
-<span class="c1">#     df_z = zip_COVID[[&quot;Zip Code&quot;, &quot;Case Count&quot;,&#39;Zip Code.1&#39;,&#39;Case Count.1&#39;]]</span>
-<span class="c1">#     df_D = df_z.drop_duplicates(subset=[&quot;Zip Code&quot;],keep=&quot;first&quot;,inplace=False)</span>
-<span class="c1">#     df1 = df_D.drop([&#39;Zip Code.1&#39;,&#39;Case Count.1&#39;], axis=1, inplace = False)</span>
-<span class="c1">#     df2 = df_D.drop([&#39;Zip Code&#39;,&#39;Case Count&#39;], axis=1, inplace = False)</span>
-<span class="c1">#     df2 = df2.rename(columns={&quot;Zip Code.1&quot;:&quot;Zip Code&quot;,&quot;Case Count.1&quot;:&quot;Case Count&quot;})</span>
-<span class="c1">#     frames = [df1, df2]</span>
-<span class="c1">#     df = pd.concat(frames, ignore_index = True)</span>
+    <span class="c1"># df_z = zip_COVID[[&quot;Zip Code&quot;, &quot;Case Count&quot;,&#39;Zip Code.1&#39;,&#39;Case Count.1&#39;]]</span>
+    <span class="c1"># df_D = df_z.drop_duplicates(subset=[&quot;Zip Code&quot;],keep=&quot;first&quot;,inplace=False)</span>
+    <span class="c1"># df1 = df_D.drop([&#39;Zip Code.1&#39;,&#39;Case Count.1&#39;], axis=1, inplace = False)</span>
+    <span class="c1"># df2 = df_D.drop([&#39;Zip Code&#39;,&#39;Case Count&#39;], axis=1, inplace = False)</span>
+    <span class="c1"># df2 = df2.rename(columns={&quot;Zip Code.1&quot;:&quot;Zip Code&quot;,&quot;Case Count.1&quot;:&quot;Case Count&quot;})</span>
+    <span class="c1"># frames = [df1, df2]</span>
+    <span class="c1"># df = pd.concat(frames, ignore_index = True)</span>
 
     
     <span class="c1">#Removing the subtotal row, copied header row, and NaN rows</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Zip Code&quot;</span><span class="p">)</span>
-           <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Total&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;San Diego County Total&quot;</span><span class="p">)]</span>
+           <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Total&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;San Diego County Total&quot;</span><span class="p">)</span>
+           <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;San Diego County T&quot;</span><span class="p">)]</span>
 
     <span class="c1"># Changing data type of Case Count</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Case Count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Case Count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">&#39;Case Count&#39;</span><span class="p">:</span> <span class="s1">&#39;int32&#39;</span><span class="p">})</span>
 
     <span class="c1"># Adding timestamp column to the dataframe. </span>
-    <span class="c1">#df[&#39;Timestamp&#39;] = dt.datetime(2020,5,1)</span>
-    <span class="c1">#df[&#39;Data through&#39;] = dt.datetime(2020,5,1) - timedelta(hours=24)</span>
+    <span class="c1"># df[&#39;Timestamp&#39;] = dt.datetime(2020,5,16)</span>
+    <span class="c1"># df[&#39;Data through&#39;] = dt.datetime(2020,5,16) - timedelta(hours=24)</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data through&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span><span class="s2">&quot;Data through&quot;</span><span class="p">,</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">,</span><span class="s2">&quot;Case Count&quot;</span><span class="p">,</span><span class="s2">&quot;Rate per 100,000&quot;</span><span class="p">]]</span>
+    <span class="n">df</span> <span class="o">=</span>  <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span><span class="s2">&quot;Data through&quot;</span><span class="p">,</span><span class="s2">&quot;Zip Code&quot;</span><span class="p">,</span><span class="s2">&quot;Case Count&quot;</span><span class="p">,</span><span class="s2">&quot;Rate per 100,000&quot;</span><span class="p">]]</span>
     <span class="n">zip_df</span> <span class="o">=</span> <span class="n">df</span>
     
-<span class="c1">#     zip_df.sort_values(&quot;Timestamp&quot;, axis = 0, ascending = True,</span>
-<span class="c1">#                         inplace = True)</span>
+    <span class="c1"># zip_df.sort_values(&quot;Timestamp&quot;, axis = 0, ascending = True, inplace = True)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Created tabula dataframe&quot;</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">build_history</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
@@ -13607,7 +13899,7 @@ success! built tabula gsheet ZIP history
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -13631,18 +13923,30 @@ success! built tabula gsheet ZIP history
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TODO: Missing data from 4/14 update for 4/13 counts</span>
-<span class="c1">## Scrape PDF via tabula for hospitalization data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Scrape PDF via tabula for hospitalization data</span>
 <span class="k">def</span> <span class="nf">scrape_hospital</span> <span class="p">():</span>
     <span class="n">pdf_path</span> <span class="o">=</span> <span class="s2">&quot;https://www.sandiegocounty.gov/content/dam/sdc/hhsa/programs/phs/Epidemiology/COVID-19%20Hospitalizations%20Summary_ALL.pdf&quot;</span>
     <span class="c1">#pdf_path =&quot;source cosd website/2020 04-14 COVID-19 Hospitalizations Summary_ALL.pdf&quot;</span>
     <span class="n">dfh</span> <span class="o">=</span> <span class="n">tabula</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="n">pdf_path</span><span class="p">)</span>
     <span class="n">dfh</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">dfh</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span>
                    <span class="n">dfh</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="s2">&quot;y&quot;</span><span class="p">},</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">dfh</span> <span class="o">=</span> <span class="n">dfh</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="c1">#take the data, less the header rows [0-6], #3, #4, #6</span>
+    <span class="n">dfh</span> <span class="o">=</span> <span class="n">dfh</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span> <span class="c1">#take the data, less the header rows [0-6], #3, #4, #6; age demographics</span>
     <span class="n">df</span><span class="o">=</span><span class="n">dfh</span>
 
     <span class="c1">#Split combined column</span>
@@ -13666,16 +13970,15 @@ success! built tabula gsheet ZIP history
     <span class="c1"># Adding timestamp column to the dataframe. </span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Data through&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-<span class="c1">#     df[&#39;Timestamp&#39;] = dt.datetime(2020,4,14)</span>
-<span class="c1">#     df[&#39;Data through&#39;] = dt.datetime(2020,4,14) - timedelta(hours=24)</span>
+    <span class="c1"># df[&#39;Timestamp&#39;] = dt.datetime(2020,5,16)</span>
+    <span class="c1"># df[&#39;Data through&#39;] = dt.datetime(2020,5,16) - timedelta(hours=24)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Timestamp&quot;</span><span class="p">,</span><span class="s1">&#39;Data through&#39;</span><span class="p">,</span><span class="s2">&quot;Age Group&quot;</span><span class="p">,</span><span class="s2">&quot;Count&quot;</span><span class="p">,</span><span class="s2">&quot;Percentage&quot;</span><span class="p">]]</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Created hospitalization dataframe&quot;</span><span class="p">)</span>
     <span class="n">hospital_COVID</span><span class="o">=</span><span class="n">df</span>
-<span class="c1">#     hospital_COVID.sort_values(&quot;Timestamp&quot;, axis = 0, ascending = True,</span>
-<span class="c1">#                         inplace = True)</span>
+    <span class="c1"># hospital_COVID.sort_values(&quot;Timestamp&quot;, axis = 0, ascending = True,inplace = True)</span>
     
-    <span class="k">def</span> <span class="nf">build_history</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">build_history</span><span class="p">(</span><span class="n">df</span><span class="p">):</span> 
         <span class="c1">#Service_file authorization to access Google sheet</span>
         <span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;../sdcity9c9209b112fe.json&quot;</span><span class="p">)</span>
 
@@ -13739,7 +14042,7 @@ Success! Built tabula gsheet history.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -13763,21 +14066,21 @@ Success! Built tabula gsheet history.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#city_csv_path =&quot;https://opendata.arcgis.com/datasets/874a58ec91dd439abbc0f17e266ed4dc_0.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&quot;</span>
-<span class="c1">#city_csv_path =&quot;https://opendata.arcgis.com/datasets/748e191d246b4a41b1e81618a308c335_0.csv&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># city_csv_path =&quot;https://opendata.arcgis.com/datasets/874a58ec91dd439abbc0f17e266ed4dc_0.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&quot;</span>
+<span class="c1"># city_csv_path =&quot;https://opendata.arcgis.com/datasets/748e191d246b4a41b1e81618a308c335_0.csv&quot;</span>
 <span class="n">city_csv_path</span> <span class="o">=</span> <span class="s2">&quot;https://opendata.arcgis.com/datasets/748e191d246b4a41b1e81618a308c335_0.csv?outSR=%7B</span><span class="si">%22la</span><span class="s2">testWkid</span><span class="si">%22%</span><span class="s2">3A3857%2C%22wkid</span><span class="si">%22%</span><span class="s2">3A102100%7D&quot;</span>
 <span class="n">df_city</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">city_csv_path</span><span class="p">,</span><span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1">#zip_csv_path = &quot;https://opendata.arcgis.com/datasets/34b6df47e084441790813348c69d49ee_0.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&quot;</span>
-<span class="c1">#zip_csv_path = &quot;https://opendata.arcgis.com/datasets/854d7e48e3dc451aa93b9daf82789089_0.csv&quot;</span>
+<span class="c1"># zip_csv_path = &quot;https://opendata.arcgis.com/datasets/34b6df47e084441790813348c69d49ee_0.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&quot;</span>
+<span class="c1"># zip_csv_path = &quot;https://opendata.arcgis.com/datasets/854d7e48e3dc451aa93b9daf82789089_0.csv&quot;</span>
 <span class="n">zip_csv_path</span> <span class="o">=</span> <span class="s2">&quot;https://opendata.arcgis.com/datasets/854d7e48e3dc451aa93b9daf82789089_0.csv?outSR=%7B</span><span class="si">%22la</span><span class="s2">testWkid</span><span class="si">%22%</span><span class="s2">3A3857%2C%22wkid</span><span class="si">%22%</span><span class="s2">3A102100%7D&quot;</span>
 <span class="n">df_zip</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">zip_csv_path</span><span class="p">,</span><span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1">#stats_csv_path = &quot;https://opendata.arcgis.com/datasets/b182778154d64d36a38064645a405540_0.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&quot;</span>
-<span class="c1">#stats_csv_path = &quot;https://opendata.arcgis.com/datasets/1fefbb8df33948cba664d0a9cb71b8c9_0.csv&quot;</span>
+<span class="c1"># stats_csv_path = &quot;https://opendata.arcgis.com/datasets/b182778154d64d36a38064645a405540_0.csv?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&quot;</span>
+<span class="c1"># stats_csv_path = &quot;https://opendata.arcgis.com/datasets/1fefbb8df33948cba664d0a9cb71b8c9_0.csv&quot;</span>
 <span class="n">stats_csv_path</span> <span class="o">=</span> <span class="s2">&quot;https://opendata.arcgis.com/datasets/1fefbb8df33948cba664d0a9cb71b8c9_0.csv?outSR=%7B</span><span class="si">%22la</span><span class="s2">testWkid</span><span class="si">%22%</span><span class="s2">3A3857%2C%22wkid</span><span class="si">%22%</span><span class="s2">3A102100%7D&quot;</span>
 <span class="n">df_stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">stats_csv_path</span><span class="p">,</span><span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -13789,7 +14092,7 @@ Success! Built tabula gsheet history.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df_city</span><span class="p">)</span>
@@ -13815,20 +14118,20 @@ Success! Built tabula gsheet history.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>1735</pre>
+<pre>2659</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -13843,20 +14146,20 @@ Success! Built tabula gsheet history.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>4354</pre>
+<pre>6952</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -13872,20 +14175,20 @@ Success! Built tabula gsheet history.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>63</pre>
+<pre>85</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -13895,7 +14198,7 @@ Success! Built tabula gsheet history.
        &#39;deaths&#39;, &#39;newcases&#39;, &#39;age_9&#39;, &#39;age10_19&#39;, &#39;age40_49&#39;, &#39;age50_59&#39;,
        &#39;age60_69&#39;, &#39;age70_79&#39;, &#39;age80_plus&#39;, &#39;ageunknow&#39;, &#39;age20_29&#39;,
        &#39;genderfemale&#39;, &#39;gendermale&#39;, &#39;gendeunk&#39;, &#39;age30_39&#39;, &#39;globalid&#39;,
-       &#39;newtests&#39;],
+       &#39;newtests&#39;, &#39;rolling_perc_pos_cases&#39;],
       dtype=&#39;object&#39;)</pre>
 </div>
 
@@ -13907,7 +14210,7 @@ Success! Built tabula gsheet history.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">refresh_sangis</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
@@ -13931,7 +14234,7 @@ Success! Built tabula gsheet history.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -13961,7 +14264,7 @@ Success! Built tabula gsheet history.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -13978,7 +14281,7 @@ Success! Built tabula gsheet history.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -14001,18 +14304,30 @@ Success! Built tabula gsheet history.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>unsuccessfully refreshed sangis zip gsheet
+<pre>Success! Refreshed sangis csv data!
 </pre>
 </div>
 </div>
 
-</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Successfully loaded County data from sangis&#39;</pre>
 </div>
 
 </div>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -14042,7 +14357,7 @@ Success! Built tabula gsheet history.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -14056,532 +14371,6 @@ Success! Built tabula gsheet history.
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_city</span><span class="p">[</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_city</span><span class="p">[</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">:</span><span class="s1">&#39;int32&#39;</span><span class="p">})</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_city</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;confirmedcases&quot;</span><span class="p">)</span>
-<span class="n">df_city</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;confirmedcases&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[14]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>X</th>
-      <th>Y</th>
-      <th>FID</th>
-      <th>name</th>
-      <th>loctype</th>
-      <th>lastupdate</th>
-      <th>confirmedcases</th>
-      <th>globalid</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>-1.304031e+07</td>
-      <td>3.849683e+06</td>
-      <td>3</td>
-      <td>CORONADO</td>
-      <td>Incorporated City</td>
-      <td>2020/03/25 08:00:00</td>
-      <td>0</td>
-      <td>{5CE8E228-596C-41E3-8907-59B07B03EFF7}</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>-1.303756e+07</td>
-      <td>3.838224e+06</td>
-      <td>8</td>
-      <td>IMPERIAL BEACH</td>
-      <td>Incorporated City</td>
-      <td>2020/03/25 08:00:00</td>
-      <td>0</td>
-      <td>{E574B146-F664-41E5-8E90-A97A1398E702}</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[14]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>X</th>
-      <th>Y</th>
-      <th>FID</th>
-      <th>name</th>
-      <th>loctype</th>
-      <th>lastupdate</th>
-      <th>confirmedcases</th>
-      <th>globalid</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1710</th>
-      <td>-1.303657e+07</td>
-      <td>3.877909e+06</td>
-      <td>1711</td>
-      <td>SAN DIEGO</td>
-      <td>Incorporated City</td>
-      <td>2020/05/08 08:00:00</td>
-      <td>2113</td>
-      <td>{E36ED89B-81BF-45C7-83D8-D1CE413CA915}</td>
-    </tr>
-    <tr>
-      <th>1668</th>
-      <td>-1.303657e+07</td>
-      <td>3.877909e+06</td>
-      <td>1669</td>
-      <td>SAN DIEGO</td>
-      <td>Incorporated City</td>
-      <td>2020/05/07 08:00:00</td>
-      <td>2055</td>
-      <td>{F5B96EF8-72A5-478A-B3E1-E224B9CA2D78}</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bin_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df_city</span><span class="p">[</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">],</span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">250</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">1000</span><span class="p">],</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;low&#39;</span><span class="p">,</span><span class="s1">&#39;medium&#39;</span><span class="p">,</span><span class="s1">&#39;high&#39;</span><span class="p">])</span>
-<span class="n">bin_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[15]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0    low
-1    low
-2    NaN
-3    low
-4    low
-Name: confirmedcases, dtype: category
-Categories (3, object): [low &lt; medium &lt; high]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_city</span><span class="p">[</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_city</span><span class="p">[</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">:</span> <span class="s1">&#39;int32&#39;</span><span class="p">})</span>
-<span class="n">cols_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;loctype&#39;</span><span class="p">,</span> <span class="s1">&#39;lastupdate&#39;</span><span class="p">,</span><span class="s1">&#39;globalid&#39;</span><span class="p">]</span>
-<span class="n">df_city</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[16]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;X&#39;, &#39;Y&#39;, &#39;FID&#39;, &#39;name&#39;, &#39;loctype&#39;, &#39;lastupdate&#39;, &#39;confirmedcases&#39;,
-       &#39;globalid&#39;],
-      dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_city_2</span> <span class="o">=</span> <span class="n">df_city</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols_to_drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_city_2</span><span class="p">[</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_city_2</span><span class="p">[</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">:</span> <span class="s1">&#39;int32&#39;</span><span class="p">})</span>
-<span class="n">df_city_2</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">df_city_2</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="n">df_city_2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[18]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Index([&#39;FID&#39;, &#39;name&#39;, &#39;confirmedcases&#39;], dtype=&#39;object&#39;)</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[18]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>FID               object
-name              object
-confirmedcases     int32
-dtype: object</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[18]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>FID</th>
-      <th>name</th>
-      <th>confirmedcases</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>CARLSBAD</td>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>CHULA VISTA</td>
-      <td>17</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>CORONADO</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">total = 0</span>
-<span class="sd">for row in df_city_2.itertuples(index=False):</span>
-<span class="sd">    total += row[&#39;confirmedcases&#39;]</span>
-<span class="sd">total</span>
-<span class="sd">&quot;&quot;&quot;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1 µs, sys: 0 ns, total: 1 µs
-Wall time: 3.81 µs
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[19]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#34;\ntotal = 0\nfor row in df_city_2.itertuples(index=False):\n    total += row[&#39;confirmedcases&#39;]\ntotal\n&#34;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-
-<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_city</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="n">total</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;confirmedcases&#39;</span><span class="p">]</span>
-<span class="n">total</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 173 ms, sys: 3.46 ms, total: 176 ms
-Wall time: 189 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="TODO">TODO<a class="anchor-link" href="#TODO">&#182;</a></h2><ol><li>update scrape_zip(), Summary of County of San Diego COVID-19 Cases by Zip Code (4/25/20)
-<li>lat/lon dictionary cities</li>
-<li>df join on zip code</li>
-<li>review "best of" twb vizzes</li>
-<li>datetime formatting</ol>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">%who</span>
-<span class="sd">%history -t</span>
-<span class="sd">&quot;&quot;&quot;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[21]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\n%who\n%history -t\n&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">who</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>BeautifulSoup	 bin_df	 city_csv_path	 cols_to_drop	 datetime	 df_city	 df_city_2	 df_stats	 df_zip	 
-dt	 googsheet	 np	 pd	 pyg	 re	 refresh_sangis	 requests	 row	 
-scrape_COSD_COVID	 scrape_ZIP_COSD	 scrape_city_COSD	 scrape_hospital	 stats_csv_path	 tabula	 timedelta	 total	 warnings	 
-zip_csv_path	 
-</pre>
-</div>
 </div>
 
 </div>
