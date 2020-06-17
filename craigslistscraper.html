@@ -13132,7 +13132,7 @@ div#notebook {
 <p><H3>Craiglists Scraper and SDHC Choice Communities Voucher Initiative</H3>
 <a href="https://public.tableau.com/profile/performsd#!/vizhome/scraper/listings?">ipynb Map and data visualization</a>
 <br>
-<a href="https://docs.google.com/spreadsheets/d/1bFk">Google sheet end points</a>
+<a href="https://docs.google.com/spreadsheets/d/1bFk_kgHKn8rzrFoP00ROfdHZERzQWWcimhpeJE5POaA/">Google sheet end points</a>
 <br>
 <br>
 The purpose of this notebook is to:<ol>
@@ -13168,7 +13168,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># &lt;img src=&quot;Choice-Communities-Initiative-Map_2019.png&quot;&gt;</span>
@@ -13181,7 +13181,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !pip3 install geopandas</span>
@@ -13194,7 +13194,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Dependencies for scrapping</span>
@@ -13220,7 +13220,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Variable for Google sheet</span>
@@ -13234,7 +13234,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># URL</span>
@@ -13248,7 +13248,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create list of URLs to bs4 scrape</span>
@@ -13264,7 +13264,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">html</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">suffix</span>
@@ -13302,7 +13302,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>849
+<pre>873
 </pre>
 </div>
 </div>
@@ -13313,7 +13313,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Apartment listing attributes of interest</span>
@@ -13341,7 +13341,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">i</span><span class="o">=</span><span class="mi">0</span>
@@ -13431,7 +13431,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
                                                          <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">data_id</span><span class="p">))</span>
+            <span class="c1">#print(str(i)+str(e)+str(data_id))</span>
             <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
 </pre></div>
 
@@ -13439,226 +13439,10 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0&#39;NoneType&#39; object has no attribute &#39;text&#39;7134601792
-1&#39;NoneType&#39; object has no attribute &#39;text&#39;7134609648
-2&#39;NoneType&#39; object has no attribute &#39;text&#39;7134608837
-3&#39;NoneType&#39; object has no attribute &#39;text&#39;7134608744
-4&#39;NoneType&#39; object has no attribute &#39;text&#39;7134608673
-5&#39;NoneType&#39; object has no attribute &#39;text&#39;7134578708
-6&#39;NoneType&#39; object has no attribute &#39;text&#39;7134607917
-7&#39;NoneType&#39; object has no attribute &#39;text&#39;7134607735
-8&#39;NoneType&#39; object has no attribute &#39;text&#39;7134606678
-9&#39;NoneType&#39; object has no attribute &#39;text&#39;7134605057
-10&#39;NoneType&#39; object has no attribute &#39;text&#39;7134604318
-11&#39;NoneType&#39; object has no attribute &#39;text&#39;7134599581
-12&#39;NoneType&#39; object has no attribute &#39;text&#39;7134590415
-13&#39;NoneType&#39; object has no attribute &#39;text&#39;7134596968
-14&#39;NoneType&#39; object has no attribute &#39;text&#39;7134595009
-15&#39;NoneType&#39; object has no attribute &#39;text&#39;7134594939
-16&#39;NoneType&#39; object has no attribute &#39;text&#39;7134593578
-17&#39;NoneType&#39; object has no attribute &#39;text&#39;7134592172
-18&#39;NoneType&#39; object has no attribute &#39;text&#39;7134589416
-19&#39;NoneType&#39; object has no attribute &#39;text&#39;7134575367
-20&#39;NoneType&#39; object has no attribute &#39;text&#39;7134585269
-21&#39;NoneType&#39; object has no attribute &#39;text&#39;7134573240
-22&#39;NoneType&#39; object has no attribute &#39;text&#39;7134541877
-23&#39;NoneType&#39; object has no attribute &#39;text&#39;7134581711
-24&#39;NoneType&#39; object has no attribute &#39;text&#39;7134579803
-25&#39;NoneType&#39; object has no attribute &#39;text&#39;7134573776
-26&#39;NoneType&#39; object has no attribute &#39;text&#39;7134568491
-27&#39;NoneType&#39; object has no attribute &#39;text&#39;7134572896
-28&#39;NoneType&#39; object has no attribute &#39;text&#39;7134561915
-29&#39;NoneType&#39; object has no attribute &#39;text&#39;7134561865
-30&#39;NoneType&#39; object has no attribute &#39;text&#39;7134500688
-31&#39;NoneType&#39; object has no attribute &#39;text&#39;7134570007
-32&#39;NoneType&#39; object has no attribute &#39;text&#39;7134549232
-33&#39;NoneType&#39; object has no attribute &#39;text&#39;7134568919
-34&#39;NoneType&#39; object has no attribute &#39;text&#39;7134539714
-35&#39;NoneType&#39; object has no attribute &#39;text&#39;7134558610
-36&#39;NoneType&#39; object has no attribute &#39;text&#39;7134562148
-37&#39;NoneType&#39; object has no attribute &#39;text&#39;7134551372
-38&#39;NoneType&#39; object has no attribute &#39;text&#39;7134529236
-39&#39;NoneType&#39; object has no attribute &#39;text&#39;7134545274
-40&#39;NoneType&#39; object has no attribute &#39;text&#39;7134524144
-41&#39;NoneType&#39; object has no attribute &#39;text&#39;7134551353
-42&#39;NoneType&#39; object has no attribute &#39;text&#39;7134551326
-43&#39;NoneType&#39; object has no attribute &#39;text&#39;7134547370
-44&#39;NoneType&#39; object has no attribute &#39;text&#39;7134546060
-45&#39;NoneType&#39; object has no attribute &#39;text&#39;7134532531
-46&#39;NoneType&#39; object has no attribute &#39;text&#39;7134544552
-47&#39;NoneType&#39; object has no attribute &#39;text&#39;7134532358
-48&#39;NoneType&#39; object has no attribute &#39;text&#39;7134459790
-49&#39;NoneType&#39; object has no attribute &#39;text&#39;7134460322
-50&#39;NoneType&#39; object has no attribute &#39;text&#39;7134480437
-51&#39;NoneType&#39; object has no attribute &#39;text&#39;7134454134
-52&#39;NoneType&#39; object has no attribute &#39;text&#39;7134456988
-53&#39;NoneType&#39; object has no attribute &#39;text&#39;7134458790
-54&#39;NoneType&#39; object has no attribute &#39;text&#39;7134458472
-55&#39;NoneType&#39; object has no attribute &#39;text&#39;7134457729
-56&#39;NoneType&#39; object has no attribute &#39;text&#39;7134453041
-57&#39;NoneType&#39; object has no attribute &#39;text&#39;7134443153
-58&#39;NoneType&#39; object has no attribute &#39;text&#39;7134345257
-59&#39;NoneType&#39; object has no attribute &#39;text&#39;7134336581
-60&#39;NoneType&#39; object has no attribute &#39;text&#39;7134336919
-61&#39;NoneType&#39; object has no attribute &#39;text&#39;7134335843
-62&#39;NoneType&#39; object has no attribute &#39;text&#39;7134321006
-63&#39;NoneType&#39; object has no attribute &#39;text&#39;7134297550
-64&#39;NoneType&#39; object has no attribute &#39;text&#39;7134319151
-65&#39;NoneType&#39; object has no attribute &#39;text&#39;7134315467
-66&#39;NoneType&#39; object has no attribute &#39;text&#39;7134323689
-67&#39;NoneType&#39; object has no attribute &#39;text&#39;7134317259
-68&#39;NoneType&#39; object has no attribute &#39;text&#39;7134309816
-69&#39;NoneType&#39; object has no attribute &#39;text&#39;7134303215
-70&#39;NoneType&#39; object has no attribute &#39;text&#39;7134316873
-71&#39;NoneType&#39; object has no attribute &#39;text&#39;7134313341
-72&#39;NoneType&#39; object has no attribute &#39;text&#39;7134313084
-73&#39;NoneType&#39; object has no attribute &#39;text&#39;7134313030
-74&#39;NoneType&#39; object has no attribute &#39;text&#39;7134311535
-75&#39;NoneType&#39; object has no attribute &#39;text&#39;7134311071
-76&#39;NoneType&#39; object has no attribute &#39;text&#39;7134310625
-77&#39;NoneType&#39; object has no attribute &#39;text&#39;7134310147
-78&#39;NoneType&#39; object has no attribute &#39;text&#39;7134307802
-79&#39;NoneType&#39; object has no attribute &#39;text&#39;7134264758
-80&#39;NoneType&#39; object has no attribute &#39;text&#39;7134297257
-81&#39;NoneType&#39; object has no attribute &#39;text&#39;7134286568
-82&#39;NoneType&#39; object has no attribute &#39;text&#39;7134295756
-83&#39;NoneType&#39; object has no attribute &#39;text&#39;7134284772
-84&#39;NoneType&#39; object has no attribute &#39;text&#39;7134293855
-85&#39;NoneType&#39; object has no attribute &#39;text&#39;7134287568
-86&#39;NoneType&#39; object has no attribute &#39;text&#39;7134286723
-87&#39;NoneType&#39; object has no attribute &#39;text&#39;7134285336
-88&#39;NoneType&#39; object has no attribute &#39;text&#39;7134285038
-89&#39;NoneType&#39; object has no attribute &#39;text&#39;7134284797
-90&#39;NoneType&#39; object has no attribute &#39;text&#39;7134283127
-91&#39;NoneType&#39; object has no attribute &#39;text&#39;7134273503
-92&#39;NoneType&#39; object has no attribute &#39;text&#39;7134277143
-93&#39;NoneType&#39; object has no attribute &#39;text&#39;7134273972
-94&#39;NoneType&#39; object has no attribute &#39;text&#39;7134270937
-95&#39;NoneType&#39; object has no attribute &#39;attrs&#39;7134274134
-96&#39;NoneType&#39; object has no attribute &#39;text&#39;7134273526
-97&#39;NoneType&#39; object has no attribute &#39;text&#39;7134272488
-98&#39;NoneType&#39; object has no attribute &#39;text&#39;7134258892
-99&#39;NoneType&#39; object has no attribute &#39;text&#39;7134265461
-100&#39;NoneType&#39; object has no attribute &#39;text&#39;7134262565
-101&#39;NoneType&#39; object has no attribute &#39;text&#39;7134256012
-102&#39;NoneType&#39; object has no attribute &#39;text&#39;7134258885
-103&#39;NoneType&#39; object has no attribute &#39;text&#39;7134262404
-104&#39;NoneType&#39; object has no attribute &#39;text&#39;7134258762
-105&#39;NoneType&#39; object has no attribute &#39;text&#39;7134251385
-106&#39;NoneType&#39; object has no attribute &#39;text&#39;7134244178
-107&#39;NoneType&#39; object has no attribute &#39;text&#39;7134257216
-108&#39;NoneType&#39; object has no attribute &#39;text&#39;7134256577
-109&#39;NoneType&#39; object has no attribute &#39;text&#39;7134255754
-110&#39;NoneType&#39; object has no attribute &#39;text&#39;7134252026
-111&#39;NoneType&#39; object has no attribute &#39;text&#39;7134254314
-112&#39;NoneType&#39; object has no attribute &#39;text&#39;7134225254
-113&#39;NoneType&#39; object has no attribute &#39;text&#39;7134252087
-114&#39;NoneType&#39; object has no attribute &#39;text&#39;7134237301
-115&#39;NoneType&#39; object has no attribute &#39;text&#39;7134246700
-116&#39;NoneType&#39; object has no attribute &#39;text&#39;7134238401
-117&#39;NoneType&#39; object has no attribute &#39;text&#39;7134242785
-118&#39;NoneType&#39; object has no attribute &#39;text&#39;7134220351
-119&#39;NoneType&#39; object has no attribute &#39;text&#39;7134239054
-120&#39;NoneType&#39; object has no attribute &#39;text&#39;7134236294
-121&#39;NoneType&#39; object has no attribute &#39;text&#39;7134233891
-122&#39;NoneType&#39; object has no attribute &#39;text&#39;7134232128
-123&#39;NoneType&#39; object has no attribute &#39;text&#39;7134230480
-124&#39;NoneType&#39; object has no attribute &#39;text&#39;7134229966
-125&#39;NoneType&#39; object has no attribute &#39;text&#39;7134228333
-126&#39;NoneType&#39; object has no attribute &#39;text&#39;7134227673
-127&#39;NoneType&#39; object has no attribute &#39;text&#39;7134226541
-128&#39;NoneType&#39; object has no attribute &#39;text&#39;7134225483
-129&#39;NoneType&#39; object has no attribute &#39;text&#39;7134225218
-130&#39;NoneType&#39; object has no attribute &#39;text&#39;7134224434
-131&#39;NoneType&#39; object has no attribute &#39;text&#39;7134223901
-132&#39;NoneType&#39; object has no attribute &#39;text&#39;7134215503
-133&#39;NoneType&#39; object has no attribute &#39;text&#39;7134221854
-134&#39;NoneType&#39; object has no attribute &#39;text&#39;7134220281
-135&#39;NoneType&#39; object has no attribute &#39;text&#39;7134220224
-136&#39;NoneType&#39; object has no attribute &#39;text&#39;7134209562
-137&#39;NoneType&#39; object has no attribute &#39;text&#39;7134177461
-138&#39;NoneType&#39; object has no attribute &#39;text&#39;7134187514
-139&#39;NoneType&#39; object has no attribute &#39;text&#39;7134171188
-140&#39;NoneType&#39; object has no attribute &#39;text&#39;7134200432
-141&#39;NoneType&#39; object has no attribute &#39;text&#39;7134199412
-142&#39;NoneType&#39; object has no attribute &#39;text&#39;7134196165
-143&#39;NoneType&#39; object has no attribute &#39;text&#39;7134193827
-144&#39;NoneType&#39; object has no attribute &#39;text&#39;7134183144
-145&#39;NoneType&#39; object has no attribute &#39;text&#39;7134188418
-146&#39;NoneType&#39; object has no attribute &#39;text&#39;7134157701
-147&#39;NoneType&#39; object has no attribute &#39;text&#39;7134182727
-148&#39;NoneType&#39; object has no attribute &#39;text&#39;7134169087
-149&#39;NoneType&#39; object has no attribute &#39;text&#39;7134141272
-150&#39;NoneType&#39; object has no attribute &#39;text&#39;7134158178
-151&#39;NoneType&#39; object has no attribute &#39;text&#39;7134158056
-152&#39;NoneType&#39; object has no attribute &#39;text&#39;7134154678
-153&#39;NoneType&#39; object has no attribute &#39;text&#39;7134154800
-154&#39;NoneType&#39; object has no attribute &#39;text&#39;7134145178
-155&#39;NoneType&#39; object has no attribute &#39;text&#39;7134147364
-156&#39;NoneType&#39; object has no attribute &#39;text&#39;7134138357
-157&#39;NoneType&#39; object has no attribute &#39;text&#39;7134144821
-158&#39;NoneType&#39; object has no attribute &#39;text&#39;7134115252
-159&#39;NoneType&#39; object has no attribute &#39;text&#39;7134142331
-160&#39;NoneType&#39; object has no attribute &#39;text&#39;7134118967
-161&#39;NoneType&#39; object has no attribute &#39;text&#39;7134139400
-162&#39;NoneType&#39; object has no attribute &#39;text&#39;7134093542
-163&#39;NoneType&#39; object has no attribute &#39;text&#39;7134103719
-164&#39;NoneType&#39; object has no attribute &#39;text&#39;7134076804
-165&#39;NoneType&#39; object has no attribute &#39;text&#39;7134097957
-166&#39;NoneType&#39; object has no attribute &#39;text&#39;7134097719
-167&#39;NoneType&#39; object has no attribute &#39;text&#39;7134096832
-168&#39;NoneType&#39; object has no attribute &#39;text&#39;7134096530
-169&#39;NoneType&#39; object has no attribute &#39;text&#39;7134086435
-170&#39;NoneType&#39; object has no attribute &#39;text&#39;7134095009
-171&#39;NoneType&#39; object has no attribute &#39;text&#39;7134093650
-172&#39;NoneType&#39; object has no attribute &#39;text&#39;7134090748
-173&#39;NoneType&#39; object has no attribute &#39;text&#39;7134086640
-174&#39;NoneType&#39; object has no attribute &#39;text&#39;7134074990
-175&#39;NoneType&#39; object has no attribute &#39;text&#39;7134081472
-176&#39;NoneType&#39; object has no attribute &#39;text&#39;7134080569
-177&#39;NoneType&#39; object has no attribute &#39;text&#39;7134080304
-178&#39;NoneType&#39; object has no attribute &#39;text&#39;7134079390
-179&#39;NoneType&#39; object has no attribute &#39;attrs&#39;7134077764
-180&#39;NoneType&#39; object has no attribute &#39;text&#39;7134060530
-181&#39;NoneType&#39; object has no attribute &#39;text&#39;7134076491
-182&#39;NoneType&#39; object has no attribute &#39;text&#39;7134075896
-183&#39;NoneType&#39; object has no attribute &#39;text&#39;7134074197
-184&#39;NoneType&#39; object has no attribute &#39;text&#39;7134071528
-185&#39;NoneType&#39; object has no attribute &#39;text&#39;7134070919
-186&#39;NoneType&#39; object has no attribute &#39;text&#39;7134070813
-187&#39;NoneType&#39; object has no attribute &#39;text&#39;7134018594
-188&#39;NoneType&#39; object has no attribute &#39;attrs&#39;7134065295
-189&#39;NoneType&#39; object has no attribute &#39;text&#39;7134038216
-190&#39;NoneType&#39; object has no attribute &#39;text&#39;7134047855
-191&#39;NoneType&#39; object has no attribute &#39;text&#39;7134041042
-192&#39;NoneType&#39; object has no attribute &#39;text&#39;7134032295
-193&#39;NoneType&#39; object has no attribute &#39;text&#39;7134047718
-194&#39;NoneType&#39; object has no attribute &#39;text&#39;7134046429
-195&#39;NoneType&#39; object has no attribute &#39;text&#39;7134044027
-196&#39;NoneType&#39; object has no attribute &#39;text&#39;7134043086
-197&#39;NoneType&#39; object has no attribute &#39;attrs&#39;7134030862
-198&#39;NoneType&#39; object has no attribute &#39;text&#39;7134039381
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_craigslist_raw</span><span class="o">.</span><span class="n">columns</span>
@@ -13674,7 +13458,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -13693,7 +13477,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_craigslist_raw</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -13712,7 +13496,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -13750,29 +13534,29 @@ determine the amount of rental assistance each family receives.SDHC divided City
   <tbody>
     <tr>
       <th>0</th>
-      <td>Stunning Move in Single-Story 2 Bedroom 1 Bath...</td>
-      <td>1100</td>
-      <td>2</td>
-      <td>954</td>
-      <td>https://sandiego.craigslist.org/nsd/apa/d/san-...</td>
-      <td>32.762400</td>
-      <td>-117.124200</td>
-      <td>2020-06-02 10:18</td>
-      <td>San Diego, CA</td>
-      <td>7134599560</td>
+      <td>Coming Soon! Gorgeous 1 Bdrm! No Breed Restric...</td>
+      <td>1605</td>
+      <td>1</td>
+      <td>760</td>
+      <td>https://sandiego.craigslist.org/nsd/apa/d/ocea...</td>
+      <td>33.190765</td>
+      <td>-117.328791</td>
+      <td>2020-06-17 10:07</td>
+      <td>Oceanside</td>
+      <td>7143481496</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2 Bedroom in San Diego! Ready for move in</td>
-      <td>1799</td>
-      <td>2</td>
-      <td>900</td>
+      <td>Large One Bed one Bath North Park 1,049 Sq Ft</td>
+      <td>2595</td>
+      <td>1</td>
+      <td>1049</td>
       <td>https://sandiego.craigslist.org/csd/apa/d/san-...</td>
-      <td>32.742300</td>
-      <td>-117.094700</td>
-      <td>2020-06-02 10:18</td>
-      <td>San Diego</td>
-      <td>7134611170</td>
+      <td>32.755261</td>
+      <td>-117.142177</td>
+      <td>2020-06-17 10:06</td>
+      <td>North Park/San Diego</td>
+      <td>7143470356</td>
     </tr>
   </tbody>
 </table>
@@ -13787,7 +13571,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_craigslist_raw</span>
@@ -13800,7 +13584,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
@@ -13816,7 +13600,7 @@ determine the amount of rental assistance each family receives.SDHC divided City
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -13843,7 +13627,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df.astype({&#39;Rooms&#39;:&#39;int32&#39;}).dtypes</span>
@@ -13864,7 +13648,7 @@ dtype: object</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -13891,7 +13675,7 @@ dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -13933,352 +13717,6 @@ dtype: object</pre>
     </div>
 </div>
 </div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Debugging checks</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">print(SRO)</span>
-<span class="sd">print(br0)</span>
-<span class="sd">print(br1)</span>
-<span class="sd">print(br2)</span>
-<span class="sd">print(br3)</span>
-<span class="sd">print(br4)</span>
-<span class="sd">print(br5)</span>
-<span class="sd">print(br6)</span>
-<span class="sd">print(br7)</span>
-<span class="sd">print(br8)</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">SRO</span><span class="o">+</span><span class="n">br0</span><span class="o">+</span><span class="n">br1</span><span class="o">+</span><span class="n">br2</span><span class="o">+</span><span class="n">br3</span><span class="o">+</span><span class="n">br4</span><span class="o">+</span><span class="n">br5</span><span class="o">+</span><span class="n">br6</span><span class="o">+</span><span class="n">br7</span><span class="o">+</span><span class="n">br8</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="c1"># type(df[&#39;Rooms&#39;].values[3])</span>
-<span class="c1"># type(df[&#39;Price&#39;].values[3])</span>
-<span class="c1"># type(df[&#39;SquareFt&#39;].values[3])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[16]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\nprint(SRO)\nprint(br0)\nprint(br1)\nprint(br2)\nprint(br3)\nprint(br4)\nprint(br5)\nprint(br6)\nprint(br7)\nprint(br8)\n&#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[16]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>649</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[16]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>649</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_rooms_median</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Rooms&#39;</span><span class="p">)[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Price&#39;</span><span class="p">:</span><span class="s1">&#39;Median Price&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">df_rooms_mean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Rooms&#39;</span><span class="p">)[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Price&#39;</span><span class="p">:</span><span class="s1">&#39;Average Price&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">df_rooms_median</span>
-<span class="n">df_rooms_mean</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[17]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Median Price</th>
-    </tr>
-    <tr>
-      <th>Rooms</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>1800</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2235</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2767</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2800</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>3950</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1536</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[17]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Average Price</th>
-    </tr>
-    <tr>
-      <th>Rooms</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>1853</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2283</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2767</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2449</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>3149</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1536</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># df.describe()</span>
-<span class="c1"># df.columns</span>
-<span class="c1"># df.Title</span>
-<span class="c1"># df.SquareFt</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;LEAP.csv&quot;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Store-df-to-Google-sheet-for-visualization">Store df to Google sheet for visualization<a class="anchor-link" href="#Store-df-to-Google-sheet-for-visualization">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#CREATE Google Sheet from dataframes to create endpoints for visualization</span>
-
-<span class="c1">#authorization</span>
-<span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;../requirements/sdcity9c9209b112fe.json&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">gc</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;pygsheets.client.Client object at 0x12ac792e8&gt;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
-<span class="n">sh_side</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="n">googsheet</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sh_side</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;Spreadsheet &#39;Craigstlistings&#39; Sheets:1&gt;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wks_craigslist</span> <span class="o">=</span> <span class="n">sh_side</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">wks_craigslist</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df_craigslist_raw</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14290,34 +13728,6 @@ dtype: object</pre>
 <li>https://towardsdatascience.com/geopandas-101-plot-any-data-with-a-latitude-and-longitude-on-a-map-98e01944b972</li><h3 id="ipynb-visual-output-from-GSheet">ipynb visual output from GSheet<a class="anchor-link" href="#ipynb-visual-output-from-GSheet">&#182;</a></h3><p><li><a href="https://public.tableau.com/profile/performsd#!/vizhome/scraper/listings?">Tableau data visualization&lt;/A&gt;</p>
 <hr>
 </div>
-</div>
-</div>
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># One GeoDataFrame of zip codes, one of apartment locations.</span>
-<span class="c1"># Want to merge so we can get each apartment&#39;s zip code.</span>
-<span class="c1"># One GeoDataFrame of countries, one of Cities.</span>
-<span class="c1"># Want to merge so we can get each city&#39;s country.</span>
-<span class="c1">#apt_with_zipcode = gpd.sjoin(gdf, zipcodeCA, op=&#39;within&#39;)</span>
-<span class="n">apt_with_zip</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="n">zipcodeCA</span><span class="p">,,</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">,</span><span class="n">op</span><span class="o">=</span><span class="s2">&quot;within&quot;</span><span class="p">)</span>
-<span class="c1"># resource: https://geopandas.org/mergingdata.html</span>
-<span class="c1">#https://towardsdatascience.com/how-to-easily-join-data-by-location-in-python-spatial-join-197490ff3544</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-
-    </div>
-</div>
-</div>
-
 </div>
     </div>
   </div>
