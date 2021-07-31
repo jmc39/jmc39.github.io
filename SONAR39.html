@@ -13056,6 +13056,19 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+}
+#jupyter-main-app {
+    position: relative;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,8 +13129,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><b><h2>SONAR Alert System: Environmental Services Department (ESD)</h2></b><br>
-Do-Something-Alert system for ESD service delivery. The <b>S</b>tats <b>O</b>riginated <b>N</b>otification of 
+<h3><b><h2>SONAR Alert System: ESD, Sidewalk Repair, & Graffiti Removal</h2></b><br></h3>
+<p>Do-Something-Alert system for select GID service delivery. The <b>S</b>tats <b>O</b>riginated <b>N</b>otification of 
 <b>A</b>ction <b>R</b>equired (SONAR) tool is an automated-alert system whose aim is to report data that tells 
 City leadership when departments are delivering services at the levels expected. SONAR provides data insights 
 on two fundamental questions related to service impact:
@@ -13133,7 +13146,7 @@ in existing DAGs.</p>
 <p>From a performance management perspective, SONAR serves as a mechanism to enhance access to actionable performance
 data. Continuous analysis of these data provide the basis for relentless follow-up and data-based monitoring 
 in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/view?usp=sharing" target="_blank">PerformanceSTAT</a> program.</p>
-<p><a href="https://docs.google.com/spreadsheets/">End points in Google sheet.</a>
+<p><a href="https://docs.google.com/spreadsheets/d/1CPYX-UymX0qsgBoQ-SctevTYlOiBUJIhooN--uPbxvM">End points in Google sheet.</a>
 <br>
 <a href="https://public.tableau.com/profile/performsd#!/vizhome/sidewalk_backlog/backlog_story">Data visualization and map</a></p>
 
@@ -13142,7 +13155,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python pacakge dependencies</span>
@@ -13165,16 +13178,13 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Google sheet API document IDs</span>
-<span class="n">sheet1</span> <span class="o">=</span> <span class="c1">#Missed Collections</span>
-<span class="n">sheet2</span> <span class="o">=</span> <span class="c1">#Potential Missed Collection</span>
-<span class="n">sheet3</span> <span class="o">=</span> <span class="c1">#Illegal Dumping</span>
-<span class="n">sheet4</span> <span class="o">=</span> <span class="c1">#Dead Animal</span>
-<span class="n">sheet5</span> <span class="o">=</span> <span class="c1">#Homeless Encampment</span>
-<span class="n">sheet6</span> <span class="o">=</span> <span class="c1">#Sidewalk Repair Issue</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.yml&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ymlfile</span><span class="p">:</span>
+    <span class="n">cfg</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">ymlfile</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13184,10 +13194,122 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">GID_URL2020</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2020_requests_datasd_v1.csv&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">account_sid</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;api_creds&#39;</span><span class="p">][</span><span class="s1">&#39;account_sid_twilio&#39;</span><span class="p">]</span>
+<span class="n">auth_token</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;api_creds&#39;</span><span class="p">][</span><span class="s1">&#39;auth_toke_twilio&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#print(cfg)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sheet1</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;google_sheets&#39;</span><span class="p">][</span><span class="s1">&#39;sheet1&#39;</span><span class="p">]</span>
+<span class="n">sheet2</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;google_sheets&#39;</span><span class="p">][</span><span class="s1">&#39;sheet2&#39;</span><span class="p">]</span>
+<span class="n">sheet3</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;google_sheets&#39;</span><span class="p">][</span><span class="s1">&#39;sheet3&#39;</span><span class="p">]</span>
+<span class="n">sheet4</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;google_sheets&#39;</span><span class="p">][</span><span class="s1">&#39;sheet4&#39;</span><span class="p">]</span>
+<span class="n">sheet5</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;google_sheets&#39;</span><span class="p">][</span><span class="s1">&#39;sheet5&#39;</span><span class="p">]</span>
+<span class="n">sheet6</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;google_sheets&#39;</span><span class="p">][</span><span class="s1">&#39;sheet6&#39;</span><span class="p">]</span>
+<span class="n">sheet7</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;google_sheets&#39;</span><span class="p">][</span><span class="s1">&#39;sheet7&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#print(cfg[&#39;google_sheets&#39;])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">last_run</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">last_run</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2021-07-31 15:12:33.576740
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Google sheet API document IDs</span>
+<span class="n">sheet1</span> <span class="o">=</span><span class="s1">&#39;16MZhwrQbLG3FSI2Ac020pH4aWI_ZtHJfS7kC9dq1WnI&#39;</span> <span class="c1">#Missed Collections</span>
+<span class="n">sheet2</span> <span class="o">=</span> <span class="s1">&#39;1hK_u1mqriQlQ1ihQkJAyGTMseGPqPnj_GvE39pZ8mNs&#39;</span> <span class="c1">#Potential Missed Collection {NO LONGER EXISTS 7/2021}</span>
+<span class="n">sheet3</span> <span class="o">=</span> <span class="s1">&#39;1gswHbjm_7yqUkdI0aE2pu3JWirzN1iae1qhAuAPCBi8&#39;</span> <span class="c1">#Illegal Dumping</span>
+<span class="n">sheet4</span> <span class="o">=</span><span class="s1">&#39;1QkxMjUA9VrfnuZ6V2tOF-jLX6C-WQGTjalGQiSAG3z4&#39;</span> <span class="c1">#Dead Animal</span>
+<span class="n">sheet5</span> <span class="o">=</span> <span class="s1">&#39;1-MZGqZxVruoxb2gJvbMBy7cDY7qSZrPqe-QKAxfDLis&#39;</span> <span class="c1">#Homeless Encampment</span>
+<span class="n">sheet6</span> <span class="o">=</span> <span class="s1">&#39;1CPYX-UymX0qsgBoQ-SctevTYlOiBUJIhooN--uPbxvM&#39;</span> <span class="c1">#Sidewalk Repair Issue</span>
+<span class="n">sheet7</span> <span class="o">=</span> <span class="s1">&#39;1ig4m5uczMKFGGJ8JhDwrkNc6uMytKfMS6o6Zgh2YgFo&#39;</span> <span class="c1">#Graffiti Removal</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">GID_URL2021</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2021_requests_datasd_v1.csv&quot;</span>
+<span class="n">GID_URL2020</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2020_requests_datasd_v1.csv&quot;</span>
 <span class="n">GID_URL2019</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2019_requests_datasd_v1.csv&quot;</span>
 <span class="n">GID_URL2018</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2018_requests_datasd_v1.csv&quot;</span>
 <span class="n">GID_URL2017</span> <span class="o">=</span> <span class="s2">&quot;http://seshat.datasd.org/get_it_done_311/get_it_done_2017_requests_datasd_v1.csv&quot;</span>
@@ -13201,7 +13323,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cols_to_read</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -13215,7 +13337,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;service_request_id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
@@ -13224,7 +13346,20 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
              <span class="s1">&#39;case_origin&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
              <span class="s1">&#39;council_district&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">}</span>
 
-<span class="n">df2020</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">GID_URL2020</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols_to_read</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df2021</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">GID_URL2021</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols_to_read</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2020</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">GID_URL2020</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">cols_to_read</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13290,9 +13425,9 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2016</span><span class="p">[</span><span class="s1">&#39;date_requested&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-<span class="n">df2020</span><span class="p">[</span><span class="s1">&#39;date_requested&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="nb">max</span><span class="p">(</span><span class="n">df2020</span><span class="p">[</span><span class="s1">&#39;date_requested&#39;</span><span class="p">])</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">df2020</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df2019</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df2018</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df2017</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df2016</span><span class="p">)</span>
+<span class="n">df2021</span><span class="p">[</span><span class="s1">&#39;date_requested&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="nb">max</span><span class="p">(</span><span class="n">df2021</span><span class="p">[</span><span class="s1">&#39;date_requested&#39;</span><span class="p">])</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">df2021</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">df2020</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df2019</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df2018</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df2017</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">df2016</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13324,7 +13459,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;2020-03-07T21:58:00&#39;</pre>
+<pre>&#39;2021-07-30T23:57:00&#39;</pre>
 </div>
 
 </div>
@@ -13337,7 +13472,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;2020-03-07T21:58:00&#39;</pre>
+<pre>&#39;2021-07-30T23:57:00&#39;</pre>
 </div>
 
 </div>
@@ -13350,7 +13485,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>740399</pre>
+<pre>1193792</pre>
 </div>
 
 </div>
@@ -13361,11 +13496,11 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Concatenate all reporting years via &#39;concat&#39;</span>
-<span class="n">df2016todate</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df2020</span><span class="p">,</span><span class="n">df2019</span><span class="p">,</span><span class="n">df2018</span><span class="p">,</span><span class="n">df2017</span><span class="p">,</span><span class="n">df2016</span><span class="p">],</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df2016todate</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df2021</span><span class="p">,</span><span class="n">df2020</span><span class="p">,</span><span class="n">df2019</span><span class="p">,</span><span class="n">df2018</span><span class="p">,</span><span class="n">df2017</span><span class="p">,</span><span class="n">df2016</span><span class="p">],</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df2016todate</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;date_requested&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
@@ -13389,7 +13524,53 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">service_name</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;Other&#39;, &#39;Parking&#39;, &#39;Dead Animal&#39;, &#39;Illegal Dumping&#39;, &#39;Graffiti&#39;,
+       &#39;Stormwater Code Enforcement&#39;, &#39;Street Light Maintenance&#39;,
+       &#39;Stormwater&#39;, &#39;Pothole&#39;, &#39;Sidewalk Repair Issue&#39;,
+       &#39;Traffic Engineering&#39;, &#39;Pavement Maintenance&#39;,
+       &#39;Traffic Signal Issue&#39;, &#39;Tree Maintenance&#39;,
+       &#39;Graffiti - Code Enforcement&#39;, &#39;Traffic Signal Timing&#39;,
+       &#39;Street Sweeping&#39;, &#39;ROW Maintenance&#39;, &#39;Weed Cleanup&#39;,
+       &#39;Traffic Sign Maintenance&#39;, &#39;Street Flooded&#39;, nan,
+       &#39;Development Services - Code Enforcement&#39;,
+       &#39;Right-of-Way Code Enforcement&#39;, &#39;Shared Mobility Device&#39;,
+       &#39;Trash/Recycling Collection&#39;,
+       &#39;Environmental Services Code Compliance&#39;, &#39;Encampment&#39;,
+       &#39;Missed Collection&#39;, &#39;Waste on Private Property&#39;,
+       &#39;Container Request&#39;, &#39;COVID-19&#39;, &#39;Oversized Vehicle&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Datetime</span>
@@ -13412,13 +13593,24 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#34;\ndf[&#39;now&#39;] = dt.datetime.now()\ndf[&#39;now&#39;].astype(&#39;datetime64[ns]&#39;)\ndf[&#39;date_requested_ns&#39;] = df[&#39;date_requested&#39;].astype(&#39;datetime64[ns]&#39;)\ndf[&#39;time_diff&#39;] = df[&#39;now&#39;] - df[&#39;date_requested_ns&#39;]\ndf[&#39;days_diff&#39;] = df[&#39;time_diff&#39;].dt.components.days\ndf[&#39;hours_diff&#39;] = df[&#39;time_diff&#39;].dt.components.hours\ndf.drop(columns=[&#39;now&#39;,&#39;time_diff&#39;,&#39;date_requested_ns&#39;],inplace=True)&#34;</pre>
+<pre>1148263   2021-07-31 15:13:11.476172
+1148264   2021-07-31 15:13:11.476172
+1148266   2021-07-31 15:13:11.476172
+1148265   2021-07-31 15:13:11.476172
+1148268   2021-07-31 15:13:11.476172
+                     ...            
+225775    2021-07-31 15:13:11.476172
+225776    2021-07-31 15:13:11.476172
+225777    2021-07-31 15:13:11.476172
+225778    2021-07-31 15:13:11.476172
+225779    2021-07-31 15:13:11.476172
+Name: now, Length: 1193792, dtype: datetime64[ns]</pre>
 </div>
 
 </div>
@@ -13429,7 +13621,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dF_service</span> <span class="o">=</span> <span class="n">df</span>
@@ -13442,7 +13634,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">math_on_df</span><span class="p">(</span><span class="n">dF_service</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
@@ -13508,6 +13700,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
             <span class="n">alertSAP</span> <span class="o">=</span> <span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="s1">&#39;sap_notification_number&#39;</span><span class="p">])</span>
             <span class="n">snapshot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;! &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">alertAOC</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; days (&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">alertDATE</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">snapshot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;GID: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">alertSRID</span><span class="p">)</span><span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># snapshot.append(f&quot;SAP: &quot; + str(alertSAP)+ &quot;\n&quot;)</span>
             <span class="n">alertAOC</span> <span class="o">=</span> <span class="n">comparison</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">pass</span>
@@ -13528,12 +13721,12 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
         <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">mean_AOC</span><span class="p">)</span>
         <span class="k">pass</span>
     
-    <span class="n">mean_AOC</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mean_AOC</span><span class="p">)</span>
-    <span class="n">median_AOC</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">median_AOC</span><span class="p">)</span>
+    <span class="c1">#mean_AOC = int(mean_AOC)</span>
+    <span class="c1">#median_AOC = int(median_AOC)</span>
     
     <span class="n">snapshot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spacer</span> <span class="o">+</span> <span class="s1">&#39;/ Backlog STATS: &#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39; /&#39;</span> <span class="o">+</span> <span class="n">spacer</span><span class="p">)</span>
-    <span class="n">snapshot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Median: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">median_AOC</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; days.&quot;</span>  <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">)</span>
-    <span class="n">snapshot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Mean: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">mean_AOC</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; days.&quot;</span>  <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">)</span>
+    <span class="n">snapshot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Median: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">median_AOC</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; days.&quot;</span>  <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">)</span>
+    <span class="n">snapshot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Mean: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">mean_AOC</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; days.&quot;</span>  <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">)</span>
 
     <span class="n">dF_NIP_parents_25th</span> <span class="o">=</span> <span class="n">dF_NIP_parents</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">dF_NIP_parents_25thAOC</span> <span class="o">=</span> <span class="n">dF_NIP_parents_25th</span><span class="p">[</span><span class="s1">&#39;case_age_days&#39;</span><span class="p">]</span>
@@ -13641,51 +13834,12 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">dF_backlog, dF_hippokampi, snapshot_message = math_on_df(dF_service)</span>
-<span class="sd">dF_hippokampi.head(2)</span>
-<span class="sd">dF_backlog.head(2)</span>
-<span class="sd">dF_backlog.service_name.nunique()</span>
-<span class="sd">print(snapshot_message)</span>
-<span class="sd">&quot;&quot;&quot;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[64]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\ndF_backlog, dF_hippokampi, snapshot_message = math_on_df(dF_service)\ndF_hippokampi.head(2)\ndF_backlog.head(2)\ndF_backlog.service_name.nunique()\nprint(snapshot_message)\n&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">write_to_gsheets</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dF_hippokampi</span><span class="p">,</span> <span class="n">dF_backlog</span><span class="p">):</span>
     <span class="c1">#Service_file authorization to access Google sheet</span>
-    <span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;Hippokam{ } }112fe.json&quot;</span><span class="p">)</span>
+    <span class="n">gc</span> <span class="o">=</span> <span class="n">pyg</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">service_file</span><span class="o">=</span><span class="s2">&quot;Hippokampi-9c9209b112fe.json&quot;</span><span class="p">)</span>
 
     <span class="c1">#Open the blank Google spreadsheet using Google doc ID key</span>
     <span class="n">pyg_hipp</span> <span class="o">=</span> <span class="n">gc</span><span class="o">.</span><span class="n">open_by_key</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="c1">#map_dict key:value</span>
@@ -13737,21 +13891,19 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sms_txt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">phone</span><span class="p">):</span>
-    <span class="n">account_sid</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1">#PandaTech GID TEST SID</span>
-    <span class="n">auth_token</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1">#PandaTech GID TEST AUTHTOKEN</span>
+    <span class="n">account_sid</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;api_creds&#39;</span><span class="p">][</span><span class="s1">&#39;account_sid_twilio&#39;</span><span class="p">]</span> <span class="c1">#sdcityjmcarter SID</span>
+    <span class="n">auth_token</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;api_creds&#39;</span><span class="p">][</span><span class="s1">&#39;auth_toke_twilio&#39;</span><span class="p">]</span> <span class="c1">#sdcityjmcarter AUTHTOKEN</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">account_sid</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">)</span>
 
     <span class="n">message</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">messages</span> \
                     <span class="o">.</span><span class="n">create</span><span class="p">(</span>
-                         <span class="n">body</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
-                         <span class="n">from_</span><span class="o">=</span><span class="s1">&#39;+1&#39;</span><span class="p">,</span>
-                         <span class="n">to</span><span class="o">=</span><span class="s1">&#39;+1&#39;</span>
-                     <span class="p">)</span>
-
+                        <span class="n">body</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
+                        <span class="n">from_</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;phone_numbers&#39;</span><span class="p">][</span><span class="s1">&#39;twilio_outbound&#39;</span><span class="p">],</span><span class="c1">#sdcityjmcarter</span>
+                        <span class="n">to</span><span class="o">=</span><span class="n">phone</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">sid</span><span class="p">)</span>
     <span class="k">return</span> <span class="s2">&quot;Twilio text function works&quot;</span>
 </pre></div>
@@ -13763,35 +13915,33 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="s2">&quot;Missed Collection&quot;</span>
-<span class="n">service2</span> <span class="o">=</span> <span class="s2">&quot;Potential Missed Collection&quot;</span>
+<span class="c1"># service2 = &quot;Potential Missed Collection&quot;</span>
 <span class="n">service3</span> <span class="o">=</span> <span class="s2">&quot;Illegal Dumping&quot;</span>
 <span class="n">service4</span> <span class="o">=</span> <span class="s2">&quot;Dead Animal&quot;</span>
 <span class="n">service5</span> <span class="o">=</span> <span class="s2">&quot;Encampment&quot;</span>
 <span class="n">service6</span> <span class="o">=</span> <span class="s2">&quot;Sidewalk Repair Issue&quot;</span>
-<span class="n">ph1</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="n">ph2</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="n">service7</span> <span class="o">=</span> <span class="s2">&quot;Graffiti&quot;</span>
+<span class="n">ph1</span><span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;phone_numbers&#39;</span><span class="p">][</span><span class="s1">&#39;ph1&#39;</span><span class="p">]</span>
+<span class="n">ph2</span><span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;phone_numbers&#39;</span><span class="p">][</span><span class="s1">&#39;ph2&#39;</span><span class="p">]</span>
+<span class="n">ph3</span><span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;phone_numbers&#39;</span><span class="p">][</span><span class="s1">&#39;ph3&#39;</span><span class="p">]</span>
+<span class="n">ph4</span><span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;phone_numbers&#39;</span><span class="p">][</span><span class="s1">&#39;ph4&#39;</span><span class="p">]</span>
+<span class="n">ph5</span><span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;phone_numbers&#39;</span><span class="p">][</span><span class="s1">&#39;ph5&#39;</span><span class="p">]</span>
+<span class="n">ph6</span><span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;phone_numbers&#39;</span><span class="p">][</span><span class="s1">&#39;ph6&#39;</span><span class="p">]</span>
 
-<span class="n">map_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">service</span><span class="p">:[</span><span class="n">sheet1</span><span class="p">,</span><span class="n">ph1</span><span class="p">],</span>
-            <span class="n">service2</span><span class="p">:[</span><span class="n">sheet2</span><span class="p">,</span><span class="n">ph2</span><span class="p">],</span>
+<span class="n">map_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">service</span><span class="p">:[</span><span class="n">sheet1</span><span class="p">,</span><span class="n">ph5</span><span class="p">],</span>
             <span class="n">service3</span><span class="p">:[</span><span class="n">sheet3</span><span class="p">,</span><span class="n">ph1</span><span class="p">],</span>
-            <span class="n">service4</span><span class="p">:[</span><span class="n">sheet4</span><span class="p">,</span><span class="n">ph2</span><span class="p">],</span>
+            <span class="n">service4</span><span class="p">:[</span><span class="n">sheet4</span><span class="p">,</span><span class="n">ph5</span><span class="p">],</span>
             <span class="n">service5</span><span class="p">:[</span><span class="n">sheet5</span><span class="p">,</span><span class="n">ph1</span><span class="p">],</span>
-            <span class="n">service6</span><span class="p">:[</span><span class="n">sheet6</span><span class="p">,</span><span class="n">ph2</span><span class="p">]}</span>
+            <span class="n">service6</span><span class="p">:[</span><span class="n">sheet6</span><span class="p">,</span><span class="n">ph1</span><span class="p">],</span>
+            <span class="n">service7</span><span class="p">:[</span><span class="n">sheet7</span><span class="p">,</span><span class="n">ph3</span><span class="p">]</span>
+           <span class="p">}</span>
 
 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">map_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">service</span><span class="p">:</span>
-        <span class="n">df_s</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;service_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">]</span>
-        <span class="n">df_sum</span><span class="p">,</span> <span class="n">df_new</span><span class="p">,</span> <span class="n">snapshot_message</span> <span class="o">=</span> <span class="n">math_on_df</span><span class="p">(</span><span class="n">df_s</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>  <span class="c1">#make function that does math</span>
-        <span class="n">write_to_gsheets</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df_sum</span><span class="p">,</span> <span class="n">df_new</span><span class="p">)</span> <span class="c1">#write to gsheet function</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;gonna work for </span><span class="si">{key}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">sms_txt</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">,</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">)</span>
-    
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="n">service2</span><span class="p">:</span>
         <span class="n">df_s</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;service_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">]</span>
         <span class="n">df_sum</span><span class="p">,</span> <span class="n">df_new</span><span class="p">,</span> <span class="n">snapshot_message</span> <span class="o">=</span> <span class="n">math_on_df</span><span class="p">(</span><span class="n">df_s</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>  <span class="c1">#make function that does math</span>
         <span class="n">write_to_gsheets</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df_sum</span><span class="p">,</span> <span class="n">df_new</span><span class="p">)</span> <span class="c1">#write to gsheet function</span>
@@ -13822,9 +13972,16 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
         <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;gonna work for </span><span class="si">{key}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">sms_txt</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">,</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">)</span>
-        <span class="k">pass</span>
         
     <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="n">service6</span><span class="p">:</span>
+        <span class="n">df_s</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;service_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">]</span>
+        <span class="n">df_sum</span><span class="p">,</span> <span class="n">df_new</span><span class="p">,</span> <span class="n">snapshot_message</span> <span class="o">=</span> <span class="n">math_on_df</span><span class="p">(</span><span class="n">df_s</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>  <span class="c1">#make function that does math</span>
+        <span class="n">write_to_gsheets</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df_sum</span><span class="p">,</span> <span class="n">df_new</span><span class="p">)</span> <span class="c1">#write to gsheet function</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;gonna work for </span><span class="si">{key}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sms_txt</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">,</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">)</span>
+    
+    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="n">service7</span><span class="p">:</span>
         <span class="n">df_s</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;service_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">]</span>
         <span class="n">df_sum</span><span class="p">,</span> <span class="n">df_new</span><span class="p">,</span> <span class="n">snapshot_message</span> <span class="o">=</span> <span class="n">math_on_df</span><span class="p">(</span><span class="n">df_s</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>  <span class="c1">#make function that does math</span>
         <span class="n">write_to_gsheets</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df_sum</span><span class="p">,</span> <span class="n">df_new</span><span class="p">)</span> <span class="c1">#write to gsheet function</span>
@@ -13844,7 +14001,7 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -13862,13 +14019,14 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>gonna work for Missed Collection
+SM30c7d9b7c65043e8bb05210527512413
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -13889,17 +14047,17 @@ in a <a href="https://drive.google.com/file/d/1kSNKUoBZ5Z21jMDHCIwXMpNx5Iju9Tp4/
  --*---*-- 
 /  OLDEST: Missed Collection /
  --*---*-- 
-! 558 days (08-27-2018 14:15)
-GID: 2385826
+! 1069 days (08-27-2018 14:38)
+GID: 2385855
 
  --*---*-- 
 / Backlog STATS: Missed Collection /
  --*---*-- 
-Median: 4 days.
-Mean: 51 days.
-Exceed SLA (9 days): 109 cases.
-Backlog: 376 cases (12-27-2019 23:43).
-New status: 5 cases (as of 12-03-2019 15:25).
+Median: 40 days.
+Mean: 42 days.
+Exceed SLA (63 days): 1376 cases.
+Backlog: 5491 cases (08-27-2018 14:38).
+New status: 11 cases (as of 07-30-2021 00:36).
 New cases (undupl): 0 w/i last 24hr
 Closed cases (undupl): 0 w/i last 24hr
 
@@ -13909,98 +14067,7 @@ Closed cases (undupl): 0 w/i last 24hr
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\n    elif key == service6:\n        df_s = df[df[\&#39;service_name\&#39;] == key]\n        df_sum, df_new, snapshot_message = math_on_df(df_s,key)  #make function that does math\n        write_to_gsheets(value[0], df_sum, df_new) #write to gsheet function\n        print(f&#34;gonna work for {key}&#34;)\n        sms_txt(snapshot_message,value[1])\n        print(snapshot_message)\n        pass\n    &#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[74]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;Successfully wrote to sheets&#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>gonna work for Potential Missed Collection
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[74]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;Twilio text function works&#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
- --*---*-- 
-/  OLDEST: Potential Missed Collection /
- --*---*-- 
-! 558 days (08-27-2018 14:38)
-GID: 2385855
-
- --*---*-- 
-/ Backlog STATS: Potential Missed Collection /
- --*---*-- 
-Median: 2 days.
-Mean: 14 days.
-Exceed SLA (4 days): 29 cases.
-Backlog: 105 cases (08-27-2018 14:38).
-New status: 0 cases (as of N/A).
-New cases (undupl): 0 w/i last 24hr
-Closed cases (undupl): 0 w/i last 24hr
-
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[74]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\n    elif key == service6:\n        df_s = df[df[\&#39;service_name\&#39;] == key]\n        df_sum, df_new, snapshot_message = math_on_df(df_s,key)  #make function that does math\n        write_to_gsheets(value[0], df_sum, df_new) #write to gsheet function\n        print(f&#34;gonna work for {key}&#34;)\n        sms_txt(snapshot_message,value[1])\n        print(snapshot_message)\n        pass\n    &#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -14018,13 +14085,14 @@ Closed cases (undupl): 0 w/i last 24hr
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>gonna work for Illegal Dumping
+SM076c17912d4c4864b05219026dceaab7
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -14045,21 +14113,19 @@ Closed cases (undupl): 0 w/i last 24hr
  --*---*-- 
 /  OLDEST: Illegal Dumping /
  --*---*-- 
-! 551 days (09-03-2018 12:24)
-GID: 2390897
-! 551 days (09-03-2018 14:28)
-GID: 2390936
+! 411 days (06-15-2020 10:26)
+GID: 2982470
 
  --*---*-- 
 / Backlog STATS: Illegal Dumping /
  --*---*-- 
-Median: 14 days.
-Mean: 83 days.
-Exceed SLA (123 days): 81 cases.
-Backlog: 319 cases (12-31-2019 11:36).
-New status: 10 cases (as of 10-08-2019 17:50).
+Median: 21 days.
+Mean: 49 days.
+Exceed SLA (58 days): 152 cases.
+Backlog: 595 cases (12-31-2020 14:06).
+New status: 84 cases (as of 07-30-2021 14:39).
 New cases (undupl): 0 w/i last 24hr
-Closed cases (undupl): 0 w/i last 24hr
+Closed cases (undupl): 1 w/i last 24hr
 
 </pre>
 </div>
@@ -14067,20 +14133,7 @@ Closed cases (undupl): 0 w/i last 24hr
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\n    elif key == service6:\n        df_s = df[df[\&#39;service_name\&#39;] == key]\n        df_sum, df_new, snapshot_message = math_on_df(df_s,key)  #make function that does math\n        write_to_gsheets(value[0], df_sum, df_new) #write to gsheet function\n        print(f&#34;gonna work for {key}&#34;)\n        sms_txt(snapshot_message,value[1])\n        print(snapshot_message)\n        pass\n    &#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -14098,13 +14151,14 @@ Closed cases (undupl): 0 w/i last 24hr
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>gonna work for Dead Animal
+SMddce14a01ad946c4b2abcd74d07db806
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -14125,39 +14179,19 @@ Closed cases (undupl): 0 w/i last 24hr
  --*---*-- 
 /  OLDEST: Dead Animal /
  --*---*-- 
-! 66 days (01-01-2020 11:48)
-GID: 2837975
-! 66 days (01-01-2020 12:32)
-GID: 2838007
-! 66 days (01-01-2020 14:05)
-GID: 2838067
-! 66 days (01-01-2020 14:51)
-GID: 2838110
-! 66 days (01-01-2020 19:26)
-GID: 2838316
-! 66 days (01-02-2020 08:34)
-GID: 2838526
-! 66 days (01-02-2020 08:51)
-GID: 2838557
-! 66 days (01-02-2020 09:16)
-GID: 2838598
-! 66 days (01-02-2020 09:17)
-GID: 2838601
-! 66 days (01-02-2020 09:25)
-GID: 2838614
-! 66 days (01-02-2020 09:33)
-GID: 2838638
-! 66 days (01-02-2020 09:40)
-GID: 2838657
+! 19 days (07-12-2021 08:29)
+GID: 3429628
+! 19 days (07-12-2021 08:43)
+GID: 3429664
 
  --*---*-- 
 / Backlog STATS: Dead Animal /
  --*---*-- 
-Median: 52 days.
-Mean: 50 days.
-Exceed SLA (62 days): 35 cases.
-Backlog: 118 cases (03-07-2020 13:47).
-New status: 1 cases (as of 01-05-2020 10:32).
+Median: 2 days.
+Mean: 7 days.
+Exceed SLA (12 days): 3 cases.
+Backlog: 11 cases (07-30-2021 20:34).
+New status: 0 cases (as of N/A).
 New cases (undupl): 0 w/i last 24hr
 Closed cases (undupl): 0 w/i last 24hr
 
@@ -14167,20 +14201,7 @@ Closed cases (undupl): 0 w/i last 24hr
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;\n    elif key == service6:\n        df_s = df[df[\&#39;service_name\&#39;] == key]\n        df_sum, df_new, snapshot_message = math_on_df(df_s,key)  #make function that does math\n        write_to_gsheets(value[0], df_sum, df_new) #write to gsheet function\n        print(f&#34;gonna work for {key}&#34;)\n        sms_txt(snapshot_message,value[1])\n        print(snapshot_message)\n        pass\n    &#39;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -14198,13 +14219,14 @@ Closed cases (undupl): 0 w/i last 24hr
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>gonna work for Encampment
+SM89ea765af8824f1697308d188e8e266f
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -14225,17 +14247,17 @@ Closed cases (undupl): 0 w/i last 24hr
  --*---*-- 
 /  OLDEST: Encampment /
  --*---*-- 
-! 166 days (09-23-2019 11:03)
-GID: 2742276
+! 485 days (04-02-2020 17:40)
+GID: 2925424
 
  --*---*-- 
 / Backlog STATS: Encampment /
  --*---*-- 
-Median: 11 days.
-Mean: 15 days.
-Exceed SLA (21 days): 124 cases.
-Backlog: 487 cases (12-30-2019 13:18).
-New status: 23 cases (as of 03-05-2020 17:03).
+Median: 12 days.
+Mean: 68 days.
+Exceed SLA (51 days): 203 cases.
+Backlog: 809 cases (12-31-2020 10:54).
+New status: 10 cases (as of 07-29-2021 19:18).
 New cases (undupl): 0 w/i last 24hr
 Closed cases (undupl): 1 w/i last 24hr
 
@@ -14245,28 +14267,140 @@ Closed cases (undupl): 1 w/i last 24hr
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;\n    elif key == service6:\n        df_s = df[df[\&#39;service_name\&#39;] == key]\n        df_sum, df_new, snapshot_message = math_on_df(df_s,key)  #make function that does math\n        write_to_gsheets(value[0], df_sum, df_new) #write to gsheet function\n        print(f&#34;gonna work for {key}&#34;)\n        sms_txt(snapshot_message,value[1])\n        print(snapshot_message)\n        pass\n    &#39;</pre>
+<pre>&#39;Successfully wrote to sheets&#39;</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[74]:</div>
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>gonna work for Sidewalk Repair Issue
+SM36c3560a70d44c45855701d3d9a2157a
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;\n    elif key == service6:\n        df_s = df[df[\&#39;service_name\&#39;] == key]\n        df_sum, df_new, snapshot_message = math_on_df(df_s,key)  #make function that does math\n        write_to_gsheets(value[0], df_sum, df_new) #write to gsheet function\n        print(f&#34;gonna work for {key}&#34;)\n        sms_txt(snapshot_message,value[1])\n        print(snapshot_message)\n        pass\n    &#39;</pre>
+<pre>&#39;Twilio text function works&#39;</pre>
 </div>
 
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+ --*---*-- 
+/  OLDEST: Sidewalk Repair Issue /
+ --*---*-- 
+! 1896 days (05-22-2016 19:52)
+GID: 81014
+! 1896 days (05-22-2016 19:55)
+GID: 81015
+! 1896 days (05-22-2016 20:00)
+GID: 81016
+! 1896 days (05-22-2016 20:02)
+GID: 81017
+
+ --*---*-- 
+/ Backlog STATS: Sidewalk Repair Issue /
+ --*---*-- 
+Median: 627 days.
+Mean: 700 days.
+Exceed SLA (1130 days): 1464 cases.
+Backlog: 5844 cases (12-31-2020 12:18).
+New status: 1 cases (as of 07-30-2021 16:07).
+New cases (undupl): 1 w/i last 24hr
+Closed cases (undupl): 1 w/i last 24hr
+
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Successfully wrote to sheets&#39;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>gonna work for Graffiti
+SMef1368f72ff04ffd84c5386aee38f67b
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Twilio text function works&#39;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+ --*---*-- 
+/  OLDEST: Graffiti /
+ --*---*-- 
+! 1870 days (06-17-2016 15:28)
+GID: 88629
+
+ --*---*-- 
+/ Backlog STATS: Graffiti /
+ --*---*-- 
+Median: 36 days.
+Mean: 60 days.
+Exceed SLA (75 days): 556 cases.
+Backlog: 2193 cases (12-31-2020 20:11).
+New status: 2 cases (as of 07-13-2021 07:46).
+New cases (undupl): 0 w/i last 24hr
+Closed cases (undupl): 0 w/i last 24hr
+
+</pre>
+</div>
 </div>
 
 </div>
@@ -14275,14 +14409,10 @@ Closed cases (undupl): 1 w/i last 24hr
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#serveless invoke local and \deploy terminal command</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">&#39;sls invoke local -f sonar&#39;</span>
-<span class="sd">&#39;sls deploy&#39;</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14295,30 +14425,32 @@ Closed cases (undupl): 1 w/i last 24hr
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+ --*---*-- 
+/  OLDEST: Graffiti /
+ --*---*-- 
+! 1870 days (06-17-2016 15:28)
+GID: 88629
 
+ --*---*-- 
+/ Backlog STATS: Graffiti /
+ --*---*-- 
+Median: 36 days.
+Mean: 60 days.
+Exceed SLA (75 days): 556 cases.
+Backlog: 2193 cases (12-31-2020 20:11).
+New status: 2 cases (as of 07-13-2021 07:46).
+New cases (undupl): 0 w/i last 24hr
+Closed cases (undupl): 0 w/i last 24hr
 
-<div class="output_text output_subarea output_execute_result">
-<pre>&#34;\n&#39;sls invoke local -f sonar&#39;\n&#39;sls deploy&#39;\n&#34;</pre>
+</pre>
+</div>
 </div>
 
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">snapshot_message</span><span class="p">)</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
